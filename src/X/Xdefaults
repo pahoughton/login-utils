@@ -34,8 +34,8 @@ XTerm*foreground: 	black
 XTerm*background:	white
 
 XTerm*vt100*translations: #override \
-	<Key>Next: 	scroll-forw(1, page)\n\
-	<Key>Prior:	scroll-back(1, page) \n
+	Shift<Key>Next: 	scroll-forw(1, page)\n\
+	Shift<Key>Prior:	scroll-back(1, page) \n
 
 Xpcms*controlPanel*showTools.set:               False
 Xpcms*background:		    dark slate blue
@@ -48,6 +48,9 @@ Xpcms*cm*defaultMenuSetName: AllOptions
 
 !
 ! $Log$
+! Revision 1.2  2003/05/22 13:18:27  houghton
+! Changed page up and page down to use S-pgup S-pgdn
+!
 ! Revision 1.1  2003/05/18 01:55:01  houghton
 ! Initial Version
 !
