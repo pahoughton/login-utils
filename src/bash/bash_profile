@@ -144,53 +144,49 @@ if [ -d $HOME/scripts/perllib ] ; then
 fi
 
 #
-# Gnu Info Env
+# Gnu INFOPATH
 #
+info_base_dirs="
+$TOOL_DIR
+$UTIL_DIR
+/usr/local
+/usr/share
+/usr
+"
 
-export INFOPATH=$TOOL_DIR/info
-
-[ -d $UTIL_DIR/info ] && INFOPATH=$INFOPATH:$UTIL_DIR/info
-[ -d /usr/info ] && INFOPATH=$INFOPATH:/usr/info
-[ -d /usr/share/info ] && INFOPATH=$INFOPATH:/usr/info
-
-if [ -d "$UTIL_DIR/lib/xemacs" ] ; then
-  xemacs_info_dirs=`ls -d $UTIL_DIR/lib/xemacs-* | sort -r`
-  xemacs_info_dirs="$xemacs_info_dirs $UTIL_DIR/lib/xemacs/xemacs-packages"
-else
-  if [ -d /usr/share/xemacs ] ; then
-    xemacs_info_dirs=`ls -d /usr/share/xemacs-* | sort -r`
-    xemacs_info_dirs="$xemacs_info_dirs /usr/share/xemacs/xemacs-packages"
-  else
-    if [ -d /usr/lib/xemacs ] ; then
-      xemacs_info_dirs=`ls -d /usr/lib/xemacs-* | sort -r`
-      xemacs_info_dirs="$xemacs_info_dirs /usr/lib/xemacs/xemacs-packages"
+for dir in $info_base_dirs ; do
+  if [ -d $dir/share/xemacs ] ; then
+    INFOPATH=`ls -d $dir/share/xemacs-* | sort -r | head -1`
+    if [ -d $INFOPATH ] ; then
+      INFOPATH=$INFOPATH:$dir/share/xemacs/xemacs-packages
+      break
     fi
   fi
-fi
 
-for dir in $xemacs_info_dirs ; do
-  if [ -d $dir/info ] ; then
-    INFOPATH=$INFOPATH:$dir/info
-    break;
+  if [ -d $dir/lib/xemacs ] ; then
+    INFOPATH=`ls -d $dir/lib/xemacs-* | sort -r | head -1`
+    if [ -d $INFOPATH ] ; then
+      INFOPATH=$INFOPATH:$dir/lib/xemacs/xemacs-packages
+      break
+    fi
   fi
 done
 
-[ -d $TOOL_DIR/lib/xemacs/xemacs-packages/info ] &&
-  INFOPATH=$INFOPATH:$TOOL_DIR/lib/xemacs/xemacs-packages/info
+for dir in $info_base_dirs ; do
+  if [ -d $dir/info ] ; then
+    INFOPATH=$INFOPATH:$dir/info
+  fi
+done
 
-[ -d $UTIL_DIR/lib/xemacs/xemacs-packages/info ] &&
-  INFOPATH=$INFOPATH:$UTIL_DIR/lib/xemacs/xemacs-packages/info
+unset info_base_dirs
+unset dir
+export INFOPATH
 
-[ -d $TOOL_DIR/lib/xemacs/local-lisp/21.1/info ] &&
-  INFOPATH=$INFOPATH:$UTIL_DIR/lib/xemacs/local-lisp/21.1/info
-
-[ -d $TOOL_DIR/lib/xemacs/local-lisp/21.1/info ] &&
-  INFOPATH=$INFOPATH:$UTIL_DIR/lib/xemacs/local-lisp/21.1/info
-
+# Email
 
 export REPLYTO_mci="paul.houghton@mci.com"
 export REPLYTO_sf="pahoughton@users.sourceforge.net"
-export REPLYTO=$REPLYTO_mci
+export REPLYTO=$REPLYTO_sf
 
 # Netscape
 [ -d /usr/local/Netscape ] &&  MOZILLA_HOME=/usr/local/Netscape
@@ -240,18 +236,19 @@ fi
 # Setup my PATH
 #
 
-if [ `uname -s` = "SunOS"  ] ; then
+if [ $OSTYPE = "SunOS"  ] ; then
   # Sun is strange
   PATH=/usr/bin:/bin
 fi
 
 # append other avaliable system dirs
-append_dirs="/usr/ccs/bin /usr/ucb $host_path"
+append_dirs="/usr/ccs/bin /usr/ucb $host_append_path"
 for ad in $append_dirs ; do
   [ -d $ad ] && PATH=$PATH:$ad
 done
 unset ad
 unset append_dirs
+unset host_append_path
 
 # find X11 dirs if not already in path
 
@@ -265,8 +262,10 @@ if ! type xrdb > /dev/null 2>&1 ; then
   done
 fi
 
-# prepend available dirs
-prepend_dirs=" /var/ldap/bin /usr/local/tex/bin"
+# prepend available dirs - note last dir will be first in path
+
+prepend_dirs=" /var/ldap/bin /usr/local/tex/bin $host_prepend_path"
+unset host_prepend_path
 
 [ -n "$JAVA_HOME" ] && prepend_dirs="$prepend_dirs $JAVA_HOME/bin"
 
@@ -440,6 +439,10 @@ esac
 
 #
 # $Log$
+# Revision 1.44  2003/06/02 07:09:40  houghton
+# Reworked info path
+# Reworked Replyto
+#
 # Revision 1.43  2003/05/24 09:27:16  houghton
 # Major rework
 #
