@@ -22,17 +22,13 @@
 
 export have_bash_profile=true
 
-if [ -d /Tools ] ; then
-  TOOL_DIR=/Tools
-else
-  if [ -d /usr/local ] ; then
-    TOOL_DIR=/usr/local
-  else
-    TOOL_DIR=$HOME
+tooldirs="/Tools /ci/tools /usr/local $HOME/tools"
+for td  in $tooldirs ; do
+  if [ -d $td ] ; then
+    export TOOL_DIR=$td
+    break
   fi
-fi
-
-export TOOL_DIR
+done
 
 #
 # OPENWINHOME
@@ -87,11 +83,11 @@ export CVSROOT=$CVSROOT_sideswipe
 [ -d /usr/info ] && INFOPATH=/usr/info
 [ -d $TOOL_DIR/info ] && INFOPATH=$TOOL_DIR/info:$INFOPATH
 
-if [ -d /usr/local/lib/xemacs-20.4 ] ; then
-  export INFOPATH=/usr/local/lib/xemacs-20.4/info:$INFOPATH
+if [ -d $TOOL_DIR/lib/xemacs-20.4 ] ; then
+  export INFOPATH=$TOOL_DIR/lib/xemacs-20.4/info:$INFOPATH
 else
-  if [ -d /usr/local/lib/xemacs-19.14 ] ; then
-    export INFOPATH=/usr/local/lib/xemacs-19.14:$INFOPATH
+  if [ -d $TOOL_DIR/lib/xemacs-19.14 ] ; then
+    export INFOPATH=$TOOL_DIR/lib/xemacs-19.14:$INFOPATH
   else
     export INFOPATH
   fi
@@ -276,6 +272,9 @@ esac
 
 #
 # $Log$
+# Revision 1.19  1999/05/03 13:48:44  houghton
+# Fixed TOOL_DIR and INFOPATH.
+#
 # Revision 1.18  1999/05/03 13:47:41  houghton
 # Fixed Netscape directory.
 #
