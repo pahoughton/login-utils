@@ -21,14 +21,19 @@
 
 # If Running interactivly
 
-if [ -n "$TOOL_DIR" -a -d "$TOOL_DIR/lib/beta" ] ; then
-  export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta:$LD_LIBRARY_PATH"
+# if we have NOT loaded the profile.
+if [ -z "$TOOL_DIR" ] ; then
+  source $HOME/.bash_profile
+else
+  if [ -n "$TOOL_DIR" -a -d "$TOOL_DIR/lib/beta" ] ; then
+    export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta:$LD_LIBRARY_PATH"
+  fi
 fi
-
+       
 case $- in
   
   *i*)          # interactive
-	case $TERM in
+       case $TERM in
 	  *xterm*)
 	    if [ -e /usr/share/terminfo/x/xterm-xf86-v33 ] ; then
 	      eval `tset -e  -s -m xterm:xterm-xf86-v33 -m linux:linux -m :?vt100`
@@ -64,7 +69,6 @@ case $- in
 
         ;;
   *)
-	source .bash_profile
         ;;
 esac
 
@@ -74,6 +78,9 @@ esac
 
 #
 # $Log$
+# Revision 1.9  1999/04/29 20:54:26  houghton
+# Fixed sourcing bash_profile
+#
 # Revision 1.8  1999/04/28 09:12:57  houghton
 # Merge with cmore changes.
 #
