@@ -149,12 +149,23 @@ function setprj {
 
 }
 
+function set_title {
+  case $TERM in
+    dtterm) 
+      echo Setting window title to \'$*\' ]0\;$*
+      ;;
+  esac
+}
+
 # function phone {
 #  grep -i "$1" ~/pers/phone/phone.txt
 #}
   
 #
 # $Log$
+# Revision 1.13  2003/05/16 12:39:43  houghton
+# Added set_title function.
+#
 # Revision 1.12  2003/05/16 09:20:33  houghton
 # Changed show_path so it uses the value passed instead of using it as a
 #     variable.
