@@ -20,13 +20,17 @@
 #   $Id$
 # 
 
+set -x
 export have_bash_profile=true
 
+[ -z "$HOSTNAME" ] &&
+  type hostname > /dev/null 2>&1 &&
+  export HOSTNAME=`hostname`
 
 # Grab host specific profile if it exists
 
 [ -f $HOME/.bash_${HOSTNAME}_profile ] &&
-  source $HOME/.bash_${HOSTNAME}_profile
+  . $HOME/.bash_${HOSTNAME}_profile
 
 # set TOOL_DIR
 
@@ -172,13 +176,13 @@ export REPLYTO="paul.houghton@wcom.com"
 if [ -n "$MOZILLA_HOME" ] ; then
   export MOZILLA_HOME
   export NPX_PLUGIN_PATH=$MOZILLA_HOME/plugins
-  if [ -d /usr/local/Acrobat4/Browsers/intellinux ] ; then
-    NPX_PLUGIN_PATH=$NPX_PLUGIN_PATH:/usr/local/Acrobat4/Browsers/intellinux
-  else
-    if [ -d /usr/local/Acrobat3/Browsers/intellinux ] ; then
-      NPX_PLUGIN_PATH=$NPX_PLUGIN_PATH:/usr/local/Acrobat3/Browsers/intellinux
-    fi
-  fi
+  
+  mozilla_plugin_dirs="$ACROREAD_PLUGING_DIR"
+  for pdir in "$mozilla_plugin_dirs" ; do
+    [ -d $pdir ] && NPX_PLUGIN_PATH="$NPX_PLUGIN_PATH:$pdir"
+  done
+  unset mozilla_plugin_dirs
+  unset pdir
 fi
   
 # less
@@ -197,7 +201,7 @@ done
 
 # Dimensions
 if [ -n "$PCMS_ROOT" -a -n "$PROJECT" ] ; then
-  export PCMSDB=`echo $PROJECT | tr A-Z a-z`_$USER
+  eval export PCMSDB=\${${PROJECT}_PCMSDB}_$USER  
   export PCMS_EDT=gnuclient
   export PCMS_CHD_EDT=gnuclient
   export PCMS_BROWSE="gnuclient -v"
@@ -207,7 +211,7 @@ fi
 # LD_LIBRARY_PATH
 #
 
-[ -f $HOME/.bash_setldlibpath ] && source $HOME/.bash_setldlibpath
+[ -f $HOME/.bash_setldlibpath ] && . $HOME/.bash_setldlibpath
 
 #
 # Setup my PATH
@@ -219,7 +223,7 @@ if [ `uname -s` = "SunOS"  ] ; then
 fi
 
 # append other avaliable system dirs
-append_dirs="/usr/ucb /usr/ccs/bin"
+append_dirs="/usr/ccs/bin /usr/ucb $host_path"
 for ad in $append_dirs ; do
   [ -d $ad ] && PATH=$PATH:$ad
 done
@@ -243,14 +247,21 @@ prepend_dirs=" /var/ldap/bin /usr/local/tex/bin"
 
 [ -n "$JAVA_HOME" ] && prepend_dirs="$prepend_dirs $JAVA_HOME/bin"
 
-cxx_dir_list="6.0 5.0 4.2"
-for cxx_dir in $cxx_dir_list ; do
-  if [ -d /opt/SUNWspro/SC$cxx_dir ] ; then
-    prepend_dirs="$prepend_dirs /opt/SUNWspro/SC$cxx_dir/bin"
-    prepend_dirs="$prepend_dirs /opt/SUNWspro/WS$cxx_dir/bin"
-    break;
-  fi
-done
+if [ -n "$host_cxx_compiler" ] ; then
+  prepend_dirs=`eval echo $prepend_dirs \\$${host_cxx_compiler}_PATH | tr : ' '`
+else
+  [ -n "$SUNWS5_PATH" ] && [ -d /opt/SUNWspro/SC5.0 ] &&
+    prepend_dirs=`echo $prepend_dirs $SUNWS5_PATH | tr : ' '`
+fi
+
+# cxx_dir_list="5.0 4.2"
+# for cxx_dir in $cxx_dir_list ; do
+#   if [ -d /opt/SUNWspro/SC$cxx_dir ] ; then
+#    prepend_dirs="$prepend_dirs /opt/SUNWspro/SC$cxx_dir/bin"
+#    prepend_dirs="$prepend_dirs /opt/SUNWspro/WS$cxx_dir/bin"
+#    break;
+#  fi
+# done
 
 prepend_dirs="$prepend_dirs /usr/xpg4/bin"
 [ -n "$SYBASE" ]    && prepend_dirs="$prepend_dirs $SYBASE/bin"
@@ -311,13 +322,13 @@ esac
 if [ -d $TOOL_DIR/lib/perl5 ] ; then 
   try_man_paths="
   $try_man_paths
-  `ls -d $TOOL_DIR/lib/perl5/*/man | sort -r | head -1`
+  `(ls -d $TOOL_DIR/lib/perl5/*/man | sort -r | head -1) 2>/dev/null`
   "
 else
   if [ -d $UTIL_DIR/lib/perl5 ] ; then
     try_man_paths="
     $try_man_paths
-    `ls -d $UTIL_DIR/lib/perl5/*/man | sort -r | head -1`
+    `(ls -d $UTIL_DIR/lib/perl5/*/man | sort -r | head -1) 2>/dev/null`
     "
   fi
 fi
@@ -395,6 +406,9 @@ esac
 
 #
 # $Log$
+# Revision 1.37  2001/03/18 08:18:55  houghton
+# Lots of small changes.
+#
 # Revision 1.36  2000/08/09 11:25:03  houghton
 # Changed cworld.wcom.com to cworld.wcomnet.com.
 #
