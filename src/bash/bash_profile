@@ -48,8 +48,17 @@ fi
 
 export REPLYTO="paul.houghton@wcom.com"
 
-[ -d /usr/local/Netscape ] && export MOZILLA_HOME=/usr/local/Netscape
+# Netscape
+if [ -d /usr/local/Netscape ] ; then
+  export MOZILLA_HOME=/usr/local/Netscape
+  export NPX_PLUGIN_PATH=$MOZILLA_HOME/plugins
+  if [ -d /usr/local/Acrobat3/Browsers/intellinux ] ; then
+    NPX_PLUGIN_PATH=$NPX_PLUGIN_PATH:/usr/local/Acrobat3/Browsers/intellinux
+  fi
+fi
+  
 
+# Network News
 export TRNINIT=$HOME/.trninit
 export NEWSORG="WorldCom"
 
@@ -114,6 +123,9 @@ esac
 
 #
 # $Log$
+# Revision 1.8  1999/04/28 09:22:14  houghton
+# Fixed netscape vars.
+#
 # Revision 1.7  1999/04/28 09:12:55  houghton
 # Merge with cmore changes.
 #
