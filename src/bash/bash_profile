@@ -148,13 +148,28 @@ fi
 #
 
 export INFOPATH=$TOOL_DIR/info
-INFOPATH=$INFOPATH:$UTIL_DIR/info
-[ -d /usr/info ] && INFOPATH=$INFOPATH:/usr/info
 
-xemacs_info_dirs=`ls -d $UTIL_DIR/lib/xemacs-* | sort -r`
+[ -d $UTIL_DIR/info ] && INFOPATH=$INFOPATH:$UTIL_DIR/info
+[ -d /usr/info ] && INFOPATH=$INFOPATH:/usr/info
+[ -d /usr/share/info ] && INFOPATH=$INFOPATH:/usr/info
+
+if [ -d "$UTIL_DIR/lib/xemacs" ] ; then
+  xemacs_info_dirs=`ls -d $UTIL_DIR/lib/xemacs-* | sort -r`
+  xemacs_info_dirs="$xemacs_info_dirs $UTIL_DIR/lib/xemacs/xemacs-packages"
+else
+  if [ -d /usr/share/xemacs ] ; then
+    xemacs_info_dirs=`ls -d /usr/share/xemacs-* | sort -r`
+    xemacs_info_dirs="$xemacs_info_dirs /usr/share/xemacs/xemacs-packages"
+  else
+    if [ -d /usr/lib/xemacs ] ; then
+      xemacs_info_dirs=`ls -d /usr/lib/xemacs-* | sort -r`
+      xemacs_info_dirs="$xemacs_info_dirs /usr/lib/xemacs/xemacs-packages"
+    fi
+  fi
+fi
 
 for dir in $xemacs_info_dirs ; do
-  if [ -d $dir ] ; then
+  if [ -d $dir/info ] ; then
     INFOPATH=$INFOPATH:$dir/info
     break;
   fi
@@ -414,6 +429,9 @@ esac
 
 #
 # $Log$
+# Revision 1.42  2003/05/18 10:28:19  houghton
+# Reworked INFOPATH to work with redhat
+#
 # Revision 1.41  2003/05/16 13:33:47  houghton
 # Fixed for new stlye file names ..._host
 #
