@@ -39,17 +39,19 @@ export OPENWINHOME=/usr/openwin
 
 
 # Sybase
-if [ -d $TOO_DIR/sybase ] ; then
-  SYBASE=$TOOL_DIR/sybase
-else
-  if [ -d /sybase/syb11 ] ; then
-    SYBASE=/sybase/syb11
-  else
-    if [ -d /usr/sybase ] ; then
-      SYBASE=/usr/sybase
-    fi
+syb_dirs="
+  $TOOL_DIR/sybase
+  /opt/sybase
+  /sybase/syb11
+  /usr/sybase
+"
+
+for d in $syb_dirs ; do
+  if [ -d $d ] ; then
+    SYBASE=$d
+    break
   fi
-fi
+done
 
 if [ -n "$SYBASE" ] ; then
   export SYBASE
@@ -284,6 +286,9 @@ esac
 
 #
 # $Log$
+# Revision 1.27  1999/07/02 11:25:02  houghton
+# Reworked SYBASE var.
+#
 # Revision 1.26  1999/06/22 12:27:20  houghton
 # Added PERL5LIB env var.
 #
