@@ -22,13 +22,43 @@
 
 export have_bash_profile=true
 
-tooldirs="/Tools /ci/tools /usr/local $HOME/tools"
-for td  in $tooldirs ; do
-  if [ -d $td ] ; then
-    export TOOL_DIR=$td
-    break
-  fi
-done
+
+# Grab host specific profile if it exists
+
+[ -f $HOME/.bash_${HOSTNAME}_profile ] &&
+  source $HOME/.bash_${HOSTNAME}_profile
+
+# set TOOL_DIR
+
+if [ -n `eval echo \\${${PROJECT}_TOOL_DIR}` ] ; then
+  
+  eval export TOOL_DIR=\${${PROJECT}_TOOL_DIR}
+
+  # set UTIL_DIR (only used when we have a PROJECT tool dir)
+  utildirs="$host_util_dir /Tools /usr/local $HOME/tools"
+  
+  for dir in $utildirs ; do
+    if [ -d $dir ] ; then
+      export UTIL_DIR=$dir
+      break
+    fi
+  done
+  unset utildirs
+  unset dir
+  
+else
+  tooldirs="$host_tool_dir /Tools /ci/tools /usr/local $HOME/tools"
+
+  for dir in $tooldirs ; do
+    if [ -d $dir ] ; then
+      export TOOL_DIR=$dir
+      break
+    fi
+  done
+  unset tooldirs
+  unset dir
+fi
+
 
 #
 # OPENWINHOME
@@ -41,17 +71,20 @@ export OPENWINHOME=/usr/openwin
 # Sybase
 syb_dirs="
   $TOOL_DIR/sybase
+  $UTIL_DIR/sybase
   /opt/sybase
   /sybase/syb11
   /usr/sybase
 "
 
-for d in $syb_dirs ; do
-  if [ -d $d ] ; then
-    SYBASE=$d
+for dir in $syb_dirs ; do
+  if [ -d $dir ] ; then
+    SYBASE=$dir
     break
   fi
 done
+unset syb_dirs
+unset dir
 
 if [ -n "$SYBASE" ] ; then
   export SYBASE
@@ -95,13 +128,24 @@ fi
 # Gnu Info Env
 #
 [ -d /usr/info ] && INFOPATH=/usr/info
+[ -d $UTIL_DIR/info ] && INFOPATH=$UTIL_DIR/info:$INFOPATH
 [ -d $TOOL_DIR/info ] && INFOPATH=$TOOL_DIR/info:$INFOPATH
-
+  
 if [ -d $TOOL_DIR/lib/xemacs-20.4 ] ; then
   export INFOPATH=$TOOL_DIR/lib/xemacs-20.4/info:$INFOPATH
 else
   if [ -d $TOOL_DIR/lib/xemacs-19.14 ] ; then
     export INFOPATH=$TOOL_DIR/lib/xemacs-19.14:$INFOPATH
+  else
+    export INFOPATH
+  fi
+fi
+
+if [ -d $UTIL_DIR/lib/xemacs-20.4 ] ; then
+  export INFOPATH=$UTIL_DIR/lib/xemacs-20.4/info:$INFOPATH
+else
+  if [ -d $UTIL_DIR/lib/xemacs-19.14 ] ; then
+    export INFOPATH=$UTIL_DIR/lib/xemacs-19.14:$INFOPATH
   else
     export INFOPATH
   fi
@@ -141,18 +185,11 @@ done
 
 [ -f $HOME/.bash_setldlibpath ] && source $HOME/.bash_setldlibpath
 
-case $MACHTYPE in
-
-  *linux* | *solaris* )
-    [ -n "$SYBASE" ]  && LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SYBASE/lib
-    [ -n "$OPENWINHOME" ]  && LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$OPENWINHOME/lib
-    ;;
-esac
-
 #
 # Setup my PATH
 #
-if [ "$PATH" = "/usr/bin:" ] ; then
+
+if [ `uname -s` = "SunOS"  ] ; then
   # Sun is strange
   PATH=/usr/bin:/bin
 fi
@@ -162,6 +199,8 @@ append_dirs="/usr/ucb /usr/ccs/bin"
 for ad in $append_dirs ; do
   [ -d $ad ] && PATH=$PATH:$ad
 done
+unset ad
+unset append_dirs
 
 # find X11 dirs if not already in path
 
@@ -171,19 +210,32 @@ if ! type xrdb > /dev/null 2>&1 ; then
       PATH=$PATH:$xd
       break
     fi
+    unset xd
   done
 fi
 
 # prepend available dirs
 prepend_dirs=" /var/ldap/bin /usr/local/tex/bin"
-prepend_dirs="$prepend_dirs /opt/SUNWspro/bin /usr/xpg4/bin"
+
+cxx_dir_list="SC6.0 SC5.0 SC4.2"
+for cxx_dir in $cxx_dir_list ; do
+  if [ -d /opt/SUNWspro/$cxx_dir ] ; then
+    prepend_dirs="$prepend_dirs /opt/SUNWspro/$cxx_dir/bin"
+    break;
+  fi
+done
+
+prepend_dirs="$prepend_dirs /usr/xpg4/bin"
 [ -n "$SYBASE" ]    && prepend_dirs="$prepend_dirs $SYBASE/bin"
+[ -n "$UTIL_DIR" ]  && prepend_dirs="$prepend_dirs $UTIL_DIR/bin"
 [ -n "$TOOL_DIR" ]  && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
 prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
 
 for pd in $prepend_dirs ; do
   [ -d $pd ] && PATH=$pd:$PATH
 done
+unset pd
+unset prepend_dirs
 
 PATH=.:$PATH
 
@@ -206,11 +258,27 @@ case `man --version 2>&1` in
     fi
     ;;
   *)
+    for dir in `echo $PATH | sed -e 's@:@ @g' -e 's@/bin@@g' ` ; do
+      mandir=$dir/man
+      if [ $mandir != '.' -a -d $mandir ] ; then
+	# echo $mandir
+	try_man_paths="$try_man_paths $mandir"
+      fi
+    done
+
+    for dir in `echo $MANPATH | sed -e 's@:@ @g'` ; do
+      if [ $dir != '.' -a -d $dir ] ; then
+	try_man_paths="$try_man_paths $dir"
+      fi
+    done
+
+    unset dir
+    unset mandir
+    
+    MANPATH=""
+    
     try_man_paths="
-    /usr/man
-    /opt/SUNWspro/man
-    $OPENWINHOME/man
-    $TOOL_DIR/man
+    $try_man_paths
     $TOOL_DIR/lib/perl5/man
     "
     ;;
@@ -219,12 +287,15 @@ esac
 for mp in $try_man_paths ; do
   if [ -d $mp ] ; then
     if [ -n "$MANPATH" ] ; then
-      MANPATH="$mp:$MANPATH";
+      MANPATH="$MANPATH:$mp"
     else
-      MANPATH=$mp;
+      MANPATH=$mp
     fi
   fi
 done
+unset mp
+unset try_man_paths
+
 [ -n "$MANPATH" ] && export MANPATH
 
 #
@@ -286,6 +357,10 @@ esac
 
 #
 # $Log$
+# Revision 1.28  2000/06/09 17:12:28  houghton
+# Added support for PROJECT variables
+# Added support for host specific profile vars.
+#
 # Revision 1.27  1999/07/02 11:25:02  houghton
 # Reworked SYBASE var.
 #
