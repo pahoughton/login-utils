@@ -27,9 +27,12 @@ EL_SOURCES	= $(wildcard *.el);
 
 INSTALL_DIR	= $(HOME)/.xemacs
 
+$(INSTALL_DIR):
+	mkdir $@
+
 $(INSTALL_DIR)/%.el : %.el
 	$(hide) [ ! -f $@ ] || mv $@ $@.`date +%F-%H%M%S`.bak
 	$(hide) install -p -c -m 444 $^ $@
 	@echo "+ Installed $@"
 
-install : $(EL_SOURCES:%=$(INSTALL_DIR)/%)
+install : $(INSTALL_DIR) $(EL_SOURCES:%=$(INSTALL_DIR)/%)
