@@ -386,35 +386,46 @@ fi
 case $- in
   
   *i*)          # interactive
-	[ -n "$have_bashrc" ] || source $HOME/.bashrc
-	
-	if [ -z "$DISPLAY" ] ; then
-
-	  fromhost=`who -m | sed -e 's/.*:[0-9][0-9][ 	]*(*\([^):]*\).*/\1/'`
-	  thishost=`hostname`
- 
-	  if [ -n "$fromhost" ] && [ "$fromhost" != "$thishost" ] ; then
+    no_rc_mesg=true
+    [ -n "$have_bashrc" ] || source $HOME/.bashrc
+    unset no_rc_mesg
     
-	    read -p "Set DISPLAY to [hostname|none] (${fromhost}:0.0)? " disp
+    if [ -z "$DISPLAY" ] ; then
+
+      fromhost=`who -m | sed -e 's/.*:[0-9][0-9][ 	]*(*\([^):]*\).*/\1/'`
+      thishost=`hostname`
  
-	    if [ -z "$disp" ] ; then
-	      export DISPLAY=$fromhost:0.0
-	    else
-	      if [ $disp != "none" ] ; then
-		export DISPLAY=$disp:0.0
-	      fi
-	    fi
+      if [ -n "$fromhost" ] && [ "$fromhost" != "$thishost" ] ; then
+    
+	read -p "Set DISPLAY to [hostname|none] (${fromhost}:0.0)? " disp
+ 
+	if [ -z "$disp" ] ; then
+	  export DISPLAY=$fromhost:0.0
+	else
+	  if [ $disp != "none" ] ; then
+	    export DISPLAY=$disp:0.0
 	  fi
 	fi
+      fi
+    else
+      if [ $OSTYPE = "cygwin" ] && [ $DISPLAY = ":0" ] ; then
+	DISPLAY=localhost:0.0
+      else
+	echo "NOT cygwin"
+      fi
+    fi
 
-	if [ -n "$SYBSERV" ] ; then
-	  read -p "Enter your password for $SYBSERV:$SYBUSER: " SYBPASS
-	  export SYBPASS
-	fi
-	
-        ;;
+    if [ -n "$SYBSERV" ] ; then
+      read -p "Enter your password for $SYBSERV:$SYBUSER: " SYBPASS
+      export SYBPASS
+    fi
+    
+    echo "LD_LIBRARY_PATH:"
+    show_path $LD_LIBRARY_PATH
+    echo DISPLAY=$DISPLAY TERM=$TERM
+    ;;
   *)
-        ;;
+    ;;
 esac
 
 
@@ -429,6 +440,9 @@ esac
 
 #
 # $Log$
+# Revision 1.43  2003/05/24 09:27:16  houghton
+# Major rework
+#
 # Revision 1.42  2003/05/18 10:28:19  houghton
 # Reworked INFOPATH to work with redhat
 #
