@@ -176,7 +176,7 @@ case $- in
 	
 	if [ -z "$DISPLAY" ] ; then
 
-	  fromhost=`who -m | sed -e 's/.*:[0-9][0-9][ 	][ 	]*(*\([^):][^):]*\).*/\1/'`
+	  fromhost=`who -m | sed -e 's/.*:[0-9][0-9][ 	]*(*\([^):]*\).*/\1/'`
 	  thishost=`hostname`
  
 	  if [ -n "$fromhost" ] && [ "$fromhost" != "$thishost" ] ; then
@@ -212,6 +212,9 @@ esac
 
 #
 # $Log$
+# Revision 1.12  1999/04/30 14:54:54  houghton
+# BugFix fromhost variable.
+#
 # Revision 1.11  1999/04/30 14:29:24  houghton
 # Many fixes for SunOS
 #
