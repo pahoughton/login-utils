@@ -77,23 +77,26 @@ fi
 export OPENWINHOME=/usr/openwin
 
 
-# Sybase
-syb_dirs="
-  $TOOL_DIR/sybase
-  $UTIL_DIR/sybase
+if [ -z "$SYBASE" ] ; then
+  # Sybase
+  syb_dirs="
+  /opt/sybase/syb11
   /opt/sybase
   /sybase/syb11
   /usr/sybase
-"
+  $TOOL_DIR/sybase
+  $UTIL_DIR/sybase
+  "
 
-for dir in $syb_dirs ; do
-  if [ -d $dir ] ; then
-    SYBASE=$dir
-    break
-  fi
-done
-unset syb_dirs
-unset dir
+  for dir in $syb_dirs ; do
+    if [ -d $dir/lib ] ; then
+      SYBASE=$dir
+      break
+    fi
+  done
+  unset syb_dirs
+  unset dir
+fi
 
 if [ -n "$SYBASE" ] ; then
   export SYBASE
@@ -407,6 +410,9 @@ esac
 
 #
 # $Log$
+# Revision 1.39  2001/07/31 14:33:46  houghton
+# *** empty log message ***
+#
 # Revision 1.38  2001/03/20 10:53:07  houghton
 # Cleanup.
 #
