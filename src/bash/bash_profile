@@ -36,8 +36,8 @@ export have_bash_profile=true
 if [ -f $HOME/.bash_profile_${HOSTNAME}_${OSTYPE} ] ; then
   . $HOME/.bash_profile_${HOSTNAME}_${OSTYPE}
 else
-  [ -f $HOME/.bash_${HOSTNAME}_profile ] &&
-    . $HOME/.bash_${HOSTNAME}_profile
+  [ -f $HOME/.bash_profile_${HOSTNAME} ] &&
+    . $HOME/.bash_profile_${HOSTNAME}
 fi
 
 # set TOOL_DIR
@@ -414,6 +414,9 @@ esac
 
 #
 # $Log$
+# Revision 1.41  2003/05/16 13:33:47  houghton
+# Fixed for new stlye file names ..._host
+#
 # Revision 1.40  2003/05/16 09:22:55  houghton
 # Added support for HOST_OS custom profiles.
 # Changed CVSROOT_cworld
