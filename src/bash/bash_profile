@@ -100,8 +100,11 @@ fi
 export REPLYTO="paul.houghton@wcom.com"
 
 # Netscape
-if [ -d /usr/local/Netscape ] ; then
-  export MOZILLA_HOME=/usr/local/Netscape
+[ -d /usr/local/Netscape ] &&  MOZILLA_HOME=/usr/local/Netscape
+[ -d /opt/netscape ]       && MOZILLA_HOME=/opt/netscape
+
+if [ -n "$MOZILLA_HOME" ] ; then
+  export MOZILLA_HOME
   export NPX_PLUGIN_PATH=$MOZILLA_HOME/plugins
   if [ -d /usr/local/Acrobat3/Browsers/intellinux ] ; then
     NPX_PLUGIN_PATH=$NPX_PLUGIN_PATH:/usr/local/Acrobat3/Browsers/intellinux
@@ -273,6 +276,9 @@ esac
 
 #
 # $Log$
+# Revision 1.18  1999/05/03 13:47:41  houghton
+# Fixed Netscape directory.
+#
 # Revision 1.17  1999/05/02 12:15:56  houghton
 # Fixed MANPATH
 # Fixed LD_LIBRARY_PATH
