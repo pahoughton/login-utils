@@ -193,7 +193,7 @@ case $- in
 	  fi
 	fi
 
-	if [ -n "$SYBSERV" ] ; 
+	if [ -n "$SYBSERV" ] ; then
 	  read -p "Enter your password for $SYBSERV:$SYBUSER: " SYBPASS
 	  export SYBPASS
 	fi
@@ -215,6 +215,9 @@ esac
 
 #
 # $Log$
+# Revision 1.14  1999/04/30 14:57:18  houghton
+# Bug-Fix: missing then.
+#
 # Revision 1.13  1999/04/30 14:56:19  houghton
 # Fixed SYBPASS when no sybase.
 #
