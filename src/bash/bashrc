@@ -63,8 +63,8 @@ case $- in
 	  PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin
 	  alias xemacs=/usr/local/bin/xemacs
 	else
-	  if [ `whoami` = lookup ] then
-	    PS1="\h:lookup$ ";
+	  if [ `whoami` = lookup ] ; then
+	    PS1="\h:lookup$ "
 	  else
 	    PS1="\h\$ "
 	  fi
@@ -86,6 +86,9 @@ esac
 
 #
 # $Log$
+# Revision 1.15  1999/10/09 07:08:50  houghton
+# Bug-Fix: forgot ';'.
+#
 # Revision 1.14  1999/10/09 07:03:12  houghton
 # Added special prompt for lookup id.
 #
