@@ -37,7 +37,7 @@
   libpaths="$libpaths $TOOL_DIR/lib/prod $TOOL_DIR/lib"
   
 [ -n "$UTIL_DIR" ] && [ -d $UTIL_DIR/lib ] &&
-  libpaths="$libpaths $TOOL_DIR/lib"
+  libpaths="$libpaths $UTIL_DIR/lib"
   
 [ -d $HOME/lib ] && libpaths="$HOME/lib";
 
@@ -64,6 +64,9 @@ unset libpaths
 
 #
 # $Log$
+# Revision 1.7  2001/03/20 10:53:31  houghton
+# Bug-Fix: fixed UTIL_DIR/lib.
+#
 # Revision 1.6  2001/03/18 08:19:21  houghton
 # Added $TOOL_DIR/lib.
 #
