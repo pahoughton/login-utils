@@ -31,13 +31,13 @@ case $- in
 	case $TERM in
 	  *xterm*)
 	    if [ -e /usr/share/terminfo/x/xterm-xf86-v33 ] ; then
-	      export `tset -e  -s -m xterm:xterm-xf86-v33 -m linux:linux -m :?vt100`
+	      declare -x `tset -e  -s -m xterm:xterm-xf86-v33 -m linux:linux -m :?vt100`
 	    else
-	      set `tset -e  -s -m xterm:xterm -m linux:linux -m :?vt100`
+	       declare -x `tset -e  -s -m xterm:xterm -m linux:linux -m :?vt100`
 	    fi
 	    ;;
 	  *)
-	    set `tset -e  -s -m xterm:xterm -m linux:linux -m :?vt100`
+	    declare -x `tset -e  -s -m xterm:xterm -m linux:linux -m :?vt100`
 	    ;;
 	esac
 	
@@ -75,6 +75,9 @@ esac
 
 #
 # $Log$
+# Revision 1.6  1999/04/25 07:56:26  houghton
+# I think I finally fixed the term setting.
+#
 # Revision 1.5  1999/04/25 07:50:55  houghton
 # Bug-Fix: missing fi.
 #
