@@ -20,18 +20,29 @@
 # 
 
 host_util_dir=/Tools
-host_prepend_path="/usr/local/bin"
+host_prepend_path="/usr/local/bin /opt/j2sdk_nb/netbeans3.5/bin"
 
 
-export JAVA_HOME=/Tools/java/j2sdk1_3_1
+[ -z "$JAVA_HOME" ] && export JAVA_HOME=/Tools/java/j2sdk1_3_1
+# [ -z "$JAVA_HOME" ] && export JAVA_HOME=/opt/j2sdk_nb/j2sdk1.4.2
 
 export PCMS_ROOT=/pcms/dimensions5_0/
 
+# Sybase
+
+if [ -z "$SYBASE" ] ; then
+  export SYBASE=/sybase/syb125
+  export SYBASE_OCS=OCS-12_5
+  export SYBASE_JRE=$SYBASE/shared-1_0/jre1.2.2
+fi
+
 # Oracle
 
-export ORACLE_BASE="/dbora01/app/oracle"
-export ORACLE_HOME=$ORACLE_BASE/product/8.1.6
-export ORACLE_SID=
+if [ -z "$ORACLE_BASE" ] ; then
+  export ORACLE_BASE="/dbora01/app/oracle"
+  export ORACLE_HOME=$ORACLE_BASE/product/8.1.6
+  export ORACLE_SID=
+fi
 
 
 # Local Variables:
