@@ -24,27 +24,6 @@
 (set-default-toolbar-position 'bottom)
 (add-spec-list-to-specifier bottom-toolbar-height '((global (nil . 0))))
 
-;;; Commands added by calc-private-autoloads on Thu Sep 19 09:08:20 1996.
-(autoload 'calc-dispatch	   "calc" "Calculator Options" t)
-(autoload 'full-calc		   "calc" "Full-screen Calculator" t)
-(autoload 'full-calc-keypad	   "calc" "Full-screen X Calculator" t)
-(autoload 'calc-eval		   "calc" "Use Calculator from Lisp")
-(autoload 'defmath		   "calc" nil t t)
-(autoload 'calc			   "calc" "Calculator Mode" t)
-(autoload 'quick-calc		   "calc" "Quick Calculator" t)
-(autoload 'calc-keypad		   "calc" "X windows Calculator" t)
-(autoload 'calc-embedded	   "calc" "Use Calc inside any buffer" t)
-(autoload 'calc-embedded-activate  "calc" "Activate =>'s in buffer" t)
-(autoload 'calc-grab-region	   "calc" "Grab region of Calc data" t)
-(autoload 'calc-grab-rectangle	   "calc" "Grab rectangle of data" t)
-(autoload 'edit-kbd-macro	   "macedit" "Edit Keyboard Macro" t)
-(autoload 'edit-last-kbd-macro	   "macedit" "Edit Keyboard Macro" t)
-(autoload 'read-kbd-macro	   "macedit" "Read Keyboard Macro" t)
-(setq load-path (append load-path (list "/usr/local/lib/xemacs/local-lisp/19.14/packages/calc")))
-(global-set-key "\e#" 'calc-dispatch)
-;;; End of Calc autoloads.
-
-
 ;; Options Menu Settings
 ;; =====================
 (cond
@@ -55,12 +34,15 @@
             (>= emacs-minor-version 14))
            (= emacs-major-version 20))
        (fboundp 'load-options-file))
-  (load-options-file "~/.xemacs-options")))
+  (load-options-file "/home/houghton/.xemacs-options")))
 ;; ============================
 ;; End of Options Menu Settings
 
 ;;; 
-;;; $Log :$
+;;; $Log$
+;;; Revision 1.2  1999/04/28 09:12:59  houghton
+;;; Merge with cmore changes.
+;;;
 ;;; 
 
 ;;; Local Variables:

@@ -48,16 +48,14 @@ fi
 
 export REPLYTO="paul.houghton@wcom.com"
 
-export MOZILLA_HOME=/usr/local/Netscape
+[ -d /usr/local/Netscape ] && export MOZILLA_HOME=/usr/local/Netscape
 
 export TRNINIT=$HOME/.trninit
 export NEWSORG="WorldCom"
 
-# export NNTPSERVER=news.wcom.com
+export IMAKECPP=/usr/bin/cpp
 
 export LD_LIBRARY_PATH=$TOOL_DIR/lib/beta
-
-export IMAKECPP=/usr/bin/cpp
 
 PATH=$HOME/bin:$PATH
 PATH=$HOME/scripts:$PATH
@@ -116,6 +114,9 @@ esac
 
 #
 # $Log$
+# Revision 1.7  1999/04/28 09:12:55  houghton
+# Merge with cmore changes.
+#
 # Revision 1.6  1999/04/25 06:32:57  houghton
 # Fix infopath (again).
 #
