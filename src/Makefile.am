@@ -21,4 +21,4 @@
 # $Id$
 #
 
-SUBDIRS = bash X11
+SUBDIRS = bash ksh X11
