@@ -24,12 +24,91 @@ alias xterm='xterm -n `hostname` &'
 
 tclmandirs="$TOOL_DIR/tcl/man /usr/local/tcl/man /Tools/tcl/man"
 
-for tmd in $tclmandirs ; do
-  if [ -d $tmd ] ; then
-    alias tclman="man -M $tmd"
+for dir in $tclmandirs ; do
+  if [ -d $dir ] ; then
+    alias tclman="man -M $dir"
     break;
   fi
 done
+unset tclmandirs
+
+function show_path {
+  var=${1:-PATH}
+  echo The current $var is:
+  for dir in `eval echo \\${$var} | sed 's@:@ @g'` ; do
+    echo "  $dir"
+  done
+  unset var
+}
+
+function change_path {
+  from=$1
+  to=$2
+  if [ -n "$from" -a -n "$to" ] ; then
+    PATH=`echo $PATH | sed 's@$from@$to@'`
+  else
+    echo "usage: change_path from to"
+  fi
+  unset from
+  unset to
+}
+  
+function setprj {
+  prj=$1
+  oldprj=$PROJECT
+
+  export PROJECT=$prj
+  eval TOOL_DIR=\${${prj}_TOOL_DIR}
+
+  # echo "New TOOL_DIR: $TOOL_DIR"
+  
+  if [ -n "$oldprj" ] ; then
+
+    eval old_dir=\${${oldprj}_TOOL_DIR}
+    eval new_dir=$TOOL_DIR
+
+    # echo "Old: $old_dir"
+    # echo "New: $new_dir"
+    
+    # echo "PATHold:"
+    # show_path PATH
+    tmp=`echo $PATH | sed "s@$old_dir@$new_dir@"`
+    # echo "PATHnew:"
+    # show_path tmp
+    PATH=$tmp
+    
+    # echo "MANPATHold:"
+    # show_path MANPATH
+    tmp=`echo $MANPATH | sed "s@$old_dir@$new_dir@"`
+    # echo "MANPATHnew:"
+    # show_path tmp
+    MANPATH=$tmp
+    
+    # echo "INFOPATHold:"
+    # show_path INFOPATH
+    tmp=`echo $INFOPATH | sed "s@$old_dir@$new_dir@"`
+    # echo "INFOPATHnew:"
+    # show_path tmp
+    INFOPATH=$tmp
+    
+    # echo "LD_LIBRARY_PATHold:"
+    # show_path LD_LIBRARY_PATH
+    tmp=`echo $LD_LIBRARY_PATH | sed "s@$old_dir@$new_dir@"`
+    # echo "LD_LIBRARY_PATHnew:"
+    # show_path tmp
+    LD_LIBRARY_PATH=$tmp
+    
+    unset tmp
+    unset old_dir
+    unset new_dir
+  else
+    PATH=$TOOL_DIR/bin:$PATH
+    MANPATH=$TOOL_DIR/man:$PATH
+    INFOPATH=$TOOL_DIR/info:$PATH
+    LD_LIBRARY_PATH=$TOOL_DIR/lib:$PATH
+  fi
+
+}
 
 # function phone {
 #  grep -i "$1" ~/pers/phone/phone.txt
@@ -37,6 +116,11 @@ done
   
 #
 # $Log$
+# Revision 1.7  2000/06/09 17:11:59  houghton
+# Added show_path function
+# Added setprj function
+# Added change_path function.
+#
 # Revision 1.6  1999/11/12 13:41:35  houghton
 # Bug-Fix: 'then' was missing.
 #
