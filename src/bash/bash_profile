@@ -68,7 +68,7 @@ fi
 if [ `hostname` = "sideswipe" ] ; then
   export CVSROOT_sideswipe=/Tools/src/CvsRepository
 else
-  export CVSROOT_sideswipe=:pserver:houghton@sideswipe:/Tools/src/CvsRepository
+  export CVSROOT_sideswipe=:pserver:houghton@sideswipe.wcom.com:/Tools/src/CvsRepository
 fi
 
 export CVSROOT=$CVSROOT_sideswipe
@@ -231,6 +231,9 @@ esac
 
 #
 # $Log$
+# Revision 1.16  1999/05/01 14:01:04  houghton
+# Fixed CVSROOT_sideswipe.
+#
 # Revision 1.15  1999/05/01 12:04:59  houghton
 # Fixedup CVS env vars.
 #
