@@ -20,7 +20,8 @@
 #   $Id$
 # 
 
-set -x
+# set -x
+
 export have_bash_profile=true
 
 [ -z "$HOSTNAME" ] &&
@@ -406,6 +407,9 @@ esac
 
 #
 # $Log$
+# Revision 1.38  2001/03/20 10:53:07  houghton
+# Cleanup.
+#
 # Revision 1.37  2001/03/18 08:18:55  houghton
 # Lots of small changes.
 #
