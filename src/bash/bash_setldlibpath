@@ -42,10 +42,11 @@ for lp in $libpaths ; do
   fi
 done
 
-echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
-
 #
 # $Log$
+# Revision 1.2  1999/05/21 12:54:39  houghton
+# Removed echo stament (put in bashrc).
+#
 # Revision 1.1  1999/05/21 10:21:14  houghton
 # Initial Version.
 #
