@@ -1,0 +1,35 @@
+#
+# File:		kshrc
+# Project:	LoginUtils 
+# Desc:
+#
+#   
+#
+# Notes:
+#
+# Author(s):   Paul Houghton 719-527-7834 <pahoughton@users.sourceforge.net>
+# Created:     06/04/2003 22:23
+#
+# Revision History: (See end of file for Revision Log)
+#
+#	$Author$
+#	$Date$
+#	$Name$
+#	$Revision$
+#	$State$
+#
+# $Id$
+#
+
+case $- in
+  *i*)
+    PS1="@host_name@\$ "
+    ;;
+  *)
+    ;;
+esac
+
+
+# Local Variables:
+# mode:ksh
+# End:

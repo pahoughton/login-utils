@@ -1,0 +1,29 @@
+#
+# File:		profile
+# Project:	Login 
+# Desc:
+#
+#   
+#
+# Notes:
+#
+# Author(s):   Paul Houghton <paul.houghton@wcom.com>
+# Created:     05/16/2003 04:41
+#
+# Revision History: (See end of file for Revision Log)
+#
+#	$Author$
+#	$Date$
+#	$Name$
+#	$Revision$
+#	$State$
+#
+# $Id$
+#
+
+PATH=.:/Tools/bin:/usr/openwin/bin:$PATH
+PS1="@host_name@\$ "
+
+# Local Variables:
+# mode:ksh
+# End:
