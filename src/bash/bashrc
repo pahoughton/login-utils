@@ -44,7 +44,9 @@ if [ "$PS1" ] ; then
   fi
 
   echo TERM=${TERM:-""} DISPLAY=${DISPLAY:=""}
-  
+
+else
+  source .bash_profile
 fi
 
 
@@ -52,6 +54,9 @@ fi
 
 #
 # $Log$
+# Revision 1.2  1997/02/21 12:50:50  houghton
+# *** empty log message ***
+#
 # Revision 1.1  1997/01/15 15:17:23  houghton
 # Initial Version.
 #
