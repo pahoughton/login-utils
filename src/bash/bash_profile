@@ -34,7 +34,7 @@ export SIDESWIPE_CVSROOT=:pserver:houghton@sideswipe:/Tools/src/CvsRepository
 export CVSROOT=$CWORLD_CVSROOT
 
 [ -d /usr/info ] && INFOPATH=/usr/info
-[ -d $TOOL_DIR/info ] && INFOPATH=$TOO_DIR/info:$INFOPATH
+[ -d $TOOL_DIR/info ] && INFOPATH=$TOOL_DIR/info:$INFOPATH
 
 if [ -d /usr/local/lib/xemacs-20.4 ] ; then
   export INFOPATH=/usr/local/lib/xemacs-20.4/info:$INFOPATH
@@ -116,6 +116,9 @@ esac
 
 #
 # $Log$
+# Revision 1.6  1999/04/25 06:32:57  houghton
+# Fix infopath (again).
+#
 # Revision 1.5  1999/04/25 06:32:02  houghton
 # Fix infopath.
 #
