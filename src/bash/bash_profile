@@ -63,7 +63,7 @@ fi
 # set UTIL_DIR
 #
 if [ -n "$host_util_dir" ] ; then
-  UTIL_DIR=$host_util_dir;
+  export UTIL_DIR=$host_util_dir;
 else
   
   utildirs="/Tools /usr/local $HOME/tools"
@@ -82,17 +82,17 @@ fi
 if [ -z "$SYBASE" ] ; then
   # Sybase
   syb_dirs="
+  $TOOL_DIR/sybase
+  $UTIL_DIR/sybase
   /opt/sybase/syb11
   /opt/sybase
   /sybase/syb11
   /usr/sybase
-  $TOOL_DIR/sybase
-  $UTIL_DIR/sybase
   "
 
   for dir in $syb_dirs ; do
     if [ -d $dir/lib ] ; then
-      SYBASE=$dir
+      export SYBASE=$dir
       break
     fi
   done
