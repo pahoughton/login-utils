@@ -59,6 +59,10 @@ else
   unset dir
 fi
 
+#
+# Misc
+#
+[ -f $UTIL_DIR/bin/gnuclient ] && export EDITOR=gnuclient
 
 #
 # OPENWINHOME
@@ -187,6 +191,14 @@ for cpp in /lib/cpp /bin/cpp /usr/bin/cpp ; do
   fi
 done
 
+# Dimensions
+if [ -n "$PCMS_ROOT" -a -n "$PROJECT" ] ; then
+  export PCMSDB=`echo $PROJECT | tr A-Z a-z`_$USER
+  export PCMS_EDT=gnuclient
+  export PCMS_CHD_EDT=gnuclient
+  export PCMS_BROWSE="gnuclient -v"
+  export PCMS_CHD_BROWSE="gnuclient -v"
+fi
 #
 # LD_LIBRARY_PATH
 #
@@ -379,6 +391,9 @@ esac
 
 #
 # $Log$
+# Revision 1.35  2000/07/22 09:31:29  houghton
+# Added Dimensions env vars.
+#
 # Revision 1.34  2000/06/20 08:59:00  houghton
 # Added perl5 man directory to ManPath.
 #
