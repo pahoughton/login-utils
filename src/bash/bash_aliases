@@ -23,6 +23,7 @@
 
 alias ls='ls -F'
 alias xterm='xterm -n `hostname` &'
+alias df='df -h'
 type df.pl >> /dev/null 2>&1 && alias df=df.pl
 
 [ -x /usr/sbin/ping ] && alias ping=/usr/sbin/ping
@@ -67,8 +68,9 @@ function change_path {
     PATH=`echo $PATH | sed "s@$p_from@$p_to@"`
     is_PATH=$PATH
     echo "PATH changed"
-    show_path was_PATH
-    show_path is_PATH
+    show_path $was_PATH
+    echo "New PATH:"
+    show_path $PATH
   else
     echo "usage: change_path from to"
   fi
