@@ -54,6 +54,9 @@
 			    "paul.houghton@mci.com"))
 
 
+;; load minibuffer history
+(savehist-load)
+
 ;;
 ;; func-menu Auto loads
 ;;
