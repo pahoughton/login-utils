@@ -88,6 +88,9 @@ case $- in
 	    PS1="\h:\u$ "
 	    ;;
 	esac
+	#PS1='\n\[\e]0;\h:\w\007\e[34m\]\u@\h \[\e[35m\w\e[0m\]\n$ '
+	PS1='\n\[\e]0;\h:\w\007\[\e[35m\w\n\e[34m\]\h$\e[0m\] '
+
 	unset iam
 	
 
@@ -107,6 +110,9 @@ esac
 
 #
 # $Log$
+# Revision 1.19  2003/05/16 09:38:11  houghton
+# Changed prompt (PS1)
+#
 # Revision 1.18  2001/03/18 08:20:31  houghton
 # Added dtterm support for Sun.
 #
