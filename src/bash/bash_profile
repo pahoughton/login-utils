@@ -24,7 +24,10 @@ PATH=.:$PATH
 PATH=$PATH:$HOME/bin
 PATH=$PATH:/usr/local/bin
 PATH=$PATH:/usr/local/X11R6/bin
+PATH=$PATH:/usr/local/Motif/bin
 PATH=$PATH:/usr/X11R6/bin
+
+export LD_LIBRARY_PATH=/usr/local/lib/beta
 
 export CVSROOT=/usr/src/Repository
 
@@ -44,6 +47,10 @@ fi
 
 #
 # $Log$
+# Revision 1.3  1997/04/05 12:15:08  houghton
+# Added Motif bin to PATH
+# Added /usr/local/lib/beta to LD_LIBRARY path
+#
 # Revision 1.2  1997/01/15 15:20:49  houghton
 # Added comments.
 #
