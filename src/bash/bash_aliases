@@ -23,8 +23,15 @@ alias ls='ls -F'
 alias xterm='xterm -n `hostname` &'
 alias tclman='man -M /usr/local/tcl/man'
 
+function phone {
+  grep -i "$1" ~/.phone.list
+}
+  
 #
 # $Log$
+# Revision 1.2  1997/01/17 10:42:24  houghton
+# Added a 'phone' function to lookup phone number's in my phone list.
+#
 # Revision 1.1  1997/01/15 15:17:23  houghton
 # Initial Version.
 #
