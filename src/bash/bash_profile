@@ -28,10 +28,17 @@ export have_bash_profile=true
   type hostname > /dev/null 2>&1 &&
   export HOSTNAME=`hostname`
 
+[ -z "$OSTYPE" ] &&
+  export OSTYPE=`uname -o`
+  
 # Grab host specific profile if it exists
 
-[ -f $HOME/.bash_${HOSTNAME}_profile ] &&
-  . $HOME/.bash_${HOSTNAME}_profile
+if [ -f $HOME/.bash_profile_${HOSTNAME}_${OSTYPE} ] ; then
+  . $HOME/.bash_profile_${HOSTNAME}_${OSTYPE}
+else
+  [ -f $HOME/.bash_${HOSTNAME}_profile ] &&
+    . $HOME/.bash_${HOSTNAME}_profile
+fi
 
 # set TOOL_DIR
 
@@ -67,7 +74,7 @@ fi
 #
 # Misc
 #
-[ -f $UTIL_DIR/bin/gnuclient ] && export EDITOR=gnuclient
+# [ -f $UTIL_DIR/bin/gnuclient ] && export EDITOR=gnuclient
 
 #
 # OPENWINHOME
@@ -110,13 +117,13 @@ fi
 #
 # Cvs Env Setup
 #
-if [ `hostname` = "cworld" ] ; then
+if [ $HOSTNAME = "cworld" ] ; then
   export CVSROOT_cworld=/usr/src/Repository
 else
-  export CVSROOT_cworld=:pserver:houghton@cworld.wcomnet.com:/usr/src/Repository
+  export CVSROOT_cworld=:pserver:houghton@192.168.0.230:/usr/src/Repository
 fi
 
-if [ `hostname` = "sideswipe" ] ; then
+if [ $HOSTNAME = "sideswipe" ] ; then
   export CVSROOT_sideswipe=/Tools/src/CvsRepository
 else
   export CVSROOT_sideswipe=:pserver:houghton@sideswipe.wcom.com:/Tools/src/CvsRepository
@@ -144,12 +151,7 @@ export INFOPATH=$TOOL_DIR/info
 INFOPATH=$INFOPATH:$UTIL_DIR/info
 [ -d /usr/info ] && INFOPATH=$INFOPATH:/usr/info
 
-xemacs_info_dirs="
-$TOOL_DIR/lib/xemacs-21.1.7
-$UTIL_DIR/lib/xemacs-21.1.7
-$TOOL_DIR/lib/xemacs-20.4
-$UTIL_DIR/lib/xemacs-20.4
-"
+xemacs_info_dirs=`ls -d $UTIL_DIR/lib/xemacs-* | sort -r`
 
 for dir in $xemacs_info_dirs ; do
   if [ -d $dir ] ; then
@@ -171,7 +173,9 @@ done
   INFOPATH=$INFOPATH:$UTIL_DIR/lib/xemacs/local-lisp/21.1/info
 
 
-export REPLYTO="paul.houghton@wcom.com"
+export REPLYTO_mci="paul.houghton@mci.com"
+export REPLYTO_sf="pahoughton@users.sourceforge.net"
+export REPLYTO=$REPLYTO_mci
 
 # Netscape
 [ -d /usr/local/Netscape ] &&  MOZILLA_HOME=/usr/local/Netscape
@@ -410,9 +414,15 @@ esac
 
 #
 # $Log$
+# Revision 1.40  2003/05/16 09:22:55  houghton
+# Added support for HOST_OS custom profiles.
+# Changed CVSROOT_cworld
+# Reworked XEmacs infopath to use latest version's info path.
+# Added REPLYTO_mci and REPLYTO_sf vars
+#
 # Revision 1.39  2001/07/31 14:33:46  houghton
 # *** empty log message ***
-#
+# 
 # Revision 1.38  2001/03/20 10:53:07  houghton
 # Cleanup.
 #
