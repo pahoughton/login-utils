@@ -7,10 +7,10 @@
 #
 # Notes:
 #
-# Author(s):   Paul Houghton <paul.houghton@wcom.com>
+# Author(s):   Paul Houghton <paul.houghton@mci.com>
 # Created:     05/16/2003 04:41
 #
-# Revision History: (See end of file for Revision Log)
+# Revision Info: (See ChangeLog or cvs log for revision history)
 #
 #	$Author$
 #	$Date$
@@ -21,7 +21,7 @@
 # $Id$
 #
 
-PATH=.:/Tools/bin:/usr/openwin/bin:$PATH
+PATH=.:/Tools/bin:/usr/local/bin:/usr/openwin/bin:$PATH
 PS1="@host_name@\$ "
 
 # Local Variables:
