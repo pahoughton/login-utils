@@ -36,7 +36,9 @@ dotfiles	=				\
 	bash_aliases
 
 target_dotfiles	=				\
+	bash_profile_solaris2.6			\
 	bash_profile_solaris2.8			\
+	bash_profile_solaris2.9			\
 	bash_profile_soundwave
 
 user_dotfiles	=				\
