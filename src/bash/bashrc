@@ -66,6 +66,7 @@ case $- in
   
 	[ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
 	
+	echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 	echo TERM=${TERM:-""} DISPLAY=${DISPLAY:=""}
 
         ;;
@@ -79,6 +80,9 @@ esac
 
 #
 # $Log$
+# Revision 1.13  1999/05/21 12:54:50  houghton
+# Added echo LD_LIBRARY_PATH.
+#
 # Revision 1.12  1999/05/21 10:21:03  houghton
 # Changed: moved setting LD_LIBRARY_PATH to it's own file since it need
 #          to be done by both basehrc and bash_provile.
