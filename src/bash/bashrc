@@ -34,6 +34,7 @@ case $- in
 	      export `tset -e  -s -m xterm:xterm-xf86-v33 -m linux:linux -m :?vt100`
 	    else
 	      set `tset -e  -s -m xterm:xterm -m linux:linux -m :?vt100`
+	    fi
 	    ;;
 	  *)
 	    set `tset -e  -s -m xterm:xterm -m linux:linux -m :?vt100`
@@ -74,6 +75,9 @@ esac
 
 #
 # $Log$
+# Revision 1.5  1999/04/25 07:50:55  houghton
+# Bug-Fix: missing fi.
+#
 # Revision 1.4  1999/04/25 06:37:56  houghton
 # Change to use xterm-xf86-v33 term if available.
 #
