@@ -1,3 +1,4 @@
+LoginUtils-1.01
 Makefile
 Makefile.in
 aclocal.m4
@@ -7,3 +8,4 @@ config.log
 config.status
 configure
 configure.scan
+loginutils-1.01.tar.gz
