@@ -56,10 +56,26 @@ if [ -n "$SYBASE" ] ; then
   export SYBPASS
 fi
 
-export CWORLD_CVSROOT=/usr/src/Repository
-export SIDESWIPE_CVSROOT=:pserver:houghton@sideswipe:/Tools/src/CvsRepository
-export CVSROOT=$CWORLD_CVSROOT
+#
+# Cvs Env Setup
+#
+if [ `hostname` = "cworld" ] ; then
+  export CVSROOT_cworld=/usr/src/Repository
+else
+  export CVSROOT_cworld=:pserver:houghton@cworld.wcom.com:/usr/src/Repository
+fi
 
+if [ `hostname` = "sideswipe" ] ; then
+  export CVSROOT_sideswipe=/Tools/src/CvsRepository
+else
+  export CVSROOT_sideswipe=:pserver:houghton@sideswipe:/Tools/src/CvsRepository
+fi
+
+export CVSROOT=$CVSROOT_sideswipe
+
+#
+# Gnu Info Env
+#
 [ -d /usr/info ] && INFOPATH=/usr/info
 [ -d $TOOL_DIR/info ] && INFOPATH=$TOOL_DIR/info:$INFOPATH
 
@@ -215,6 +231,9 @@ esac
 
 #
 # $Log$
+# Revision 1.15  1999/05/01 12:04:59  houghton
+# Fixedup CVS env vars.
+#
 # Revision 1.14  1999/04/30 14:57:18  houghton
 # Bug-Fix: missing then.
 #
