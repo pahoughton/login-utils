@@ -23,22 +23,31 @@
 
 # set -x
 
-[ -n "$ORACLE_HOME" ] && [ -d $ORACLE_HOME/lib ] &&
-  libpaths="$libpaths $ORACLE_HOME/lib"
-  
-[ -n "$SYBASE" ] && [ -d $SYBASE/lib ] &&
-  libpaths="$libpaths $SYBASE/lib"
+if [ -n "$ORACLE_HOME" ] ; then
+  if [ -n "$ORACLE_LIB_DIR" ] ; then
+    libpaths="$libpaths $ORACLE_LIB_DIR"
+  else
+    libpaths="$libpaths $ORACLE_HOME/lib"
+  fi
+fi
+
+if [ -n "$SYBASE" ] ; then
+  if [ -n "$SYBASE_OCS" ] ; then
+    libpaths="$libpaths $SYBASE/$SYBASE_OCS/lib"
+  else
+    libpaths="$libpaths $SYBASE/lib"
+  fi
+fi
 
 [ -n "$OPENWINHOME" ] && [ -d $OPENWINHOME/lib ] &&
   libpaths="$libpaths $OPENWINHOME/lib"
 
 [ -d /usr/dt/lib ] && libpaths="$libpaths /usr/dt/lib"
 
+[ -d $HOME/lib ] && libpaths="$HOME/lib";
+
 [ -d /usr/local/lib ] &&
   libpaths="$libpaths /usr/local/lib"
-  
-[ -n "$TOOL_DIR" ] && [ -d $TOOL_DIR/lib ] &&
-  libpaths="$libpaths $TOOL_DIR/lib/prod $TOOL_DIR/lib"
   
 [ -n "$UTIL_DIR" ] && [ -d $UTIL_DIR/lib ] &&
   libpaths="$libpaths $UTIL_DIR/lib"
@@ -46,7 +55,9 @@
 [ -n `eval echo \\${${PROJECT}_LD_LIBRARY_PATH}` ] &&
   libpaths=`eval echo $libpaths \\$${PROJECT}_LD_LIBRARY_PATH | tr : ' '`
 
-[ -d $HOME/lib ] && libpaths="$HOME/lib";
+[ -n "$TOOL_DIR" ] && [ -d $TOOL_DIR/lib ] &&
+  libpaths="$libpaths $TOOL_DIR/lib/prod $TOOL_DIR/lib"
+  
 
 LD_LIBRARY_PATH=
 
