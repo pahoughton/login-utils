@@ -31,6 +31,7 @@ else
 fi
 
 umask 002
+ulimit -n 2048
 
 case $- in
   
@@ -39,34 +40,7 @@ case $- in
     # Set TERM variable
     #
     stty erase 
-    case $TERM in
-      *rxvt*)
-	;;
-      *xterm*)
-	;;
-      *dtterm*)
-	;;
-      *)
-	if [ -z "$TERM" ] ; then
-	  if type tset > /dev/null 2>&1 ; then
-	    eval `tset -e  -s
-		    -m xterm:xterm
-		    -m rxvt:rxvt
-		    -m linux-c:linux-c
-		    -m :?vt100`
-	  else 
-	    read -p "Set TERM to (vt100)? " myterm
-	    if [ -z "$myterm" ] ; then
-	      TERM=vt100
-	    fi
-	  fi
-	fi
-	;;
-    esac
-
-    #
-    # Set PS1 (primary prompt)
-    #
+    
     real_iam=${USER:-${LOGNAME}}
     if type whoami > /dev/null 2>&1 ; then
       cur_iam=`whoami`
@@ -90,9 +64,44 @@ case $- in
       fi
     fi
     
+    case $TERM in
+      *rxvt*)
+	;;
+      *xterm*)
+	;;
+      *dtterm*)
+	;;
+      *emacs*)
+	if [ "$cur_iam" != "$real_iam" ] ; then
+	  PS1='\w\n\h:\u$ '
+	else
+	  PS1='\w\n\h$ '
+	fi
+	;;
+      *)
+	if [ -z "$TERM" ] ; then
+	  if type tset > /dev/null 2>&1 ; then
+	    eval `tset -e  -s
+		    -m xterm:xterm
+		    -m rxvt:rxvt
+		    -m linux-c:linux-c
+		    -m :?vt100`
+	  else 
+	    read -p "Set TERM to (vt100)? " myterm
+	    if [ -z "$myterm" ] ; then
+	      TERM=vt100
+	    fi
+	  fi
+	fi
+	;;
+    esac
+
     unset real_iam
     unset cur_iam
     
+    #
+    # Set PS1 (primary prompt)
+    #
     if [ "$EDITOR" = "vi" ] ; then
       set -o emacs
     fi
