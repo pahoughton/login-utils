@@ -1,0 +1,45 @@
+#
+# Title:        bash_soundwave_profile
+# Project:	Login
+# Desc:
+# 
+#   
+# 
+# Notes:
+# 
+# Author:	Paul Houghton 719-527-7834 - (paul.houghton@wcom.com)
+# Created:	06/14/00 11:44
+#
+# Revision History: (See end of file for Revision Log)
+#
+#   Last Mod By:    $Author$
+#   Last Mod:	    $Date$
+#   Version:	    $Revision$
+#
+#   $Id$
+# 
+
+host_util_dir=/Tools
+
+export JAVA_HOME=/Tools/java/jdk_1.2.2_05a
+
+export PROJECT=LOOKUP
+
+host_projects="$host_projects LOOKUP"
+export LOOKUP_PRJ_TOPDIR=/ncm_lookup/Projects/Devel-4.03/NcmLookup-4
+export LOOKUP_TOOL_DIR=/ncm_lookup/Projects/Devel-4.03/Support
+
+
+
+
+
+#
+# $Log$
+# Revision 1.1  2000/06/16 13:09:46  houghton
+# Initial Version.
+#
+#
+
+# Local Variables:
+# mode:ksh
+# End:
