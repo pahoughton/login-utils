@@ -20,7 +20,17 @@
 #   $Id$
 # 
 
-export TOOL_DIR=/usr/local
+if [ -d /Tools ] ; then
+  TOOL_DIR=/Tools
+else
+  if [ -d /usr/local ] ; then
+    TOOL_DIR=/usr/local
+  else
+    TOOL_DIR=$HOME
+  fi
+fi
+
+export TOOL_DIR
 
 export SYBASE=/usr/sybase
 export DSQUERY=DEV6
@@ -66,8 +76,9 @@ export IMAKECPP=/usr/bin/cpp
 
 export LD_LIBRARY_PATH=$TOOL_DIR/lib/beta
 
-PATH=$HOME/bin:$PATH
-PATH=$HOME/scripts:$PATH
+[ -d $TOOL_DIR/bin ] && PATH=$TOOL_DIR/bin:$PATH
+[ -d $HOME/bin ]     && PATH=$HOME/bin:$PATH
+[ -d $HOME/scripts ] && PATH=$HOME/scripts:$PATH
 PATH=.:$PATH
 
 if [ -z "$MAIL" ] ; then
@@ -123,6 +134,9 @@ esac
 
 #
 # $Log$
+# Revision 1.9  1999/04/28 23:04:03  houghton
+# Fixed TOOL_DIR and PATH.
+#
 # Revision 1.8  1999/04/28 09:22:14  houghton
 # Fixed netscape vars.
 #
