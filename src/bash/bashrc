@@ -29,7 +29,9 @@ if [ -z "$have_bash_profile" ] ; then
 else
   source $HOME/.bash_setldlibpath
 fi
-       
+
+umask 002
+
 case $- in
   
   *i*)          # interactive
@@ -61,7 +63,11 @@ case $- in
 	  PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin
 	  alias xemacs=/usr/local/bin/xemacs
 	else
-	  PS1="\h\$ "
+	  if [ `whoami` = lookup ] then
+	    PS1="\h:lookup$ ";
+	  else
+	    PS1="\h\$ "
+	  fi
 	fi  
   
 	[ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
@@ -80,6 +86,9 @@ esac
 
 #
 # $Log$
+# Revision 1.14  1999/10/09 07:03:12  houghton
+# Added special prompt for lookup id.
+#
 # Revision 1.13  1999/05/21 12:54:50  houghton
 # Added echo LD_LIBRARY_PATH.
 #
