@@ -25,9 +25,9 @@
 export have_bashrc=true
 
 if [ -z "$have_bash_profile" ] ; then
-  source $HOME/.bash_profile
+  . $HOME/.bash_profile
 else
-  source $HOME/.bash_setldlibpath
+  . $HOME/.bash_setldlibpath
 fi
 
 umask 002
@@ -78,34 +78,36 @@ case $- in
     unset cur_iam
     
     if [ "$cur_iam" != "$real_iam" ] ; then
-      PS1='\[\e]0;\h:\w\007\e[35m\]\w\n\[\e[34m\]\h:\u$ \[\e[0m\]'
+      if [ -n "$BASH" ] ; then
+	PS1='\[\e]0;\h:\w\007\e[35m\]\w\n\[\e[34m\]\h:\u$ \[\e[0m\]'
+      else
+	PS1="$HOSTNAME:$cur_iam\$ "
+      fi
     else
-      PS1='\[\e]0;\h:\w\007\e[35m\]\w\n\[\e[34m\]\h$ \[\e[0m\]'
+      if [ -n "$BASH" ] ; then
+	PS1='\[\e]0;\h:\w\007\e[35m\]\w\n\[\e[34m\]\h$ \[\e[0m\]'
+      else
+	PS1="$HOSTNAME\$ "
+      fi
     fi
     
     if [ "$EDITOR" = "vi" ] ; then
       set -o emacs
     fi
 
-    if [ -z "$PAGER" ] && type less > /dev/null 2>&1 ; then
-      export PAGER=less;
-    fi
-    
     ignoreeof=
     notify=
     no_exit_on_failed_exec=
     
     HISTSIZE=256
-    # MAILCHECK=60
 
     # load aliases
-    [ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
+    [ -f $HOME/.bash_aliases ] && . $HOME/.bash_aliases
 
-    if [ -z "$no_rc_mesg" ] ; then
-      echo "LD_LIBRARY_PATH:"
-      show_path $LD_LIBRARY_PATH
-      echo DISPLAY=$DISPLAY TERM=$TERM
-    fi
+    echo HOSTNAME=$HOSTNAME OSNAME=$OSNAME OSVER=$OSVER
+    echo DISPLAY=$DISPLAY TERM=$TERM
+    echo "LD_LIBRARY_PATH:"
+    show_path $LD_LIBRARY_PATH
     
     ;;
   
@@ -113,76 +115,6 @@ case $- in
     ;;
 esac
 
-
-
-
-#
-# $Log$
-# Revision 1.21  2003/05/24 09:27:20  houghton
-# Major rework
-#
-# Revision 1.20  2003/05/22 13:18:58  houghton
-# Changed PS1 to fix command line editing problems
-#
-# Revision 1.19  2003/05/16 09:38:11  houghton
-# Changed prompt (PS1)
-#
-# Revision 1.18  2001/03/18 08:20:31  houghton
-# Added dtterm support for Sun.
-#
-# Revision 1.17  2000/06/14 15:51:54  houghton
-# Changed prompt for non-houghton.
-#
-# Revision 1.16  2000/06/09 17:14:30  houghton
-# Added override if $EDITOR is set to VI
-#
-# Revision 1.15  1999/10/09 07:08:50  houghton
-# Bug-Fix: forgot ';'.
-#
-# Revision 1.14  1999/10/09 07:03:12  houghton
-# Added special prompt for lookup id.
-#
-# Revision 1.13  1999/05/21 12:54:50  houghton
-# Added echo LD_LIBRARY_PATH.
-#
-# Revision 1.12  1999/05/21 10:21:03  houghton
-# Changed: moved setting LD_LIBRARY_PATH to it's own file since it need
-#          to be done by both basehrc and bash_provile.
-#
-# Revision 1.11  1999/05/03 10:11:13  houghton
-# Changed to use linux-c TERM (vs linux)
-#
-# Revision 1.10  1999/04/30 14:29:34  houghton
-# Many fixes for SunOS
-#
-# Revision 1.9  1999/04/29 20:54:26  houghton
-# Fixed sourcing bash_profile
-#
-# Revision 1.8  1999/04/28 09:12:57  houghton
-# Merge with cmore changes.
-#
-# Revision 1.7  1999/04/25 07:57:38  houghton
-# I KNOW I finally fixed the term setting.
-#
-# Revision 1.6  1999/04/25 07:56:26  houghton
-# I think I finally fixed the term setting.
-#
-# Revision 1.5  1999/04/25 07:50:55  houghton
-# Bug-Fix: missing fi.
-#
-# Revision 1.4  1999/04/25 06:37:56  houghton
-# Change to use xterm-xf86-v33 term if available.
-#
-# Revision 1.3  1999/04/25 06:29:14  houghton
-# Major rework
-#
-# Revision 1.2  1997/02/21 12:50:50  houghton
-# *** empty log message ***
-#
-# Revision 1.1  1997/01/15 15:17:23  houghton
-# Initial Version.
-#
-#
 
 # Local Variables:
 # mode:ksh

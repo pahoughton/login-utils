@@ -1,8 +1,8 @@
 #
-# Title:        bash_profile
-# Project:	Login
+# File:		bash_profile
+# Project:	LoginUtils 
 # Desc:
-# 
+#
 #   This script is run when bash is executed from 'login'. It also
 #   runs the 'bashrc' script if the shell is interactive.
 # 
@@ -11,54 +11,44 @@
 # Author:	Paul A. Houghton - (paul.houghton@wcom.com)
 # Created:	01/15/97 08:08
 #
-# Revision History: (See end of file for Revision Log)
+# Revision History: (See cvs log for revision history)
 #
-#   Last Mod By:    $Author$
-#   Last Mod:	    $Date$
-#   Version:	    $Revision$
+#	$Author$
+#	$Date$
+#	$Name$
+#	$Revision$
+#	$State$
 #
-#   $Id$
-# 
+# $Id$
+#
 
 # set -x
 
 export have_bash_profile=true
 
-[ -z "$HOSTNAME" ] &&
-  type hostname > /dev/null 2>&1 &&
-  export HOSTNAME=`hostname`
+[ -z "$HOSTNAME" ] && export HOSTNAME='@host_name@'
 
-[ -z "$OSTYPE" ] &&
-  export OSTYPE=`uname -o`
-  
-# Grab host specific profile if it exists
+export OSNAME='@os_name@'
+export OSVER='@os_ver@'
 
-if [ -f $HOME/.bash_profile_${HOSTNAME}_${OSTYPE} ] ; then
-  . $HOME/.bash_profile_${HOSTNAME}_${OSTYPE}
-else
-  [ -f $HOME/.bash_profile_${HOSTNAME} ] &&
-    . $HOME/.bash_profile_${HOSTNAME}
-fi
 
+[ -f ~/.bash_profile_user ] && . ~/.bash_profile_user
+
+[ -f ~/.bash_profile_${HOSTNAME} ] &&
+  . ~/.bash_profile_${HOSTNAME}
+
+[ -f ~/.bash_profile_${OSNAME}_${OSVER} ] &&
+  . ~/.bash_profile_${OSNAME}
+
+#
 # set TOOL_DIR
-
+#
 if [ -n `eval echo \\${${PROJECT}_TOOL_DIR}` ] ; then
   
   eval export TOOL_DIR=\${${PROJECT}_TOOL_DIR}
 
-  # set UTIL_DIR (only used when we have a PROJECT tool dir)
-  utildirs="$host_util_dir /Tools /usr/local $HOME/tools"
-  
-  for dir in $utildirs ; do
-    if [ -d $dir ] ; then
-      export UTIL_DIR=$dir
-      break
-    fi
-  done
-  unset utildirs
-  unset dir
-  
 else
+  
   tooldirs="$host_tool_dir /Tools /ci/tools /usr/local $HOME/tools"
 
   for dir in $tooldirs ; do
@@ -72,16 +62,23 @@ else
 fi
 
 #
-# Misc
+# set UTIL_DIR
 #
-# [ -f $UTIL_DIR/bin/gnuclient ] && export EDITOR=gnuclient
-
-#
-# OPENWINHOME
-#
-[ -z "$OPENWINHOME" ] &&
-[ -d "/usr/openwin" ] &&
-export OPENWINHOME=/usr/openwin
+if [ -n "$host_util_dir" ] ; then
+  UTIL_DIR=$host_util_dir;
+else
+  
+  utildirs="/Tools /usr/local $HOME/tools"
+  
+  for dir in $utildirs ; do
+    if [ -d $dir ] ; then
+      export UTIL_DIR=$dir
+      break
+    fi
+  done
+  unset utildirs
+  unset dir
+fi
 
 
 if [ -z "$SYBASE" ] ; then
@@ -105,34 +102,6 @@ if [ -z "$SYBASE" ] ; then
   unset dir
 fi
 
-if [ -n "$SYBASE" ] ; then
-  export SYBASE
-  export DSQUERY=DEV6_SQL
-  export SYBSERV=DEV6_SQL
-  export SYBDB="trfd_lookup_test"
-  export SYBUSER="houghton"
-  export SYBPASS
-fi
-
-#
-# Cvs Env Setup
-#
-[ -f $HOME/.cvsroots ] && source $HOME/.cvsroots
-
-# if [ $HOSTNAME = "cworld" ] ; then
-#   export CVSROOT_cworld=/usr/src/Repository
-# else
-#   export CVSROOT_cworld=:pserver:houghton@192.168.0.230:/usr/src/Repository
-# fi
-
-# if [ $HOSTNAME = "sideswipe" ] ; then
-#   export CVSROOT_sideswipe=/Tools/src/CvsRepository
-# else
-#   export CVSROOT_sideswipe=:pserver:houghton@sideswipe.wcom.com:/Tools/src/CvsRepository
-# fi
-
-# export CVSROOT=$CVSROOT_sideswipe
-
 #
 # Perl
 #
@@ -144,6 +113,98 @@ if [ -d $HOME/scripts/perllib ] ; then
     export PERL5LIB=$HOME/scripts/perllib
   fi
 fi
+
+# Netscape
+[ -d /usr/local/Netscape ] && MOZILLA_HOME=/usr/local/Netscape
+[ -d /opt/netscape ]       && MOZILLA_HOME=/opt/netscape
+
+if [ -n "$MOZILLA_HOME" ] ; then
+  export MOZILLA_HOME
+  export NPX_PLUGIN_PATH=$MOZILLA_HOME/plugins
+  
+  mozilla_plugin_dirs="$ACROREAD_PLUGING_DIR"
+  for pdir in "$mozilla_plugin_dirs" ; do
+    [ -d $pdir ] && NPX_PLUGIN_PATH="$NPX_PLUGIN_PATH:$pdir"
+  done
+  unset mozilla_plugin_dirs
+  unset pdir
+fi
+  
+# less
+export LESS=-X
+
+for cpp in /lib/cpp /bin/cpp /usr/bin/cpp ; do
+  if [ -x $cpp ] ; then
+    export IMAKECPP=$cpp
+    break
+  fi
+done
+unset cpp
+
+# Dimensions
+if [ -n "$PCMS_ROOT" -a -n "$PROJECT" ] ; then
+  eval export PCMSDB=\${${PROJECT}_PCMSDB}_$USER  
+  export PCMS_EDT=gnuclient
+  export PCMS_CHD_EDT=gnuclient
+  export PCMS_BROWSE="gnuclient -v"
+  export PCMS_CHD_BROWSE="gnuclient -v"
+fi
+#
+# LD_LIBRARY_PATH
+#
+
+[ -f $HOME/.bash_setldlibpath ] && . $HOME/.bash_setldlibpath
+
+#
+# Setup my PATH
+#
+
+# prepend available dirs - note last dir will be first in path
+
+prepend_dirs="$host_prepend_path"
+unset host_prepend_path
+
+[ -n "$JAVA_HOME" ] && prepend_dirs="$prepend_dirs $JAVA_HOME/bin"
+
+if [ -n "$host_cxx_compiler" ] ; then
+  prepend_dirs=`eval echo $prepend_dirs \\$${host_cxx_compiler}_PATH | tr : ' '`
+else
+  [ -n "$SUNWS5_PATH" ] && [ -d /opt/SUNWspro/SC5.0 ] &&
+    prepend_dirs=`echo $prepend_dirs $SUNWS5_PATH | tr : ' '`
+fi
+
+[ -n "$SYBASE" ]      && prepend_dirs="$prepend_dirs $SYBASE/bin"
+[ -n "$ORACLE_HOME" ] && prepend_dirs="$prepend_dirs $ORACLE_HOME/bin"
+[ -n "$UTIL_DIR" ]    && prepend_dirs="$prepend_dirs $UTIL_DIR/bin"
+[ -n "$TOOL_DIR" ]    && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
+prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
+
+for pd in $prepend_dirs ; do
+  [ -d $pd ] && ! echo $PATH | fgrep -s $pd 2>/dev/null && PATH=$pd:$PATH
+done
+unset pd
+unset prepend_dirs
+
+PATH=.:$PATH
+
+#
+# Done with PATH (FINALLY!)
+#
+
+#
+# MANPATH
+#
+MANPATH=
+try_man_paths=`echo $PATH | sed -e 's@:@ @g' -e 's@/bin@@g' `
+for md in $try_man_paths ; do
+  [ -d "$md/man" ] &&
+    ! echo $MANPATH | fgrep -s "$md/man" 2>/dev/null &&
+    MANPATH=$MANPATH:$md/man
+done
+
+unset md
+unset try_man_paths
+export MANPATH=`echo $MANPATH | sed -e 's/^://' -e 's/:$//'`
 
 #
 # Gnu INFOPATH
@@ -175,222 +236,18 @@ for dir in $info_base_dirs ; do
 done
 
 for dir in $info_base_dirs ; do
-  if [ -d $dir/info ] ; then
+  [ -d $dir/info ] &&
+    ! echo $INFOPATH | fgrep -s $dir/info 2>/dev/null &&
     INFOPATH=$INFOPATH:$dir/info
-  fi
 done
 
 unset info_base_dirs
 unset dir
-export INFOPATH
-
-# Email
-
-export REPLYTO_mci="paul.houghton@mci.com"
-export REPLYTO_sf="pahoughton@users.sourceforge.net"
-export REPLYTO=$REPLYTO_sf
-
-# Netscape
-[ -d /usr/local/Netscape ] &&  MOZILLA_HOME=/usr/local/Netscape
-[ -d /opt/netscape ]       && MOZILLA_HOME=/opt/netscape
-
-if [ -n "$MOZILLA_HOME" ] ; then
-  export MOZILLA_HOME
-  export NPX_PLUGIN_PATH=$MOZILLA_HOME/plugins
-  
-  mozilla_plugin_dirs="$ACROREAD_PLUGING_DIR"
-  for pdir in "$mozilla_plugin_dirs" ; do
-    [ -d $pdir ] && NPX_PLUGIN_PATH="$NPX_PLUGIN_PATH:$pdir"
-  done
-  unset mozilla_plugin_dirs
-  unset pdir
-fi
-  
-# less
-export LESS=-X
-
-# Network News
-export TRNINIT=$HOME/.trninit
-export NEWSORG="WorldCom"
-
-for cpp in /lib/cpp /bin/cpp /usr/bin/cpp ; do
-  if [ -x $cpp ] ; then
-    export IMAKECPP=$cpp
-    break
-  fi
-done
-
-# Dimensions
-if [ -n "$PCMS_ROOT" -a -n "$PROJECT" ] ; then
-  eval export PCMSDB=\${${PROJECT}_PCMSDB}_$USER  
-  export PCMS_EDT=gnuclient
-  export PCMS_CHD_EDT=gnuclient
-  export PCMS_BROWSE="gnuclient -v"
-  export PCMS_CHD_BROWSE="gnuclient -v"
-fi
-#
-# LD_LIBRARY_PATH
-#
-
-[ -f $HOME/.bash_setldlibpath ] && . $HOME/.bash_setldlibpath
-
-#
-# Setup my PATH
-#
-
-if [ $OSTYPE = "SunOS"  ] ; then
-  # Sun is strange
-  PATH=/usr/bin:/bin
-fi
-
-# append other avaliable system dirs
-append_dirs="/usr/ccs/bin /usr/ucb $host_append_path"
-for ad in $append_dirs ; do
-  [ -d $ad ] && PATH=$PATH:$ad
-done
-unset ad
-unset append_dirs
-unset host_append_path
-
-# find X11 dirs if not already in path
-
-if ! type xrdb > /dev/null 2>&1 ; then
-  for xd in /usr/X11R6/bin /usr/bin/X11 /usr/openwin/bin ; do
-    if [ -d $xd ] ; then
-      PATH=$PATH:$xd
-      break
-    fi
-    unset xd
-  done
-fi
-
-# prepend available dirs - note last dir will be first in path
-
-prepend_dirs=" /var/ldap/bin /usr/local/tex/bin $host_prepend_path"
-unset host_prepend_path
-
-[ -n "$JAVA_HOME" ] && prepend_dirs="$prepend_dirs $JAVA_HOME/bin"
-
-if [ -n "$host_cxx_compiler" ] ; then
-  prepend_dirs=`eval echo $prepend_dirs \\$${host_cxx_compiler}_PATH | tr : ' '`
-else
-  [ -n "$SUNWS5_PATH" ] && [ -d /opt/SUNWspro/SC5.0 ] &&
-    prepend_dirs=`echo $prepend_dirs $SUNWS5_PATH | tr : ' '`
-fi
-
-# cxx_dir_list="5.0 4.2"
-# for cxx_dir in $cxx_dir_list ; do
-#   if [ -d /opt/SUNWspro/SC$cxx_dir ] ; then
-#    prepend_dirs="$prepend_dirs /opt/SUNWspro/SC$cxx_dir/bin"
-#    prepend_dirs="$prepend_dirs /opt/SUNWspro/WS$cxx_dir/bin"
-#    break;
-#  fi
-# done
-
-prepend_dirs="$prepend_dirs /usr/xpg4/bin"
-[ -n "$SYBASE" ]    && prepend_dirs="$prepend_dirs $SYBASE/bin"
-[ -n "$ORACLE_HOME" ]    && prepend_dirs="$prepend_dirs $ORACLE_HOME/bin"
-[ -n "$UTIL_DIR" ]  && prepend_dirs="$prepend_dirs $UTIL_DIR/bin"
-[ -n "$TOOL_DIR" ]  && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
-prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
-
-for pd in $prepend_dirs ; do
-  [ -d $pd ] && PATH=$pd:$PATH
-done
-unset pd
-unset prepend_dirs
-
-PATH=.:$PATH
-
-#
-# Done with PATH (FINALLY!)
-#
-
-#
-# MANPATH
-#
-case `man --version 2>&1` in
-  *version\ 1.*)
-    try_man_paths="
-    /var/ldap/man
-    /usr/local/tex/man
-    "
-    if ( [ -d /var/ldap/man ] || [ -d /usr/local/tex/man ] ) &&
-      [ -z "$MANPATH" ] ; then
-	MANPATH=`man -w`
-    fi
-    ;;
-  *)
-    for dir in `echo $PATH | sed -e 's@:@ @g' -e 's@/bin@@g' ` ; do
-      mandir=$dir/man
-      if [ $mandir != '.' -a -d $mandir ] ; then
-	# echo $mandir
-	try_man_paths="$try_man_paths $mandir"
-      fi
-    done
-
-    for dir in `echo $MANPATH | sed -e 's@:@ @g'` ; do
-      if [ $dir != '.' -a -d $dir ] ; then
-	try_man_paths="$try_man_paths $dir"
-      fi
-    done
-
-    unset dir
-    unset mandir
-    
-    MANPATH=""
-
-    ;;
-esac
-
-if [ -d $TOOL_DIR/lib/perl5 ] ; then 
-  try_man_paths="
-  $try_man_paths
-  `(ls -d $TOOL_DIR/lib/perl5/*/man | sort -r | head -1) 2>/dev/null`
-  "
-else
-  if [ -d $UTIL_DIR/lib/perl5 ] ; then
-    try_man_paths="
-    $try_man_paths
-    `(ls -d $UTIL_DIR/lib/perl5/*/man | sort -r | head -1) 2>/dev/null`
-    "
-  fi
-fi
-    
-for mp in $try_man_paths ; do
-  if [ -d $mp ] ; then
-    if [ -n "$MANPATH" ] ; then
-      MANPATH="$MANPATH:$mp"
-    else
-      MANPATH=$mp
-    fi
-  fi
-done
-unset mp
-unset try_man_paths
-
-[ -n "$MANPATH" ] && export MANPATH
-
-#
-# Set or fix MAIL env vars
-#
-if [ -z "$MAIL" ] ; then
-  if [ -d /var/spool/mail ] ; then
-    export MAIL=/var/spool/mail/$USER
-  else
-    if [ -d /var/mail ] ; then
-      export MAIL=/var/mail/$USER
-    fi
-  fi
-fi
+export INFOPATH=`echo $INFOPATH | sed -e 's/^://' -e 's/:$//'`
 
 case $- in
   
   *i*)          # interactive
-    no_rc_mesg=true
-    [ -n "$have_bashrc" ] || source $HOME/.bashrc
-    unset no_rc_mesg
-    
     if [ -z "$DISPLAY" ] ; then
 
       fromhost=`who -m | sed -e 's/.*:[0-9][0-9][ 	]*(*\([^):]*\).*/\1/'`
@@ -409,10 +266,8 @@ case $- in
 	fi
       fi
     else
-      if [ $OSTYPE = "cygwin" ] && [ $DISPLAY = ":0" ] ; then
+      if [ "$OSNAME" = "cygwin" ] && [ $DISPLAY = ":0" ] ; then
 	DISPLAY=localhost:0.0
-      else
-	echo "NOT cygwin"
       fi
     fi
 
@@ -421,173 +276,19 @@ case $- in
       export SYBPASS
     fi
     
-    echo "LD_LIBRARY_PATH:"
-    show_path $LD_LIBRARY_PATH
-    echo DISPLAY=$DISPLAY TERM=$TERM
+    if [ -z "$PAGER" ] && type less > /dev/null 2>&1 ; then
+      export PAGER=less;
+    fi
+    
+    [ -n "$have_bashrc" ] || . $HOME/.bashrc    
+        
     ;;
   *)
     ;;
 esac
 
 
-#if [ -n "$DISPLAY" -a -z "$XFILESEARCHPATH" ] ; then 
-#   XFILESEARCHPATH=/usr/local/X11R6/lib/X11/%T/%N%C%S
-#  XFILESEARCHPATH=$XFILESEARCHPATH:/usr/local/X11R6/lib/X11/%T/%N%S
-#  XFILESEARCHPATH=$XFILESEARCHPATH:%D
-#  export XFILESEARCHPATH
-#fi
-
-
-
-#
-# $Log$
-# Revision 1.45  2003/06/05 00:26:12  houghton
-# Changed path and cvs handling
-#
-# Revision 1.44  2003/06/02 07:09:40  houghton
-# Reworked info path
-# Reworked Replyto
-#
-# Revision 1.43  2003/05/24 09:27:16  houghton
-# Major rework
-#
-# Revision 1.42  2003/05/18 10:28:19  houghton
-# Reworked INFOPATH to work with redhat
-#
-# Revision 1.41  2003/05/16 13:33:47  houghton
-# Fixed for new stlye file names ..._host
-#
-# Revision 1.40  2003/05/16 09:22:55  houghton
-# Added support for HOST_OS custom profiles.
-# Changed CVSROOT_cworld
-# Reworked XEmacs infopath to use latest version's info path.
-# Added REPLYTO_mci and REPLYTO_sf vars
-#
-# Revision 1.39  2001/07/31 14:33:46  houghton
-# *** empty log message ***
-# 
-# Revision 1.38  2001/03/20 10:53:07  houghton
-# Cleanup.
-#
-# Revision 1.37  2001/03/18 08:18:55  houghton
-# Lots of small changes.
-#
-# Revision 1.36  2000/08/09 11:25:03  houghton
-# Changed cworld.wcom.com to cworld.wcomnet.com.
-#
-# Revision 1.35  2000/07/22 09:31:29  houghton
-# Added Dimensions env vars.
-#
-# Revision 1.34  2000/06/20 08:59:00  houghton
-# Added perl5 man directory to ManPath.
-#
-# Revision 1.33  2000/06/18 08:34:13  houghton
-# Fixed java home.
-#
-# Revision 1.32  2000/06/16 13:09:29  houghton
-# Added JAVA_HOME support.
-#
-# Revision 1.31  2000/06/16 13:03:37  houghton
-# Bug-Fix: was missing parts of SUN compiler in path.
-#
-# Revision 1.30  2000/06/14 15:51:33  houghton
-# Fixed INFOPATH.
-#
-# Revision 1.29  2000/06/14 10:31:45  houghton
-# Added ORACLE_HOME/bin to path.
-#
-# Revision 1.28  2000/06/09 17:12:28  houghton
-# Added support for PROJECT variables
-# Added support for host specific profile vars.
-#
-# Revision 1.27  1999/07/02 11:25:02  houghton
-# Reworked SYBASE var.
-#
-# Revision 1.26  1999/06/22 12:27:20  houghton
-# Added PERL5LIB env var.
-#
-# Revision 1.25  1999/06/17 16:22:13  houghton
-# Added /var/ldap and /usr/local/tex to PATH and MANPATH
-#
-# Revision 1.24  1999/05/26 12:45:48  houghton
-# Aded LESS env var.
-#
-# Revision 1.23  1999/05/21 10:21:00  houghton
-# Changed: moved setting LD_LIBRARY_PATH to it's own file since it need
-#          to be done by both basehrc and bash_provile.
-#
-# Revision 1.22  1999/05/13 12:32:46  houghton
-# Fixed DSQUERY.
-#
-# Revision 1.21  1999/05/12 10:34:01  houghton
-# Added sun compilter man dir to MANPATH.
-#
-# Revision 1.20  1999/05/04 09:28:49  houghton
-# Changed Sybase server to DEV6_SQL
-#
-# Revision 1.19  1999/05/03 13:48:44  houghton
-# Fixed TOOL_DIR and INFOPATH.
-#
-# Revision 1.18  1999/05/03 13:47:41  houghton
-# Fixed Netscape directory.
-#
-# Revision 1.17  1999/05/02 12:15:56  houghton
-# Fixed MANPATH
-# Fixed LD_LIBRARY_PATH
-# Fixed OPENWINHOME
-#
-# Revision 1.16  1999/05/01 14:01:04  houghton
-# Fixed CVSROOT_sideswipe.
-#
-# Revision 1.15  1999/05/01 12:04:59  houghton
-# Fixedup CVS env vars.
-#
-# Revision 1.14  1999/04/30 14:57:18  houghton
-# Bug-Fix: missing then.
-#
-# Revision 1.13  1999/04/30 14:56:19  houghton
-# Fixed SYBPASS when no sybase.
-#
-# Revision 1.12  1999/04/30 14:54:54  houghton
-# BugFix fromhost variable.
-#
-# Revision 1.11  1999/04/30 14:29:24  houghton
-# Many fixes for SunOS
-#
-# Revision 1.10  1999/04/29 20:53:47  houghton
-# Fixed path to X11 bin
-#
-# Revision 1.9  1999/04/28 23:04:03  houghton
-# Fixed TOOL_DIR and PATH.
-#
-# Revision 1.8  1999/04/28 09:22:14  houghton
-# Fixed netscape vars.
-#
-# Revision 1.7  1999/04/28 09:12:55  houghton
-# Merge with cmore changes.
-#
-# Revision 1.6  1999/04/25 06:32:57  houghton
-# Fix infopath (again).
-#
-# Revision 1.5  1999/04/25 06:32:02  houghton
-# Fix infopath.
-#
-# Revision 1.4  1999/04/25 06:29:11  houghton
-# Major rework
-#
-# Revision 1.3  1997/04/05 12:15:08  houghton
-# Added Motif bin to PATH
-# Added /usr/local/lib/beta to LD_LIBRARY path
-#
-# Revision 1.2  1997/01/15 15:20:49  houghton
-# Added comments.
-#
-# Revision 1.1  1997/01/15 15:17:23  houghton
-# Initial Version.
-#
-#
 
 # Local Variables:
 # mode:ksh
 # End:
-

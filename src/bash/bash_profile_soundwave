@@ -20,56 +20,19 @@
 # 
 
 host_util_dir=/Tools
+host_prepend_path="/usr/local/bin"
 
-# host_path="/usr/dt/bin /usr/local/bin"
-host_append_path="/usr/dt/bin"
-host_cxx_compiler=SUNWS6
 
 export JAVA_HOME=/Tools/java/j2sdk1_3_1
+
 export PCMS_ROOT=/pcms/dimensions5_0/
 
-export SUNWS5_PATH="/opt/SUNWspro/SC5.0/bin:/opt/SUNWspro/WS5.0/bin:/opt/SUNWspro/SPROutool5.0/bin:/opt/SUNWspro/TW2.1/bin:/opt/SUNWspro/DOC5.0/bin"
-
-export SUNWS6_PATH="/opt/SUNWspro/bin"
-
-
-export PROJECT=LOOKUP
-
-host_projects="$host_projects LOOKUP"
-export LOOKUP_PRJ_TOPDIR=/ncm_lookup/Projects/Paul-6.02/NcmLookup-6
-export LOOKUP_TOOL_DIR=/ncm_lookup/Projects/Paul-6.02/Support
-
-export RADAR_PRJ_TOPDIR=/ncm_lookup/Testing/houghton/devel/Radar-1
-export RADAR_TOOL_DIR=/ncm_lookup/Testing/houghton/Support
-export RADAR_PRJ_SHARE_DIR=/ncm_lookup/Testing/houghton/Radar-1
 # Oracle
 
 export ORACLE_BASE="/dbora01/app/oracle"
 export ORACLE_HOME=$ORACLE_BASE/product/8.1.6
 export ORACLE_SID=
 
-
-
-
-#
-# $Log$
-# Revision 1.5  2003/06/05 00:25:52  houghton
-# *** empty log message ***
-#
-# Revision 1.4  2003/05/16 12:40:30  houghton
-# Bunches of additions.
-#
-# Revision 1.3  2000/07/23 09:53:53  houghton
-# Added PCMS_ROOT.
-# Changed prj dirs.
-#
-# Revision 1.2  2000/06/21 23:33:42  houghton
-# Added oracle vars.
-#
-# Revision 1.1  2000/06/16 13:09:46  houghton
-# Initial Version.
-#
-#
 
 # Local Variables:
 # mode:ksh
