@@ -89,7 +89,7 @@ case $- in
 	    ;;
 	esac
 	#PS1='\n\[\e]0;\h:\w\007\e[34m\]\u@\h \[\e[35m\w\e[0m\]\n$ '
-	PS1='\n\[\e]0;\h:\w\007\[\e[35m\w\n\e[34m\]\h$\e[0m\] '
+	PS1='\[\e]0;\h:\w\007\e[35m\]\w\n\[\e[34m\]\h$ \[\e[0m\]'
 
 	unset iam
 	
@@ -110,6 +110,9 @@ esac
 
 #
 # $Log$
+# Revision 1.20  2003/05/22 13:18:58  houghton
+# Changed PS1 to fix command line editing problems
+#
 # Revision 1.19  2003/05/16 09:38:11  houghton
 # Changed prompt (PS1)
 #
