@@ -33,41 +33,42 @@ dotfiles	=				\
 
 target_dotfiles	=				\
 	profile.solaris2.8			\
+	profile.solaris2.9
 
 
 EXTRA_DIST	=				\
 	$(dotfiles)				\
-	$(target_dotfiles)			\
+	$(target_dotfiles)
 
 
 install-data-hook:
-	$(hide) for fn in $(dotfiles)			    \
-			  profile			    \
-			  profile_$(host) ;		    \
-	do						    \
-	  if test -f $$fn.$(os) ; then			    \
-	    if test -f $(HOME)/.$$fn ; then		    \
-	      echo "+ Will NOT overwrite $(HOME)/.$$fn" ;   \
-	    else					    \
-	      sed -e 's/@host_name@/$(host)/'		    \
-	    	  -e 's/@os_name@/$(os)/'		    \
-	          -e 's/@email_addr@/$(email)/'		    \
-	          -e 's|@cvs_root@|$(cvsroot)|'		    \
-	          < $$fn.$(os) > $(HOME)/.$$fn || exit 1 ;  \
-	      echo "+ Installed $(HOME)/.$$fn" || exit 1;   \
-	    fi ;					    \
-	  else						    \
-	    if test -f $$fn ; then			    \
-	      if test -f $(HOME)/.$$fn ; then		    \
-	        echo "+ Will NOT overwrite $(HOME)/.$$fn" ; \
-	      else					    \
-	        sed -e 's/@host_name@/$(host)/'		    \
-	    	    -e 's/@os_name@/$(os)/'		    \
-	            -e 's/@email_addr@/$(email)/'	    \
-	            -e 's|@cvs_root@|$(cvsroot)|'	    \
-	            < $$fn > $(HOME)/.$$fn || exit 1 ;	    \
-	        echo "+ Installed $(HOME)/.$$fn" || exit 1; \
-	      fi ;					    \
-	    fi ;					    \
-	  fi ;						    \
+	$(hide) for fn in $(dotfiles)				  \
+			  profile				  \
+			  profile_$(host) ;			  \
+	do							  \
+	  if test -w $(HOME)/.$$fn ; then			  \
+	    mv $(HOME)/.$$fn $(HOME)/.$$fn.bak ;		  \
+	    echo "+ moved $(HOME)/.$$fn to $(HOME)/.$$fn.bak" ;   \
+	  else							  \
+	    rm -f $(HOME)/.$$fn ;				  \
+	  fi ;							  \
+	  if test -f $$fn.$(os) ; then				  \
+	    sed -e 's/@host_name@/$(host)/'			  \
+	    	-e 's/@os_name@/$(os)/'				  \
+	        -e 's/@email_addr@/$(email)/'			  \
+	        -e 's|@cvs_root@|$(cvsroot)|'			  \
+	        < $$fn.$(os) > $(HOME)/.$$fn || exit 1 ;	  \
+	    chmod -w $(HOME)/.$$fn || exit 1 ;			  \
+	    echo "+ Installed $(HOME)/.$$fn" || exit 1;		  \
+	  else							  \
+	    if test -f $$fn ; then				  \
+	      sed -e 's/@host_name@/$(host)/'			  \
+	    	  -e 's/@os_name@/$(os)/'			  \
+	          -e 's/@email_addr@/$(email)/'			  \
+	          -e 's|@cvs_root@|$(cvsroot)|'			  \
+	          < $$fn > $(HOME)/.$$fn || exit 1 ;		  \
+	      chmod -w $(HOME)/.$$fn || exit 1 ;		  \
+	      echo "+ Installed $(HOME)/.$$fn" || exit 1;	  \
+	    fi ;						  \
+	  fi ;							  \
 	done
