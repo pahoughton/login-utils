@@ -54,7 +54,7 @@ fi
 if [ -n "$SYBASE" ] ; then
   export SYBASE
   export DSQUERY=DEV6
-  export SYBSERV=DEV6
+  export SYBSERV=DEV6_SQL
   export SYBDB="trfd_lookup_test"
   export SYBUSER="houghton"
   export SYBPASS
@@ -272,6 +272,9 @@ esac
 
 #
 # $Log$
+# Revision 1.20  1999/05/04 09:28:49  houghton
+# Changed Sybase server to DEV6_SQL
+#
 # Revision 1.19  1999/05/03 13:48:44  houghton
 # Fixed TOOL_DIR and INFOPATH.
 #
