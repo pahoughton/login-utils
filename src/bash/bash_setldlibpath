@@ -29,7 +29,9 @@
 
 [ -n "$OPENWINHOME" ] && [ -d $OPENWINHOME/lib ] &&
   libpaths="$libpaths $OPENWINHOME/lib"
-  
+
+[ -d /usr/dt/lib ] && libpaths="$libpaths /usr/dt/lib"
+
 [ -d /usr/local/lib ] &&
   libpaths="$libpaths /usr/local/lib"
   
@@ -64,6 +66,9 @@ unset libpaths
 
 #
 # $Log$
+# Revision 1.8  2003/05/16 12:40:15  houghton
+# Added /usr/dt/lib
+#
 # Revision 1.7  2001/03/20 10:53:31  houghton
 # Bug-Fix: fixed UTIL_DIR/lib.
 #
