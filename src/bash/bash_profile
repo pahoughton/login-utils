@@ -105,7 +105,7 @@ fi
 if [ `hostname` = "cworld" ] ; then
   export CVSROOT_cworld=/usr/src/Repository
 else
-  export CVSROOT_cworld=:pserver:houghton@cworld.wcom.com:/usr/src/Repository
+  export CVSROOT_cworld=:pserver:houghton@cworld.wcomnet.com:/usr/src/Repository
 fi
 
 if [ `hostname` = "sideswipe" ] ; then
@@ -172,8 +172,12 @@ export REPLYTO="paul.houghton@wcom.com"
 if [ -n "$MOZILLA_HOME" ] ; then
   export MOZILLA_HOME
   export NPX_PLUGIN_PATH=$MOZILLA_HOME/plugins
-  if [ -d /usr/local/Acrobat3/Browsers/intellinux ] ; then
-    NPX_PLUGIN_PATH=$NPX_PLUGIN_PATH:/usr/local/Acrobat3/Browsers/intellinux
+  if [ -d /usr/local/Acrobat4/Browsers/intellinux ] ; then
+    NPX_PLUGIN_PATH=$NPX_PLUGIN_PATH:/usr/local/Acrobat4/Browsers/intellinux
+  else
+    if [ -d /usr/local/Acrobat3/Browsers/intellinux ] ; then
+      NPX_PLUGIN_PATH=$NPX_PLUGIN_PATH:/usr/local/Acrobat3/Browsers/intellinux
+    fi
   fi
 fi
   
@@ -391,6 +395,9 @@ esac
 
 #
 # $Log$
+# Revision 1.36  2000/08/09 11:25:03  houghton
+# Changed cworld.wcom.com to cworld.wcomnet.com.
+#
 # Revision 1.35  2000/07/22 09:31:29  houghton
 # Added Dimensions env vars.
 #
