@@ -34,7 +34,7 @@
   libpaths="$libpaths /usr/local/lib"
   
 [ -n "$TOOL_DIR" ] && [ -d $TOOL_DIR/lib ] &&
-  libpaths="$libpaths $TOOL_DIR/lib/prod"
+  libpaths="$libpaths $TOOL_DIR/lib/prod $TOOL_DIR/lib"
   
 [ -n "$UTIL_DIR" ] && [ -d $UTIL_DIR/lib ] &&
   libpaths="$libpaths $TOOL_DIR/lib"
@@ -64,6 +64,9 @@ unset libpaths
 
 #
 # $Log$
+# Revision 1.6  2001/03/18 08:19:21  houghton
+# Added $TOOL_DIR/lib.
+#
 # Revision 1.5  2000/07/12 12:00:08  houghton
 # Added ORACLE lib dir.
 #
