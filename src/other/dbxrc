@@ -1,0 +1,38 @@
+#
+#
+# Title:        dbxrc
+# Project:	Login
+# Desc:
+# 
+#   
+# 
+# Notes:
+# 
+# Author:	Paul Houghton - (paul.houghton@wcom.com)
+# Created:	05/12/99 12:09
+#
+# Revision History: (See end of file for Revision Log)
+#
+#   Last Mod By:    $Author$
+#   Last Mod:	    $Date$
+#   Version:	    $Revision$
+#
+#   $Id$
+# 
+
+dbxenv suppress_startup_message 4.0
+set -vi
+
+
+
+
+#
+# $Log$
+# Revision 1.1  1999/05/12 17:41:06  houghton
+# Initial Version.
+#
+#
+
+# Local Variables:
+# mode:indented-text
+# End:
