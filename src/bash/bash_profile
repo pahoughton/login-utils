@@ -3,7 +3,8 @@
 # Project:	Login
 # Desc:
 # 
-#   
+#   This script is run when bash is executed from 'login'. It also
+#   runs the 'bashrc' script if the shell is interactive.
 # 
 # Notes:
 # 
@@ -43,6 +44,9 @@ fi
 
 #
 # $Log$
+# Revision 1.2  1997/01/15 15:20:49  houghton
+# Added comments.
+#
 # Revision 1.1  1997/01/15 15:17:23  houghton
 # Initial Version.
 #
