@@ -25,7 +25,7 @@ alias xterm='xterm -n `hostname` &'
 tclmandirs="$TOOL_DIR/tcl/man /usr/local/tcl/man /Tools/tcl/man"
 
 for tmd in $tclmandirs ; do
-  if [ -d $tmd ] ;
+  if [ -d $tmd ] ; then
     alias tclman="man -M $tmd"
     break;
   fi
@@ -37,6 +37,9 @@ done
   
 #
 # $Log$
+# Revision 1.6  1999/11/12 13:41:35  houghton
+# Bug-Fix: 'then' was missing.
+#
 # Revision 1.5  1999/11/09 12:26:18  houghton
 # Fixed setting tclman alias.
 #
