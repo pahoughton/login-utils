@@ -1,0 +1,98 @@
+2003-06-08  Paul Houghton  <paul.houghton@mci.com>
+
+	* src/X11/Xdefaults: Added mouse wheel support
+
+	* src/bash/bash_aliases: Major mods 
+
+	* src/bash/bash_profile: Major mods
+
+	* src/bash/bash_profile_SunOS: Cleanup
+
+	* src/bash/bash_profile_user_soundwave:Major mods 
+
+	* src/bash/bash_setldlibpath: Major mods
+
+	* src/bash/bashrc: Major mods 
+
+	* src/ksh/profile.SunOS: cleanup 
+
+	* src/ksh/kshrc: Major mods
+
+	* src/ksh/Makefile.am: created
+
+	* src/bash/bash_profile_SunOS: created
+
+	* config.sub: created with automake (1.7.5) -ac
+
+	* config.guess: created with automake (1.7.5) -ac
+
+	* README: created
+
+	* NEWS: created
+
+	* AUTHORS: created
+
+2003-06-06  Paul Houghton  <paul.houghton@mci.com>
+
+	* mkinstalldirs: created with automake (1.7.5) -ac
+
+	* missing: created with automake (1.7.5) -ac
+
+	* install-sh: created with automake (1.7.5) -ac
+
+	* INSTALL: created with automake (1.7.5) -ac
+
+	* COPYING: created with automake (1.7.5) -ac
+
+	* Makefile.am: created
+
+	* src/Makefile.am: created
+
+	* src/X11/Makefile.am: created
+
+	* src/bash/Makefile.am: created
+
+2003-06-05  Paul Houghton  <paul.houghton@mci.com>
+
+	* src/bash/bash_profile_user_soundwave: created
+
+	* configure.ac: created
+
+	* acinclude.m4: created
+
+	* ChangeLog: created
+
+2003-06-04  Paul Houghton  <paul.houghton@mci.com>
+
+	* src/ksh/kshrc: created
+
+	* src/bash/bash_profile_solaris2.8: created
+
+	* src/bash/bash_profile_user: created
+
+2003-05-17
+	
+	* src/X11/Xdefaults: created
+
+2003-05-16
+	
+	* src/ksh/profile.solaris2.8: created
+
+	* src/ksh/profile.SunOS: created
+
+2000-06-14  Paul Houghton  <paul.houghton@mci.com>
+
+	* src/bash/bash_profile_soundwave: created
+
+1999-05-17
+	
+	* src/bash/bash_aliases: created
+
+	* src/bash/bash_setldlibpath: created
+
+1997-01-15
+	
+	* src/bash/bashrc: created
+
+	* src/bash/bash_profile: created 
+
