@@ -107,6 +107,8 @@ if [ -n "$MOZILLA_HOME" ] ; then
   fi
 fi
   
+# less
+export LESS=-X
 
 # Network News
 export TRNINIT=$HOME/.trninit
@@ -253,6 +255,9 @@ esac
 
 #
 # $Log$
+# Revision 1.24  1999/05/26 12:45:48  houghton
+# Aded LESS env var.
+#
 # Revision 1.23  1999/05/21 10:21:00  houghton
 # Changed: moved setting LD_LIBRARY_PATH to it's own file since it need
 #          to be done by both basehrc and bash_provile.
