@@ -35,24 +35,51 @@ unset tclmandirs
 function show_path {
   var=${1:-PATH}
   echo The current $var is:
-  for dir in `eval echo \\${$var} | sed 's@:@ @g'` ; do
+  for dir in `eval echo \\${$var} | sed "s@:@ @g"` ; do
     echo "  $dir"
   done
   unset var
 }
 
 function change_path {
-  from=$1
-  to=$2
-  if [ -n "$from" -a -n "$to" ] ; then
-    PATH=`echo $PATH | sed 's@$from@$to@'`
+  p_from=$1
+  p_to=$2
+  if [ -n "$p_from" -a -n "$p_to" ] ; then
+    was_PATH=$PATH
+    PATH=`echo $PATH | sed "s@$p_from@$p_to@"`
+    is_PATH=$PATH
+    echo "PATH changed"
+    show_path was_PATH
+    show_path is_PATH
   else
     echo "usage: change_path from to"
   fi
-  unset from
-  unset to
+  unset p_from
+  unset p_to
+  unset was_PATH
+  unset is_PATH
 }
-  
+
+function change_tooldir {
+  # set -x
+  # echo "ARGS: $1 $2"
+  t_to=$1
+  t_from=$TOOL_DIR
+  if [ -n "$t_from" -a -n "$t_to" ] ; then
+    TOOL_DIR=$t_to
+    change_path $t_from/bin $t_to/bin
+    INFOPATH=`echo $INFOPATH | sed "s@$t_from@$t_to@"`
+    MANPATH=`echo $MANPATH | sed "s@$t_from@$t_to@"`
+    echo 
+    echo "TOOL_DIR changed from $t_from to $t_to"
+    echo "  MANPATH and INFOPATH also changed."
+  else
+    echo "usage: change_tooldir to_dir"
+  fi
+  unset t_from
+  unset t_to
+}
+
 function setprj {
   prj=$1
   oldprj=$PROJECT
@@ -116,6 +143,9 @@ function setprj {
   
 #
 # $Log$
+# Revision 1.8  2000/06/14 15:51:20  houghton
+# Bug-Fix: fixed change_path and change_tooldir.
+#
 # Revision 1.7  2000/06/09 17:11:59  houghton
 # Added show_path function
 # Added setprj function
