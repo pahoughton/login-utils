@@ -21,13 +21,16 @@
 # 
 
 dbxenv suppress_startup_message 4.0
-set -vi
+set -o vi
 
 
 
 
 #
 # $Log$
+# Revision 1.2  1999/06/07 14:41:39  houghton
+# Fixed set vi mode
+#
 # Revision 1.1  1999/05/12 17:41:06  houghton
 # Initial Version.
 #
