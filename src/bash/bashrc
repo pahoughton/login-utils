@@ -1,25 +1,25 @@
 #
 # Title:        bashrc
-# Project:	Login
+# Project:	LoginUtils
 # Desc:
 # 
 #   Bourne Again SHell init file.
 # 
 # Notes:
 # 
-# Author:	Paul A. Houghton - (paul.houghton@wcom.com)
-# Created:	01/15/97 08:08
+# Author(s):   Paul Houghton <paul.houghton@mci.com>
+# Created:     01/15/1997 08:08
 #
-# Revision History: (See end of file for Revision Log)
+# Revision Info: (See ChangeLog or cvs log for revision history)
 #
-#   Last Mod By:    $Author$
-#   Last Mod:	    $Date$
-#   Version:	    $Revision$
+#	$Author$
+#	$Date$
+#	$Name$
+#	$Revision$
+#	$State$
 #
-#   $Id$
-# 
+# $Id$
 
-# If Running interactivly
 
 # if we have NOT loaded the profile.
 export have_bashrc=true
