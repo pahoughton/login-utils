@@ -117,19 +117,21 @@ fi
 #
 # Cvs Env Setup
 #
-if [ $HOSTNAME = "cworld" ] ; then
-  export CVSROOT_cworld=/usr/src/Repository
-else
-  export CVSROOT_cworld=:pserver:houghton@192.168.0.230:/usr/src/Repository
-fi
+[ -f $HOME/.cvsroots ] && source $HOME/.cvsroots
 
-if [ $HOSTNAME = "sideswipe" ] ; then
-  export CVSROOT_sideswipe=/Tools/src/CvsRepository
-else
-  export CVSROOT_sideswipe=:pserver:houghton@sideswipe.wcom.com:/Tools/src/CvsRepository
-fi
+# if [ $HOSTNAME = "cworld" ] ; then
+#   export CVSROOT_cworld=/usr/src/Repository
+# else
+#   export CVSROOT_cworld=:pserver:houghton@192.168.0.230:/usr/src/Repository
+# fi
 
-export CVSROOT=$CVSROOT_sideswipe
+# if [ $HOSTNAME = "sideswipe" ] ; then
+#   export CVSROOT_sideswipe=/Tools/src/CvsRepository
+# else
+#   export CVSROOT_sideswipe=:pserver:houghton@sideswipe.wcom.com:/Tools/src/CvsRepository
+# fi
+
+# export CVSROOT=$CVSROOT_sideswipe
 
 #
 # Perl
@@ -439,6 +441,9 @@ esac
 
 #
 # $Log$
+# Revision 1.45  2003/06/05 00:26:12  houghton
+# Changed path and cvs handling
+#
 # Revision 1.44  2003/06/02 07:09:40  houghton
 # Reworked info path
 # Reworked Replyto
