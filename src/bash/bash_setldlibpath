@@ -50,7 +50,7 @@ LD_LIBRARY_PATH=
 
 for lp in $libpaths ; do
   [ -d "$lp" ] &&
-    ! echo $LD_LIBRARY_PAHT | fgrep -s "$lp" 2>/dev/null &&
+    ! echo $LD_LIBRARY_PATH | fgrep -s "$lp" >/dev/null 2>&1 &&
     LD_LIBRARY_PATH="$lp:$LD_LIBRARY_PATH"
 done
 
@@ -58,7 +58,6 @@ unset lp
 unset libpaths
 export LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | sed -e 's/^://' -e 's/:$//'`
   
-
 
 # Local Variables:
 # mode:ksh
