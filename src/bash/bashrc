@@ -67,8 +67,8 @@ case $- in
 	  PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin
 	  alias xemacs=/usr/local/bin/xemacs
 	else
-	  if [ `whoami` = lookup ] ; then
-	    PS1="\h:lookup$ "
+	  if [ `whoami` != houghton ] ; then
+	    PS1="\h:\u$ "
 	  else
 	    PS1="\h\$ "
 	  fi
@@ -90,6 +90,9 @@ esac
 
 #
 # $Log$
+# Revision 1.17  2000/06/14 15:51:54  houghton
+# Changed prompt for non-houghton.
+#
 # Revision 1.16  2000/06/09 17:14:30  houghton
 # Added override if $EDITOR is set to VI
 #
