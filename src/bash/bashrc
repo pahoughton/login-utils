@@ -43,6 +43,8 @@ case $- in
 	       eval `tset -e  -s -m xterm:xterm -m linux:linux -m :?vt100`
 	    fi
 	    ;;
+	  *dtterm*)
+	    ;;
 	  *)
 	    eval `tset -s		    \
 	             -m xterm:xterm	    \
@@ -61,19 +63,34 @@ case $- in
 	
 	HISTSIZE=256
 	MAILCHECK=60
-	
-	if [ `whoami` = root ] ; then
-	  PS1="\h:ROOT# "
-	  PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/X11R6/bin
-	  alias xemacs=/usr/local/bin/xemacs
+
+	if type whoami > /dev/null 2>&1 ; then
+	  iam=`whoami`
 	else
-	  if [ `whoami` != houghton ] ; then
-	    PS1="\h:\u$ "
-	  else
-	    PS1="\h\$ "
+	  if [ -x /usr/ucb/whoami ] ; then
+	    iam=`/usr/ucb/whoami`
 	  fi
-	fi  
-  
+	fi
+
+	case $iam in
+	  root )
+	    PS1="\h:ROOT# "
+	    if [ -n "$host_root_path" ] ; then
+	      PATH=$host_root_path
+	    else
+	      PATH=/usr/sbin:/usr/bin
+	    fi
+	    ;;
+	  houghton )
+	    PS1="\h$ ";
+	    ;;
+	  * )
+	    PS1="\h:\u$ "
+	    ;;
+	esac
+	unset iam
+	
+
 	[ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
 	
 	echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
@@ -90,6 +107,9 @@ esac
 
 #
 # $Log$
+# Revision 1.18  2001/03/18 08:20:31  houghton
+# Added dtterm support for Sun.
+#
 # Revision 1.17  2000/06/14 15:51:54  houghton
 # Changed prompt for non-houghton.
 #
