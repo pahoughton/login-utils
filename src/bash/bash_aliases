@@ -25,6 +25,11 @@ alias ls='ls -F'
 alias xterm='xterm -n `hostname` &'
 type df.pl >> /dev/null 2>&1 && alias df=df.pl
 
+[ -x /usr/sbin/ping ] && alias ping=/usr/sbin/ping
+[ -x /usr/sbin/fuser ] && alias fuser=/usr/sbin/fuser
+[ -x /usr/sbin/nslookup ] && alias nslookup=/usr/sbin/nslookup
+[ -x /sbin/traceroute ] && alias traceroute=/usr/sbin/traceroute
+
 [ -x $ACROREAD_BASE_DIR/bin/acroread ] &&
   alias acroread=$ACROREAD_BASE_DIR/bin/acroread
 
