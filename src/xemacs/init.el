@@ -84,10 +84,10 @@
 
 ; find other file
 
-(autoload 'ff-find-other-file				"find-file"
-  "find other file .C - .hh or include file" t )
-(autoload 'ff-mouse-find-other-file			"find-file"
-  "Visit the file you click on." t )
+;(autoload 'ff-find-other-file				"find-file"
+;  "find other file .C - .hh or include file" t )
+;(autoload 'ff-mouse-find-other-file			"find-file"
+;  "Visit the file you click on." t )
 
 (setq-default cc-search-directories
 	      (append (list "."
