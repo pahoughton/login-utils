@@ -48,6 +48,7 @@ PAH_CVSROOT
 AC_CONFIG_FILES([Makefile
 	         src/Makefile
 		 src/bash/Makefile
+		 src/ksh/Makefile
 		 src/X11/Makefile])
 AC_OUTPUT
 
