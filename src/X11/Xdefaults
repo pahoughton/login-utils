@@ -47,6 +47,9 @@ Lock @Num_Lock Ctrl <Btn5Down>:scroll-forw(1,halfpage,m) \n\
      @Num_Lock Ctrl <Btn5Down>:scroll-forw(1,halfpage,m) \n\
                     <Btn5Down>:scroll-forw(5,line,m)     \n
 
+! Sun Workshop 6.2 xemacs path
+ESERVE*defaultXEmacsPath:       /Tools/bin/xemacs
+
 ! Xpcms*controlPanel*showTools.set:               False
 ! Xpcms*background:		    dark slate blue
 ! Xpcms*Background:		    dark slate blue
