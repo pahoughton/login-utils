@@ -1,0 +1,37 @@
+#
+# File:		bash_profile_cscape
+# Project:	LoginUtils 
+# Desc:
+#
+#   
+#
+# Notes:
+#
+# Author(s):   Paul Houghton paul.houghton@mci.com
+# Created:     07/12/2003 06:06
+#
+# Revision Info: (See ChangeLog or cvs log for revision history)
+#
+#	$Author$
+#	$Date$
+#	$Name$
+#	$Revision$
+#	$State$
+#
+# $Id$
+#
+
+host_util_dir=/Tools
+host_prepend_path="/usr/local/bin"
+
+
+export JAVA_HOME=/Tools/java/j2sdk1_3_1
+
+export PCMS_ROOT=/pcms/dimensions5_0/
+
+# Oracle
+
+export ORACLE_BASE="/dbora01/app/oracle"
+export ORACLE_HOME=$ORACLE_BASE/product/8.1.6
+export ORACLE_SID=
+
