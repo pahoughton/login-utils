@@ -1,0 +1,42 @@
+#
+# File:		profile.solaris2.9
+# Project:	Login 
+# Desc:
+#
+#   
+#
+# Notes:
+#
+# Author(s):   Paul Houghton <paul.houghton@mci.com>
+# Created:     05/16/2003 04:41
+#
+# Revision Info: (See ChangeLog or cvs log for revision history)
+#
+#	$Author$
+#	$Date$
+#	$Name$
+#	$Revision$
+#	$State$
+#
+# $Id$
+#
+
+if [ -z "$ssh_env" ] ; then
+  PATH=/usr/dt/bin:/usr/openwin/bin:$PATH
+  [ -d /usr/local/bin ] && PATH=/usr/local/bin:$PATH
+  [ -d /Tools/bin ] && PATH=/Tools/bin:$PATH
+  PATH=.:$PATH
+
+  [ -d /usr/local/lib ] && LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+  [ -d /Tools/lib ] && LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+fi
+
+case $- in
+  *i*)
+    . .kshrc
+    ;;
+esac
+
+# Local Variables:
+# mode:ksh
+# End:
