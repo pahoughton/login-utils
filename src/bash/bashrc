@@ -61,7 +61,10 @@ case $- in
 	    fi
 	    ;;
 	  *)
-	    eval `tset -e  -s -m xterm:xterm -m linux:linux -m :?vt100`
+	    eval `tset -s		    \
+	             -m xterm:xterm	    \
+	             -m linux-c:linux-c	    \
+		     -m :?vt100`
 	    ;;
 	esac
 	
@@ -97,6 +100,9 @@ esac
 
 #
 # $Log$
+# Revision 1.11  1999/05/03 10:11:13  houghton
+# Changed to use linux-c TERM (vs linux)
+#
 # Revision 1.10  1999/04/30 14:29:34  houghton
 # Many fixes for SunOS
 #
