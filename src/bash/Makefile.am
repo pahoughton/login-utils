@@ -40,10 +40,16 @@ target_dotfiles	=				\
 	bash_profile_solaris2.8			\
 	bash_profile_solaris2.9			\
 	bash_profile_soundwave
-
+	bash_profile_mirage
+	bash_profile_sideswipe
+	bash_profile_cscape
+ 
 user_dotfiles	=				\
 	bash_profile_user			\
 	bash_profile_user_soundwave
+	bash_profile_user_sideswipe
+	bash_profile_user_mirage
+	bash_profile_user_cscape
 
 EXTRA_DIST	=				\
 	$(dotfiles)				\
