@@ -225,6 +225,9 @@ fi
 # prepend available dirs
 prepend_dirs=" /var/ldap/bin /usr/local/tex/bin"
 
+[ -n "$JAVA_HOME" -a -d "$JAVA_HOME"/bin ] &&
+  prepend_dirs="prepend_dirs $JAVE_HOME/bin"
+
 cxx_dir_list="6.0 5.0 4.2"
 for cxx_dir in $cxx_dir_list ; do
   if [ -d /opt/SUNWspro/SC$cxx_dir ] ; then
@@ -366,6 +369,9 @@ esac
 
 #
 # $Log$
+# Revision 1.32  2000/06/16 13:09:29  houghton
+# Added JAVA_HOME support.
+#
 # Revision 1.31  2000/06/16 13:03:37  houghton
 # Bug-Fix: was missing parts of SUN compiler in path.
 #
