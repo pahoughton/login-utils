@@ -1,0 +1,56 @@
+#
+# Title:        bash_setldlibpath
+# Project:	Login
+# Desc:
+# 
+#   
+# 
+# Notes:
+# 
+# Author:	Paul A. Houghton - (paul.houghton@wcom.com)
+# Created:	05/17/99 08:31
+#
+# Revision History: (See end of file for Revision Log)
+#
+#   Last Mod By:    $Author$
+#   Last Mod:	    $Date$
+#   Version:	    $Revision$
+#
+#   $Id$
+# 
+
+# set -x
+
+[ -d /usr/local/lib ] && libpaths="$libpaths /usr/local/lib"
+[ -n "$TOOL_DIR" ] && [ -d $TOOL_DIR/lib/prod ] && libpaths="$libpaths $TOOL_DIR/lib/prod"
+[ -d $HOME/lib ] && libpaths="$HOME/lib";
+
+for lp in $libpaths ; do
+  foundit=false
+  for ldp in `echo $LD_LIBRARY_PATH | sed -e 's/:/ /g'` ; do
+    if [ "$ldp" = "$lp" ] ; then
+      foundit=true
+      break
+    fi
+  done
+  if [ "$foundit" != "true" ] ; then
+    if [ -n "$LD_LIBRARY_PATH" ] ; then
+      export LD_LIBRARY_PATH="$lp:$LD_LIBRARY_PATH"
+    else
+      export LD_LIBRARY_PATH="$lp"
+    fi
+  fi
+done
+
+echo "LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
+
+#
+# $Log$
+# Revision 1.1  1999/05/21 10:21:14  houghton
+# Initial Version.
+#
+#
+
+# Local Variables:
+# mode:ksh
+# End:
