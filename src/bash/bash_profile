@@ -34,6 +34,14 @@ fi
 
 export TOOL_DIR
 
+#
+# OPENWINHOME
+#
+[ -z "$OPENWINHOME" ] &&
+[ -d "/usr/openwin" ] &&
+export OPENWINHOME=/usr/openwin
+
+
 # Sybase
 if [ -d $TOO_DIR/sybase ] ; then
   SYBASE=$TOOL_DIR/sybase
@@ -112,6 +120,10 @@ for cpp in /lib/cpp /bin/cpp /usr/bin/cpp ; do
   fi
 done
 
+#
+# LD_LIBRARY_PATH
+#
+
 if [ -n "$TOOL_DIR" -a -d "$TOOL_DIR/lib/beta" ] ; then
   if [ -n "$LD_LIBRARY_PATH" ] ; then
     haveToolLib=false
@@ -134,6 +146,14 @@ if [ -n "$TOOL_DIR" -a -d "$TOOL_DIR/lib/beta" ] ; then
   fi
 fi
 
+case $MACHTYPE in
+
+  *linux* | *solaris* )
+    [ -n "$SYBASE" ]  && LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$SYBASE/lib
+    [ -n "$OPENWINHOME" ]  && LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$OPENWINHOME/lib
+    ;;
+esac
+
 #
 # Setup my PATH
 #
@@ -152,7 +172,7 @@ done
 
 if ! type xrdb > /dev/null 2>&1 ; then
   for xd in /usr/X11R6/bin /usr/bin/X11 /usr/openwin/bin ; do
-    if [ -d $d ] ; then
+    if [ -d $xd ] ; then
       PATH=$PATH:$xd
       break
     fi
@@ -160,7 +180,7 @@ if ! type xrdb > /dev/null 2>&1 ; then
 fi
 
 # prepend available dirs
-prepend_dirs="/usr/xpg4/bin"
+prepend_dirs=" /opt/SUNWspro/bin /usr/xpg4/bin"
 [ -n "$SYBASE" ]    && prepend_dirs="$prepend_dirs $SYBASE/bin"
 [ -n "$TOOL_DIR" ]  && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
 prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
@@ -175,6 +195,28 @@ PATH=.:$PATH
 # Done with PATH (FINALLY!)
 #
 
+#
+# MANPATH
+#
+case `man --version 2>&1` in
+  *version\ 1.*)
+    ;;
+  *)
+    [ -z "$MANPATH" ] && export MANPATH=/usr/man
+    try_man_paths="
+    $OPENWINHOME/man
+    $TOOL_DIR/man
+    $TOOL_DIR/lib/perl5/man
+    "
+    for mp in $try_man_paths ; do
+      [ -d $mp ] && MANPATH=$mp:$MANPATH
+    done
+    ;;
+esac
+
+#
+# Set or fix MAIL env vars
+#
 if [ -z "$MAIL" ] ; then
   if [ -d /var/spool/mail ] ; then
     export MAIL=/var/spool/mail/$USER
@@ -231,6 +273,11 @@ esac
 
 #
 # $Log$
+# Revision 1.17  1999/05/02 12:15:56  houghton
+# Fixed MANPATH
+# Fixed LD_LIBRARY_PATH
+# Fixed OPENWINHOME
+#
 # Revision 1.16  1999/05/01 14:01:04  houghton
 # Fixed CVSROOT_sideswipe.
 #
