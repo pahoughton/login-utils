@@ -161,7 +161,8 @@ if ! type xrdb > /dev/null 2>&1 ; then
 fi
 
 # prepend available dirs
-prepend_dirs=" /opt/SUNWspro/bin /usr/xpg4/bin"
+prepend_dirs=" /var/ldap/bin /usr/local/tex/bin"
+prepend_dirs="$prepend_dirs /opt/SUNWspro/bin /usr/xpg4/bin"
 [ -n "$SYBASE" ]    && prepend_dirs="$prepend_dirs $SYBASE/bin"
 [ -n "$TOOL_DIR" ]  && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
 prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
@@ -181,20 +182,36 @@ PATH=.:$PATH
 #
 case `man --version 2>&1` in
   *version\ 1.*)
+    try_man_paths="
+    /var/ldap/man
+    /usr/local/tex/man
+    "
+    if ( [ -d /var/ldap/man ] || [ -d /usr/local/tex/man ] ) &&
+      [ -z "$MANPATH" ] ; then
+	MANPATH=`man -w`
+    fi
     ;;
   *)
-    [ -z "$MANPATH" ] && export MANPATH=/usr/man
     try_man_paths="
+    /usr/man
     /opt/SUNWspro/man
     $OPENWINHOME/man
     $TOOL_DIR/man
     $TOOL_DIR/lib/perl5/man
     "
-    for mp in $try_man_paths ; do
-      [ -d $mp ] && MANPATH=$mp:$MANPATH
-    done
     ;;
 esac
+
+for mp in $try_man_paths ; do
+  if [ -d $mp ] ; then
+    if [ -n "$MANPATH" ] ; then
+      MANPATH="$mp:$MANPATH";
+    else
+      MANPATH=$mp;
+    fi
+  fi
+done
+[ -n "$MANPATH" ] && export MANPATH
 
 #
 # Set or fix MAIL env vars
@@ -255,6 +272,9 @@ esac
 
 #
 # $Log$
+# Revision 1.25  1999/06/17 16:22:13  houghton
+# Added /var/ldap and /usr/local/tex to PATH and MANPATH
+#
 # Revision 1.24  1999/05/26 12:45:48  houghton
 # Aded LESS env var.
 #
