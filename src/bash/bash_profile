@@ -53,7 +53,7 @@ fi
 
 if [ -n "$SYBASE" ] ; then
   export SYBASE
-  export DSQUERY=DEV6
+  export DSQUERY=DEV6_SQL
   export SYBSERV=DEV6_SQL
   export SYBDB="trfd_lookup_test"
   export SYBUSER="houghton"
@@ -273,6 +273,9 @@ esac
 
 #
 # $Log$
+# Revision 1.22  1999/05/13 12:32:46  houghton
+# Fixed DSQUERY.
+#
 # Revision 1.21  1999/05/12 10:34:01  houghton
 # Added sun compilter man dir to MANPATH.
 #
