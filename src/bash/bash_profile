@@ -127,29 +127,37 @@ fi
 #
 # Gnu Info Env
 #
-[ -d /usr/info ] && INFOPATH=/usr/info
-[ -d $UTIL_DIR/info ] && INFOPATH=$UTIL_DIR/info:$INFOPATH
-[ -d $TOOL_DIR/info ] && INFOPATH=$TOOL_DIR/info:$INFOPATH
-  
-if [ -d $TOOL_DIR/lib/xemacs-20.4 ] ; then
-  export INFOPATH=$TOOL_DIR/lib/xemacs-20.4/info:$INFOPATH
-else
-  if [ -d $TOOL_DIR/lib/xemacs-19.14 ] ; then
-    export INFOPATH=$TOOL_DIR/lib/xemacs-19.14:$INFOPATH
-  else
-    export INFOPATH
-  fi
-fi
 
-if [ -d $UTIL_DIR/lib/xemacs-20.4 ] ; then
-  export INFOPATH=$UTIL_DIR/lib/xemacs-20.4/info:$INFOPATH
-else
-  if [ -d $UTIL_DIR/lib/xemacs-19.14 ] ; then
-    export INFOPATH=$UTIL_DIR/lib/xemacs-19.14:$INFOPATH
-  else
-    export INFOPATH
+export INFOPATH=$TOOL_DIR/info
+INFOPATH=$INFOPATH:$UTIL_DIR/info
+[ -d /usr/info ] && INFOPATH=$INFOPATH:/usr/info
+
+xemacs_info_dirs="
+$TOOL_DIR/lib/xemacs-21.1.7
+$UTIL_DIR/lib/xemacs-21.1.7
+$TOOL_DIR/lib/xemacs-20.4
+$UTIL_DIR/lib/xemacs-20.4
+"
+
+for dir in $xemacs_info_dirs ; do
+  if [ -d $dir ] ; then
+    INFOPATH=$INFOPATH:$dir/info
+    break;
   fi
-fi
+done
+
+[ -d $TOOL_DIR/lib/xemacs/xemacs-packages/info ] &&
+  INFOPATH=$INFOPATH:$TOOL_DIR/lib/xemacs/xemacs-packages/info
+
+[ -d $UTIL_DIR/lib/xemacs/xemacs-packages/info ] &&
+  INFOPATH=$INFOPATH:$UTIL_DIR/lib/xemacs/xemacs-packages/info
+
+[ -d $TOOL_DIR/lib/xemacs/local-lisp/21.1/info ] &&
+  INFOPATH=$INFOPATH:$UTIL_DIR/lib/xemacs/local-lisp/21.1/info
+
+[ -d $TOOL_DIR/lib/xemacs/local-lisp/21.1/info ] &&
+  INFOPATH=$INFOPATH:$UTIL_DIR/lib/xemacs/local-lisp/21.1/info
+
 
 export REPLYTO="paul.houghton@wcom.com"
 
@@ -358,6 +366,9 @@ esac
 
 #
 # $Log$
+# Revision 1.30  2000/06/14 15:51:33  houghton
+# Fixed INFOPATH.
+#
 # Revision 1.29  2000/06/14 10:31:45  houghton
 # Added ORACLE_HOME/bin to path.
 #
