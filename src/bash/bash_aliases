@@ -40,12 +40,16 @@ done
 unset tclmandirs
 
 function show_path {
-  var=${1:-PATH}
-  echo The current $var is:
-  for dir in `eval echo \\${$var} | sed "s@:@ @g"` ; do
-    echo "  $dir"
-  done
-  unset var
+  if [ -n "$1" ] ; then
+    val=$1;
+  else
+    val=$PATH;
+  fi
+  echo The path is:
+  for dir in `echo $val | sed "s/ /_/g" | tr : " "`; do
+    echo "    " $dir;
+  done 
+  unset val
 }
 
 function change_path {
@@ -151,6 +155,10 @@ function setprj {
   
 #
 # $Log$
+# Revision 1.12  2003/05/16 09:20:33  houghton
+# Changed show_path so it uses the value passed instead of using it as a
+#     variable.
+#
 # Revision 1.11  2001/07/31 14:33:46  houghton
 # *** empty log message ***
 #
