@@ -22,11 +22,30 @@
 # If Running interactivly
 
 # if we have NOT loaded the profile.
-if [ -z "$TOOL_DIR" ] ; then
+export have_bashrc=true
+
+if [ -z "$have_bash_profile" ] ; then
   source $HOME/.bash_profile
 else
   if [ -n "$TOOL_DIR" -a -d "$TOOL_DIR/lib/beta" ] ; then
-    export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta:$LD_LIBRARY_PATH"
+    if [ -n "$LD_LIBRARY_PATH" ] ; then
+      haveToolLib=false
+      hold_IFS="$IFS"
+      IFS=:
+      for d in $LD_LIBRARY_PATH ; do
+	if [ $d = "$TOOL_DIR/lib/beta" ] ; then
+	  haveToolLib=true
+	  break
+	fi
+      done
+      IFS="$hold_IFS"
+      if [ "$haveToolLib" != "true" ] ; then
+	export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta:$LD_LIBRARY_PATH"
+      fi
+      unset haveToolLib
+    else
+      export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta"
+    fi
   fi
 fi
        
@@ -78,6 +97,9 @@ esac
 
 #
 # $Log$
+# Revision 1.10  1999/04/30 14:29:34  houghton
+# Many fixes for SunOS
+#
 # Revision 1.9  1999/04/29 20:54:26  houghton
 # Fixed sourcing bash_profile
 #

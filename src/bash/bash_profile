@@ -20,6 +20,8 @@
 #   $Id$
 # 
 
+export have_bash_profile=true
+
 if [ -d /Tools ] ; then
   TOOL_DIR=/Tools
 else
@@ -32,12 +34,27 @@ fi
 
 export TOOL_DIR
 
-export SYBASE=/usr/sybase
-export DSQUERY=DEV6
-export SYBSERV=DEV6
-export SYBDB="trfd_lookup_test"
-export SYBUSER="houghton"
-export SYBPASS
+# Sybase
+if [ -d $TOO_DIR/sybase ] ; then
+  SYBASE=$TOOL_DIR/sybase
+else
+  if [ -d /sybase/syb11 ] ; then
+    SYBASE=/sybase/syb11
+  else
+    if [ -d /usr/sybase ] ; then
+      SYBASE=/usr/sybase
+    fi
+  fi
+fi
+
+if [ -n "$SYBASE" ] ; then
+  export SYBASE
+  export DSQUERY=DEV6
+  export SYBSERV=DEV6
+  export SYBDB="trfd_lookup_test"
+  export SYBUSER="houghton"
+  export SYBPASS
+fi
 
 export CWORLD_CVSROOT=/usr/src/Repository
 export SIDESWIPE_CVSROOT=:pserver:houghton@sideswipe:/Tools/src/CvsRepository
@@ -72,25 +89,75 @@ fi
 export TRNINIT=$HOME/.trninit
 export NEWSORG="WorldCom"
 
-export IMAKECPP=/usr/bin/cpp
+for cpp in /lib/cpp /bin/cpp /usr/bin/cpp ; do
+  if [ -x $cpp ] ; then
+    export IMAKECPP=$cpp
+    break
+  fi
+done
 
-export LD_LIBRARY_PATH=$TOOL_DIR/lib/beta
+if [ -n "$TOOL_DIR" -a -d "$TOOL_DIR/lib/beta" ] ; then
+  if [ -n "$LD_LIBRARY_PATH" ] ; then
+    haveToolLib=false
+    hold_IFS="$IFS"
+    IFS=:
+    for d in $LD_LIBRARY_PATH ; do
+      echo "found $d"
+      if [ $d = "$TOOL_DIR/lib/beta" ] ; then
+	haveToolLib=true;
+	break;
+      fi
+    done
+    IFS="$hold_IFS"
+    if [ "$haveToolLib" != "true" ] ; then
+      export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta:$LD_LIBRARY_PATH"
+    fi
+    unset haveToolLib
+  else
+    export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta"
+  fi
+fi
+
+#
+# Setup my PATH
+#
+if [ "$PATH" = "/usr/bin:" ] ; then
+  # Sun is strange
+  PATH=/usr/bin:/bin
+fi
+
+# append other avaliable system dirs
+append_dirs="/usr/ucb /usr/ccs/bin"
+for ad in $append_dirs ; do
+  [ -d $ad ] && PATH=$PATH:$ad
+done
 
 # find X11 dirs if not already in path
 
 if ! type xrdb > /dev/null 2>&1 ; then
-  for d in /usr/X11R6/bin /usr/bin/X11 /usr/openwin/bin ; do
+  for xd in /usr/X11R6/bin /usr/bin/X11 /usr/openwin/bin ; do
     if [ -d $d ] ; then
-      PATH=$PATH:$d
+      PATH=$PATH:$xd
       break
     fi
   done
 fi
 
-[ -d $TOOL_DIR/bin ] && PATH=$TOOL_DIR/bin:$PATH
-[ -d $HOME/bin ]     && PATH=$HOME/bin:$PATH
-[ -d $HOME/scripts ] && PATH=$HOME/scripts:$PATH
+# prepend available dirs
+prepend_dirs="/usr/xpg4/bin"
+[ -n "$SYBASE" ]    && prepend_dirs="$prepend_dirs $SYBASE/bin"
+[ -n "$TOOL_DIR" ]  && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
+prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
+
+for pd in $prepend_dirs ; do
+  [ -d $pd ] && PATH=$pd:$PATH
+done
+
 PATH=.:$PATH
+
+#
+# Done with PATH (FINALLY!)
+#
 
 if [ -z "$MAIL" ] ; then
   if [ -d /var/spool/mail ] ; then
@@ -105,11 +172,11 @@ fi
 case $- in
   
   *i*)          # interactive
-	source ~/.bashrc
+	[ -n "$have_bashrc" ] || source $HOME/.bashrc
 	
 	if [ -z "$DISPLAY" ] ; then
 
-	  fromhost=`who -m | awk '{print $6}' | sed -e 's/(\(.*\))/\1/' -e 's/:0.0//'`
+	  fromhost=`who -m | sed -e 's/.*:[0-9][0-9][ 	][ 	]*(*\([^):][^):]*\).*/\1/'`
 	  thishost=`hostname`
  
 	  if [ -n "$fromhost" ] && [ "$fromhost" != "$thishost" ] ; then
@@ -145,6 +212,9 @@ esac
 
 #
 # $Log$
+# Revision 1.11  1999/04/30 14:29:24  houghton
+# Many fixes for SunOS
+#
 # Revision 1.10  1999/04/29 20:53:47  houghton
 # Fixed path to X11 bin
 #
