@@ -225,10 +225,11 @@ fi
 # prepend available dirs
 prepend_dirs=" /var/ldap/bin /usr/local/tex/bin"
 
-cxx_dir_list="SC6.0 SC5.0 SC4.2"
+cxx_dir_list="6.0 5.0 4.2"
 for cxx_dir in $cxx_dir_list ; do
-  if [ -d /opt/SUNWspro/$cxx_dir ] ; then
-    prepend_dirs="$prepend_dirs /opt/SUNWspro/$cxx_dir/bin"
+  if [ -d /opt/SUNWspro/SC$cxx_dir ] ; then
+    prepend_dirs="$prepend_dirs /opt/SUNWspro/SC$cxx_dir/bin"
+    prepend_dirs="$prepend_dirs /opt/SUNWspro/WS$cxx_dir/bin"
     break;
   fi
 done
@@ -247,7 +248,6 @@ unset pd
 unset prepend_dirs
 
 PATH=.:$PATH
-
 #
 # Done with PATH (FINALLY!)
 #
@@ -366,6 +366,9 @@ esac
 
 #
 # $Log$
+# Revision 1.31  2000/06/16 13:03:37  houghton
+# Bug-Fix: was missing parts of SUN compiler in path.
+#
 # Revision 1.30  2000/06/14 15:51:33  houghton
 # Fixed INFOPATH.
 #
