@@ -50,6 +50,10 @@ case $- in
 		     -m :?vt100`
 	    ;;
 	esac
+
+	if [ "$EDITOR" = "vi" ] ; then
+	  set -o emacs
+	fi
 	
 	ignoreeof=
 	notify=
@@ -86,6 +90,9 @@ esac
 
 #
 # $Log$
+# Revision 1.16  2000/06/09 17:14:30  houghton
+# Added override if $EDITOR is set to VI
+#
 # Revision 1.15  1999/10/09 07:08:50  houghton
 # Bug-Fix: forgot ';'.
 #
