@@ -23,6 +23,12 @@ alias ls='ls -F'
 alias xterm='xterm -n `hostname` &'
 type df.pl >> /dev/null 2>&1 && alias df=df.pl
 
+[ -x $ACROREAD_BASE_DIR/bin/acroread ] &&
+  alias acroread=$ACROREAD_BASE_DIR/bin/acroread
+
+[ -d $MOZILLA_HOME ] &&
+  alias netscape=$MOZILLA_HOME/netscape
+  
 tclmandirs="$TOOL_DIR/tcl/man /usr/local/tcl/man /Tools/tcl/man"
 
 for dir in $tclmandirs ; do
@@ -144,6 +150,9 @@ function setprj {
   
 #
 # $Log$
+# Revision 1.10  2001/03/18 08:18:17  houghton
+# Added aliases for netscape and acroread.
+#
 # Revision 1.9  2000/06/14 15:53:14  houghton
 # Added df alias.
 #
