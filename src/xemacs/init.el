@@ -201,6 +201,15 @@
 ;
 (setq-default sgml-indent-data t)
 
+;;
+;; ksh-mode
+;;
+(setq ksh-mode-hook
+      (function (lambda ()
+		  (setq ksh-case-indent 2)
+		  )))
+
+
 ; Auto-mode-alist - The mode to use for specific file names
 
 (setq auto-mode-alist
