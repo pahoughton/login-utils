@@ -21,6 +21,7 @@
 
 # set -x
 
+[ -n "$SYBASE" ] && [ -d $SYBASE/lib ] && libpaths="$libpaths $SYBASE/lib"
 [ -d /usr/local/lib ] && libpaths="$libpaths /usr/local/lib"
 [ -n "$TOOL_DIR" ] && [ -d $TOOL_DIR/lib/prod ] && libpaths="$libpaths $TOOL_DIR/lib/prod"
 [ -d $HOME/lib ] && libpaths="$HOME/lib";
@@ -44,6 +45,9 @@ done
 
 #
 # $Log$
+# Revision 1.3  1999/07/02 11:25:36  houghton
+# Added $SYBASE/lib.
+#
 # Revision 1.2  1999/05/21 12:54:39  houghton
 # Removed echo stament (put in bashrc).
 #
