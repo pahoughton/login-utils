@@ -20,33 +20,105 @@
 #   $Id$
 # 
 
-PATH=.:$PATH
-PATH=$PATH:$HOME/bin
-PATH=$PATH:/usr/local/bin
-PATH=$PATH:/usr/local/X11R6/bin
-PATH=$PATH:/usr/local/Motif/bin
-PATH=$PATH:/usr/X11R6/bin
+export TOOL_DIR=/usr/local
 
-export LD_LIBRARY_PATH=/usr/local/lib/beta
+export SYBASE=/usr/sybase
+export DSQUERY=DEV6
+export SYBSERV=DEV6
+export SYBDB="trfd_lookup_test"
+export SYBUSER="houghton"
+export SYBPASS
 
-export CVSROOT=/usr/src/Repository
+export CWORLD_CVSROOT=/usr/src/Repository
+export SIDESWIPE_CVSROOT=:pserver:houghton@sideswipe:/Tools/src/CvsRepository
+export CVSROOT=$CWORLD_CVSROOT
 
-export INFOPATH=/usr/local/lib/xemacs-19.14/info:/usr/info:/usr/local/info
+[ -d /usr/info ] && INFOPATH=/usr/info
+[ -d $TOOL_DIR/info ] && INFOPATH=$TOO_DIR/info:$INFOPATH
 
-export MANPATH=`manpath -g | sed 's#:/usr/local/tcl/man##'`
+if [ -d /usr/local/lib/xemacs-20.4 ] ; then
+  export INFOPATH=/usr/local/lib/xemacs-20.4:$INFOPATH
+else
+  if [ -d /usr/local/lib/xemacs-19.14 ] ; then
+    export INFOPATH=/usr/local/lib/xemacs-19.14:$INFOPATH
+  else
+    export INFOPATH
+  fi
+fi
 
 export REPLYTO="paul.houghton@wcom.com"
 
-export NNTPSERVER=news.wcom.com
+export MOZILLA_HOME=/usr/local/Netscape
 
+export TRNINIT=$HOME/.trninit
 export NEWSORG="WorldCom"
 
-if [ "$PS1" ] ; then
-  source ~/.bashrc
+# export NNTPSERVER=news.wcom.com
+
+export LD_LIBRARY_PATH=$TOOL_DIR/lib/beta
+
+export IMAKECPP=/usr/bin/cpp
+
+PATH=$HOME/bin:$PATH
+PATH=$HOME/scripts:$PATH
+PATH=.:$PATH
+
+if [ -z "$MAIL" ] ; then
+  if [ -d /var/spool/mail ] ; then
+    export MAIL=/var/spool/mail/$USER
+  else
+    if [ -d /var/mail ] ; then
+      export MAIL=/var/mail/$USER
+    fi
+  fi
 fi
+
+case $- in
+  
+  *i*)          # interactive
+	source ~/.bashrc
+	
+	if [ -z "$DISPLAY" ] ; then
+
+	  fromhost=`who -m | awk '{print $6}' | sed -e 's/(\(.*\))/\1/' -e 's/:0.0//'`
+	  thishost=`hostname`
+ 
+	  if [ -n "$fromhost" ] && [ "$fromhost" != "$thishost" ] ; then
+    
+	    read -p "Set DISPLAY to [hostname|none] (${fromhost}:0.0)? " disp
+ 
+	    if [ -z "$disp" ] ; then
+	      export DISPLAY=$fromhost:0.0
+	    else
+	      if [ $disp != "none" ] ; then
+		export DISPLAY=$disp:0.0
+	      fi
+	    fi
+	  fi
+	fi
+
+	read -p "Enter your password for $SYBSERV:$SYBUSER: " SYBPASS
+	
+        ;;
+  *)
+        ;;
+esac
+
+
+#if [ -n "$DISPLAY" -a -z "$XFILESEARCHPATH" ] ; then 
+#   XFILESEARCHPATH=/usr/local/X11R6/lib/X11/%T/%N%C%S
+#  XFILESEARCHPATH=$XFILESEARCHPATH:/usr/local/X11R6/lib/X11/%T/%N%S
+#  XFILESEARCHPATH=$XFILESEARCHPATH:%D
+#  export XFILESEARCHPATH
+#fi
+
+
 
 #
 # $Log$
+# Revision 1.4  1999/04/25 06:29:11  houghton
+# Major rework
+#
 # Revision 1.3  1997/04/05 12:15:08  houghton
 # Added Motif bin to PATH
 # Added /usr/local/lib/beta to LD_LIBRARY path
