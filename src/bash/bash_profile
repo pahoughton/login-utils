@@ -203,6 +203,7 @@ case `man --version 2>&1` in
   *)
     [ -z "$MANPATH" ] && export MANPATH=/usr/man
     try_man_paths="
+    /opt/SUNWspro/man
     $OPENWINHOME/man
     $TOOL_DIR/man
     $TOOL_DIR/lib/perl5/man
@@ -272,6 +273,9 @@ esac
 
 #
 # $Log$
+# Revision 1.21  1999/05/12 10:34:01  houghton
+# Added sun compilter man dir to MANPATH.
+#
 # Revision 1.20  1999/05/04 09:28:49  houghton
 # Changed Sybase server to DEV6_SQL
 #
