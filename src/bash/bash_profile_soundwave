@@ -22,7 +22,7 @@
 host_util_dir=/Tools
 
 # host_path="/usr/dt/bin /usr/local/bin"
-host_path="/usr/dt/bin"
+host_append_path="/usr/dt/bin"
 host_cxx_compiler=SUNWS6
 
 export JAVA_HOME=/Tools/java/j2sdk1_3_1
@@ -53,6 +53,9 @@ export ORACLE_SID=
 
 #
 # $Log$
+# Revision 1.5  2003/06/05 00:25:52  houghton
+# *** empty log message ***
+#
 # Revision 1.4  2003/05/16 12:40:30  houghton
 # Bunches of additions.
 #
