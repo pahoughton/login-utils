@@ -1,0 +1,54 @@
+#
+# Title:        bash_profile
+# Project:	Login
+# Desc:
+# 
+#   
+# 
+# Notes:
+# 
+# Author:	Paul A. Houghton - (paul.houghton@wcom.com)
+# Created:	01/15/97 08:08
+#
+# Revision History: (See end of file for Revision Log)
+#
+#   Last Mod By:    $Author$
+#   Last Mod:	    $Date$
+#   Version:	    $Revision$
+#
+#   $Id$
+# 
+
+PATH=.:$PATH
+PATH=$PATH:$HOME/bin
+PATH=$PATH:/usr/local/bin
+PATH=$PATH:/usr/local/X11R6/bin
+PATH=$PATH:/usr/X11R6/bin
+
+export CVSROOT=/usr/src/Repository
+
+export INFOPATH=/usr/local/lib/xemacs-19.14/info:/usr/info:/usr/local/info
+
+export MANPATH=`manpath -g | sed 's#:/usr/local/tcl/man##'`
+
+export REPLYTO="paul.houghton@wcom.com"
+
+export NNTPSERVER=news.wcom.com
+
+export NEWSORG="WorldCom"
+
+if [ "$PS1" ] ; then
+  source ~/.bashrc
+fi
+
+#
+# $Log$
+# Revision 1.1  1997/01/15 15:17:23  houghton
+# Initial Version.
+#
+#
+
+# Local Variables:
+# mode:ksh
+# End:
+

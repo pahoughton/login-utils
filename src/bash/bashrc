@@ -1,0 +1,62 @@
+#
+# Title:        bashrc
+# Project:	Login
+# Desc:
+# 
+#   Bourne Again SHell init file.
+# 
+# Notes:
+# 
+# Author:	Paul A. Houghton - (paul.houghton@wcom.com)
+# Created:	01/15/97 08:08
+#
+# Revision History: (See end of file for Revision Log)
+#
+#   Last Mod By:    $Author$
+#   Last Mod:	    $Date$
+#   Version:	    $Revision$
+#
+#   $Id$
+# 
+
+# If Running interactivly
+
+if [ "$PS1" ] ; then
+
+  set `tset -s -m xterm-color:xterm-color -m xterm:xterm -m linux:linux -m :?vt100`
+  
+  ignoreeof=
+  notify=
+  no_exit_on_failed_exec=
+  
+  HISTSIZE=256
+  MAILCHECK=60
+
+  if [ `whoami` = root ] ; then
+    PS1="\h:ROOT# "
+  else
+    PS1="\h\$ "
+  fi
+  
+  
+  if [ -f ~/.bash_aliases ] ; then
+    source ~/.bash_aliases
+  fi
+
+  echo TERM=${TERM:-""} DISPLAY=${DISPLAY:=""}
+  
+fi
+
+
+
+
+#
+# $Log$
+# Revision 1.1  1997/01/15 15:17:23  houghton
+# Initial Version.
+#
+#
+
+# Local Variables:
+# mode:ksh
+# End:
