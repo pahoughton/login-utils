@@ -41,8 +41,18 @@
 (load (concat (getenv "HOME")
               "/.xemacs/init-" (format "%s" system-type)))
 
+
 (require 'dired)
 (require 'font-lock)
+
+; Frame & Icon title
+(setq-default frame-title-format (concat "XEmacs: %b@" (system-name)))
+(setq-default frame-icon-title-format (concat "XEmacs: %b@" (system-name)))
+
+; My Email Address
+(setq user-mail-address (or (getenv "REPLYTO")
+			    "paul.houghton@mci.com"))
+
 
 ;;
 ;; func-menu Auto loads
@@ -95,12 +105,6 @@
 
 ; turn on auto fill for text mode
 (setq text-mode-hook 'turn-on-auto-fill)
-
-; My Email Address
-(setq user-mail-address (or (getenv "REPLYTO")
-			    "paul.houghton@mci.com"))
-; Frame title
-(setq-default frame-title-format (concat "%b@" (system-name)))
 
 ; tab stops
 (setq tab-stop-list '(  4   8  12  16  20  24  28  32  36  40 
