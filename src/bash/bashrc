@@ -27,26 +27,7 @@ export have_bashrc=true
 if [ -z "$have_bash_profile" ] ; then
   source $HOME/.bash_profile
 else
-  if [ -n "$TOOL_DIR" -a -d "$TOOL_DIR/lib/beta" ] ; then
-    if [ -n "$LD_LIBRARY_PATH" ] ; then
-      haveToolLib=false
-      hold_IFS="$IFS"
-      IFS=:
-      for d in $LD_LIBRARY_PATH ; do
-	if [ $d = "$TOOL_DIR/lib/beta" ] ; then
-	  haveToolLib=true
-	  break
-	fi
-      done
-      IFS="$hold_IFS"
-      if [ "$haveToolLib" != "true" ] ; then
-	export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta:$LD_LIBRARY_PATH"
-      fi
-      unset haveToolLib
-    else
-      export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta"
-    fi
-  fi
+  source $HOME/.bash_setldlibpath
 fi
        
 case $- in
@@ -83,10 +64,8 @@ case $- in
 	  PS1="\h\$ "
 	fi  
   
-	if [ -f ~/.bash_aliases ] ; then
-	  source ~/.bash_aliases
-	fi
-
+	[ -f $HOME/.bash_aliases ] && source $HOME/.bash_aliases
+	
 	echo TERM=${TERM:-""} DISPLAY=${DISPLAY:=""}
 
         ;;
@@ -100,6 +79,10 @@ esac
 
 #
 # $Log$
+# Revision 1.12  1999/05/21 10:21:03  houghton
+# Changed: moved setting LD_LIBRARY_PATH to it's own file since it need
+#          to be done by both basehrc and bash_provile.
+#
 # Revision 1.11  1999/05/03 10:11:13  houghton
 # Changed to use linux-c TERM (vs linux)
 #

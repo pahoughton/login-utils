@@ -123,27 +123,7 @@ done
 # LD_LIBRARY_PATH
 #
 
-if [ -n "$TOOL_DIR" -a -d "$TOOL_DIR/lib/beta" ] ; then
-  if [ -n "$LD_LIBRARY_PATH" ] ; then
-    haveToolLib=false
-    hold_IFS="$IFS"
-    IFS=:
-    for d in $LD_LIBRARY_PATH ; do
-      echo "found $d"
-      if [ $d = "$TOOL_DIR/lib/beta" ] ; then
-	haveToolLib=true;
-	break;
-      fi
-    done
-    IFS="$hold_IFS"
-    if [ "$haveToolLib" != "true" ] ; then
-      export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta:$LD_LIBRARY_PATH"
-    fi
-    unset haveToolLib
-  else
-    export LD_LIBRARY_PATH="$TOOL_DIR/lib/beta"
-  fi
-fi
+[ -f $HOME/.bash_setldlibpath ] && source $HOME/.bash_setldlibpath
 
 case $MACHTYPE in
 
@@ -273,6 +253,10 @@ esac
 
 #
 # $Log$
+# Revision 1.23  1999/05/21 10:21:00  houghton
+# Changed: moved setting LD_LIBRARY_PATH to it's own file since it need
+#          to be done by both basehrc and bash_provile.
+#
 # Revision 1.22  1999/05/13 12:32:46  houghton
 # Fixed DSQUERY.
 #
