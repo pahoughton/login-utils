@@ -38,13 +38,14 @@ case $- in
     #
     # Set TERM variable
     #
+    stty erase 
     case $TERM in
       *rxvt*)
-	      ;;
+	;;
       *xterm*)
-	       ;;
+	;;
       *dtterm*)
-		;;
+	;;
       *)
 	if [ -z "$TERM" ] ; then
 	  if type tset > /dev/null 2>&1 ; then
@@ -74,8 +75,6 @@ case $- in
 	cur_iam=`/usr/ucb/whoami`
       fi
     fi
-    unset real_iam
-    unset cur_iam
     
     if [ "$cur_iam" != "$real_iam" ] ; then
       if [ -n "$BASH" ] ; then
@@ -90,6 +89,9 @@ case $- in
 	PS1="$HOSTNAME\$ "
       fi
     fi
+    
+    unset real_iam
+    unset cur_iam
     
     if [ "$EDITOR" = "vi" ] ; then
       set -o emacs

@@ -24,6 +24,7 @@
 case $- in
   *i*)
     PS1="@host_name@\$ "
+    stty erase 
     ;;
   *)
     ;;
