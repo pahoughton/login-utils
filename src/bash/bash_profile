@@ -78,6 +78,18 @@ fi
 export CVSROOT=$CVSROOT_sideswipe
 
 #
+# Perl
+#
+
+if [ -d $HOME/scripts/perllib ] ; then
+  if [ -n "$PERL5LIB" ] ; then
+    export PERL5LIB=$HOME/scripts/perllib:$PERL5LIB
+  else
+    export PERL5LIB=$HOME/scripts/perllib
+  fi
+fi
+
+#
 # Gnu Info Env
 #
 [ -d /usr/info ] && INFOPATH=/usr/info
@@ -272,6 +284,9 @@ esac
 
 #
 # $Log$
+# Revision 1.26  1999/06/22 12:27:20  houghton
+# Added PERL5LIB env var.
+#
 # Revision 1.25  1999/06/17 16:22:13  houghton
 # Added /var/ldap and /usr/local/tex to PATH and MANPATH
 #
