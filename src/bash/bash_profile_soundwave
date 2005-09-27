@@ -38,11 +38,13 @@ fi
 
 # Oracle
 
-if [ -z "$ORACLE_BASE" ] ; then
+if [ -z "$ORACLE_HOME" ] ; then
   export ORACLE_BASE="/dbora01/app/oracle"
-  export ORACLE_HOME=$ORACLE_BASE/product/8.1.6
+  export ORACLE_HOME=$ORACLE_BASE/product/9.2.1
   export ORACLE_SID=
 fi
+
+export RB_CONFIG=/redbrick
 
 
 # Local Variables:
