@@ -1,0 +1,3 @@
+keycode 179 = XF86AudioPlay
+keycode 152 = XF86AudioRewind
+keycode 180 = osfLeft

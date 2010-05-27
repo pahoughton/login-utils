@@ -21,7 +21,10 @@
 # $Id$
 #
 
-alias ls='ls -F'
+alias ls='ls -1F'
+alias lsg='ls|grep -i'
+alias m4i=mp4info
+alias m3i=mp3info2
 alias xterm='xterm -n `hostname` &'
 alias df='df -h'
 alias pvid='mplayer -vf pp=hb/vb/dr/al/fd -fs'
@@ -98,7 +101,6 @@ function change_tooldir {
     LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | sed "s@$t_from@$t_to@"`
     echo 
     echo "TOOL_DIR changed from $t_from to $t_to"
-    echo "  MANPATH and INFOPATH also changed."
   else
     echo "usage: change_tooldir to_dir"
   fi
@@ -130,13 +132,6 @@ function setprj {
     # show_path tmp
     PATH=$tmp
     
-    # echo "MANPATHold:"
-    # show_path MANPATH
-    tmp=`echo $MANPATH | sed "s@$old_dir@$new_dir@"`
-    # echo "MANPATHnew:"
-    # show_path tmp
-    MANPATH=$tmp
-    
     # echo "INFOPATHold:"
     # show_path INFOPATH
     tmp=`echo $INFOPATH | sed "s@$old_dir@$new_dir@"`
@@ -156,7 +151,6 @@ function setprj {
     unset new_dir
   else
     PATH=$TOOL_DIR/bin:$PATH
-    MANPATH=$TOOL_DIR/man:$MANPATH
     INFOPATH=$TOOL_DIR/info:$INFOPATH
     LD_LIBRARY_PATH=$TOOL_DIR/lib:$LD_LIBRARY_PATH
   fi

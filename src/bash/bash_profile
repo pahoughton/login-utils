@@ -207,9 +207,9 @@ PATH=.:$PATH
 #    MANPATH=$MANPATH:$md/man
 # done
 
-unset md
-unset try_man_paths
-export MANPATH=`echo $MANPATH | sed -e 's/^://' -e 's/:$//'`
+# unset md
+# unset try_man_paths
+# export MANPATH=`echo $MANPATH | sed -e 's/^://' -e 's/:$//'`
 
 #
 # Gnu INFOPATH

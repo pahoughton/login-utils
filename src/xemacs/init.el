@@ -1,9 +1,9 @@
 ;;
-;;  File:	template-insert.el
-;;  Project:	EmacsTemplates
+;;  File:	init.el
+;;  Project:	LoginUtils
 ;;  Desc:
 ;;
-;;	Insert a template into the current buffer.
+;;	Initialization file for xemacs
 ;;  
 ;;  Notes:
 ;;    
@@ -89,10 +89,10 @@
 
 ; find other file
 
-;(autoload 'ff-find-other-file				"find-file"
-;  "find other file .C - .hh or include file" t )
-;(autoload 'ff-mouse-find-other-file			"find-file"
-;  "Visit the file you click on." t )
+(autoload 'ff-find-other-file				"ff-find-file"
+  "find other file .C - .hh or include file" t )
+(autoload 'ff-mouse-find-other-file			"ff-find-file"
+  "Visit the file you click on." t )
 
 (setq-default cc-search-directories
 	      (append (list "."
@@ -160,6 +160,13 @@
  
 (add-hook 'c++-mode-hook 'site-c++-mode-hook)
 
+; sql
+(defun my-sql-interactive-hook ()
+  (setq truncate-lines t)
+  )
+
+(add-hook 'sql-interactive-mode-hook 'my-sql-interactive-hook)
+
 
 ;;
 ;; CPerl
@@ -173,6 +180,8 @@
   
   ;; (local-set-key    '(%)		'goto-matching-paren)
   )
+
+(add-hook 'cperl-mode-hook 'my-cperl-hook)
 
 ;;
 ;; Dired
