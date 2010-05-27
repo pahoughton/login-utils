@@ -26,6 +26,7 @@ XTerm*scrollBar:	true
 XTerm*saveLines:	500
 XTerm*termName:		xterm
 XTerm*autowrap:		true
+XTerm*font: 	-adobe-courier-medium-r-*-*-14-*-75-*-*-*-iso8859-*
 ! XTerm*vt100*font1: 	-misc-fixed-medium-r-semicondensed-*-12-*
 ! XTerm*vt100*font2: 	-misc-fixed-bold-r-normal-*-13-*
 ! XTerm*vt100*font3: 	-misc-fixed-bold-r-normal-*-15-*

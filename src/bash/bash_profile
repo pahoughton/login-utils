@@ -22,7 +22,7 @@
 # $Id$
 #
 
-# set -x
+#set -x
 
 export have_bash_profile=true
 
@@ -199,17 +199,17 @@ PATH=.:$PATH
 #
 # MANPATH
 #
-MANPATH=
-try_man_paths=`echo $PATH | sed -e 's@:@ @g' -e 's@/bin@@g' `
-for md in $try_man_paths ; do
-  [ -d "$md/man" ] &&
-    ! echo $MANPATH | fgrep "$md/man" >/dev/null 2>&1 &&
-    MANPATH=$MANPATH:$md/man
-done
+# MANPATH=
+# try_man_paths=`echo $PATH | sed -e 's@:@ @g' -e 's@/bin@@g' `
+# for md in $try_man_paths ; do
+#   [ -d "$md/man" ] &&
+#     ! echo $MANPATH | fgrep "$md/man" >/dev/null 2>&1 &&
+#     MANPATH=$MANPATH:$md/man
+# done
 
-unset md
-unset try_man_paths
-export MANPATH=`echo $MANPATH | sed -e 's/^://' -e 's/:$//'`
+# unset md
+# unset try_man_paths
+# export MANPATH=`echo $MANPATH | sed -e 's/^://' -e 's/:$//'`
 
 #
 # Gnu INFOPATH

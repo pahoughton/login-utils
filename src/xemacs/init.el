@@ -44,6 +44,7 @@
 
 (require 'dired)
 (require 'font-lock)
+(mwheel-install)
 
 ; Frame & Icon title
 (setq-default frame-title-format (concat "XEmacs: %b@" (system-name)))
@@ -55,7 +56,7 @@
 
 
 ;; load minibuffer history
-(savehist-load)
+;(savehist-load)
 
 ;;
 ;; func-menu Auto loads

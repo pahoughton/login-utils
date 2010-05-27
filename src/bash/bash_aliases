@@ -24,7 +24,10 @@
 alias ls='ls -F'
 alias xterm='xterm -n `hostname` &'
 alias df='df -h'
-type df.pl >> /dev/null 2>&1 && alias df=df.pl
+alias pvid='mplayer -vf pp=hb/vb/dr/al/fd -fs'
+alias mv='mv -i'
+
+# type df.pl >> /dev/null 2>&1 && alias df=df.pl
 
 [ -x /usr/sbin/ping ] && alias ping=/usr/sbin/ping
 [ -x /usr/sbin/fuser ] && alias fuser=/usr/sbin/fuser
@@ -89,7 +92,7 @@ function change_tooldir {
     TOOL_DIR=$t_to
     change_path $t_from/bin $t_to/bin
     INFOPATH=`echo $INFOPATH | sed "s@$t_from@$t_to@"`
-    MANPATH=`echo $MANPATH | sed "s@$t_from@$t_to@"`
+#    MANPATH=`echo $MANPATH | sed "s@$t_from@$t_to@"`
     LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | sed "s@$t_from@$t_to@"`
     echo 
     echo "TOOL_DIR changed from $t_from to $t_to"

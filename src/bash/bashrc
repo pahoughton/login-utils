@@ -39,7 +39,7 @@ case $- in
     #
     # Set TERM variable
     #
-    stty erase 
+    # stty erase 
     
     real_iam=${USER:-${LOGNAME}}
     if type whoami > /dev/null 2>&1 ; then
