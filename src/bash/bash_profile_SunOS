@@ -21,6 +21,8 @@
 # $Id$
 #
 
+ulimit -n 2048
+
 [ -z "$host_cxx_compiler" ] && host_cxx_compiler=SUNWS6
 
 export SUNWS5_PATH="/opt/SUNWspro/SC5.0/bin:/opt/SUNWspro/WS5.0/bin:/opt/SUNWspro/SPROutool5.0/bin:/opt/SUNWspro/TW2.1/bin:/opt/SUNWspro/DOC5.0/bin"

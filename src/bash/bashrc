@@ -31,7 +31,6 @@ else
 fi
 
 umask 002
-ulimit -n 2048
 
 case $- in
   

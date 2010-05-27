@@ -26,8 +26,10 @@ alias xterm='xterm -n `hostname` &'
 alias df='df -h'
 alias pvid='mplayer -vf pp=hb/vb/dr/al/fd -fs'
 alias mv='mv -i'
-
-# type df.pl >> /dev/null 2>&1 && alias df=df.pl
+alias lsh='ls | head'
+alias m3i=mp3info2
+alias m4i=mp4info
+alias mkdir=mkdirhier
 
 [ -x /usr/sbin/ping ] && alias ping=/usr/sbin/ping
 [ -x /usr/sbin/fuser ] && alias fuser=/usr/sbin/fuser

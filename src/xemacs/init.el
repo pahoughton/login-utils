@@ -52,10 +52,11 @@
 
 ; My Email Address
 (setq user-mail-address (or (getenv "REPLYTO")
-			    "paul.houghton@mci.com"))
+			    "pahoughton@users.sourceforge.net"))
 
 
 ;; load minibuffer history
+(savehist-mode 1)
 ;(savehist-load)
 
 ;;
@@ -146,7 +147,7 @@
   (local-set-key    '[(control c) (o)]  'ff-find-other-file)
   (local-set-key    '(control button3)	'ff-mouse-find-other-file )
   
-  (local-set-key    '(%)		'goto-matching-paren)
+  ;; (local-set-key    '(%)		'goto-matching-paren)
   )
 
 (add-hook 'c-mode-common-hook 'site-c-mode-common-hook)
@@ -170,7 +171,7 @@
   (local-set-key    'f8			'fume-add-menubar-entry )
   (local-set-key    '(shift f8)		'fume-prompt-function-goto )
   
-  (local-set-key    '(%)		'goto-matching-paren)
+  ;; (local-set-key    '(%)		'goto-matching-paren)
   )
 
 ;;
@@ -187,8 +188,8 @@
   (setq truncate-lines t)
   )
 
-(add-hook 'dired-mode-hook 'site-dired-mode-hook)
-(setq dired-load-hook 'site-dired-load-hook)
+; (add-hook 'dired-mode-hook 'site-dired-mode-hook)
+; (setq dired-load-hook 'site-dired-load-hook)
 
 (defun query-really-exit ()
   "ask the user if they really want to exit XEmacs"
