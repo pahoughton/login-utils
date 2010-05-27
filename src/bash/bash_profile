@@ -196,9 +196,6 @@ PATH=.:$PATH
 # Done with PATH (FINALLY!)
 #
 
-#
-# MANPATH
-#
 # MANPATH=
 # try_man_paths=`echo $PATH | sed -e 's@:@ @g' -e 's@/bin@@g' `
 # for md in $try_man_paths ; do

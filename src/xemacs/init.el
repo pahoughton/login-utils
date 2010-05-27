@@ -118,7 +118,7 @@
 		      124 128 132 136 140 144 148 152 156 160 ) )
 
 ; show me what time it is
-(display-time)
+; (display-time)
 
 ;;
 ;; Keyboard customizations
