@@ -1,5 +1,5 @@
 #
-# File:		bash_profile_user_soundwave
+# File:		bash_profile_user_Cmac.local
 # Project:	LoginUtils 
 # Desc:
 #
@@ -7,7 +7,7 @@
 #
 # Notes:
 #
-# Author(s):   Paul Houghton <pahoughton@me.com>
+# Author(s):   Paul Houghton <paul.houghton@mci.com>
 # Created:     06/05/2003 05:30
 #
 # Revision Info: (See ChangeLog or cvs log for revision history)
@@ -21,20 +21,20 @@
 # $Id$
 #
 
-export CVS_RSH=/usr/local/bin/ssh
+export CVS_RSH=/user/bin/ssh
 
-export REPLYTO=$REPLYTO_mci
+# export REPLYTO=$REPLYTO_mci
 
-export PROJECT=TRS
+export PROJECT=TLU
 
 host_projects="$host_projects TRS"
 export TRS_PRJ_TOPDIR=/ncm_lookup/Projects/Trs-1.01/Trs-1
-export TRS_TOOL_DIR=/ncm_lookup/Projects/Paul-6.02/Support
+export TRS_TOOL_DIR=/Support
 export TRS_LD_LIBRARY_PATH=/ncm_lookup/Testing/trs/test_base/lib
 
-host_projects="$host_projects LOOKUP"
-export LOOKUP_PRJ_TOPDIR=/ncm_lookup/Projects/Paul-6.02/NcmLookup-6
-export LOOKUP_TOOL_DIR=/ncm_lookup/Projects/Paul-6.02/Support
+host_projects="$host_projects TLU"
+export TLU_PRJ_TOPDIR=/ncm_lookup/Projects/Paul-6.02/NcmLookup-6
+export TLU_TOOL_DIR=/Support
 
 
 # Local Variables:

@@ -7,7 +7,7 @@
 #
 # Notes:
 #
-# Author(s):   Paul Houghton <paul.houghton@mci.com>
+# Author(s):   Paul Houghton <pahoughton@me.com>
 # Created:     06/08/2003 16:15
 #
 # Revision Info: (See ChangeLog or cvs log for revision history)

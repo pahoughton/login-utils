@@ -34,5 +34,5 @@
  '(mode-compile-make-options "")
  '(shell-file-name "/bin/bash")
  '(ediff-window-setup-function (quote ediff-setup-windows-plain)))
-;; (custom-set-faces
-;; '(default ((t (:size "8pt" :family "Courier New"))) t))
+(custom-set-faces
+ '(default ((t (:background "white"))) t)

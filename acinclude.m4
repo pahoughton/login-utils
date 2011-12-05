@@ -7,7 +7,7 @@
 #
 # Notes:
 #
-# Author(s):   Paul Houghton <paul.houghton@mci.com>
+# Author(s):   Paul Houghton <pahoughton@me.com>
 # Created:     06/05/2003 19:23
 #
 # Revision History: (See end of file for Revision Log)
@@ -35,9 +35,9 @@ AC_DEFUN([PAH_EMAIL_ADDR],
         # try to snach it from /etc/passwd
 	pah_cv_email=`$AWK  -F : "/$LOGNAME/ { print tolower(\$5) }" < /etc/passwd | sed -e 's/\([A-Za-z ]*[A-Za-z]\).*/\1/' | tr ' ' '.'`
 	if test -z "$pah_cv_email" ; then
-	  pah_cv_email="FIXME.UNKNOWN@mci.com"
+	  pah_cv_email="FIXME.UNKNOWN@unknown.com"
         else
-	  pah_cv_email="${pah_cv_email}@mci.com"
+	  pah_cv_email="${pah_cv_email}"
 	fi
       fi
       ])
