@@ -7,7 +7,7 @@ dnl   Process this file with autoconf to produce a configure script.
 dnl
 dnl Notes:
 dnl
-dnl Author(s):   Paul Houghton <pahoughton@me.com>
+dnl Author(s):   Paul Houghton <paul4hough@gmail.com>
 dnl Created:     06/05/2003 19:10
 dnl
 dnl Revision History: (See end of file for Revision Log)
@@ -24,7 +24,7 @@ dnl
 AC_PREREQ(2.57)
 AC_INIT( LoginUtils,
 	 1.01,
-	 Paul Houghton <pahoughton@me.com> )
+	 Paul Houghton <paul4hough@gmail.com> )
 
 AM_INIT_AUTOMAKE
 
