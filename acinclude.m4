@@ -24,9 +24,9 @@
 AC_DEFUN([PAH_EMAIL_ADDR],
 [ AC_ARG_WITH( email,
   AC_HELP_STRING([--with-email],[your email address]),
-  [ email_addr="$withval"
-    AC_MSG_RESULT([$email_addr])],
-  [ if test x${email_addr+set} != xset; then
+  [ email="$withval"
+    AC_MSG_RESULT([$email])],
+  [ if test x${email+set} != xset; then
       AC_CACHE_CHECK([your email address], [pah_cv_email],
       [
       if test -n "$REPLYTO" ; then
