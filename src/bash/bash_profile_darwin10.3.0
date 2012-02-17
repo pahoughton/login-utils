@@ -25,6 +25,7 @@
 PATH=/usr/local/mysql/bin:$PATH
 PATH=/opt/local/bin:$PATH
 
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
 
 
 

@@ -1,9 +1,9 @@
 ;;
-;;  File:	init.el
-;;  Project:	LoginUtils
+;;  File:	template-insert.el
+;;  Project:	EmacsTemplates
 ;;  Desc:
 ;;
-;;	Initialization file for xemacs
+;;	Insert a template into the current buffer.
 ;;  
 ;;  Notes:
 ;;    
@@ -52,11 +52,10 @@
 
 ; My Email Address
 (setq user-mail-address (or (getenv "REPLYTO")
-			    "pahoughton@users.sourceforge.net"))
+			    "paul.houghton@mci.com"))
 
 
 ;; load minibuffer history
-(savehist-mode 1)
 ;(savehist-load)
 
 ;;
@@ -89,10 +88,10 @@
 
 ; find other file
 
-(autoload 'ff-find-other-file				"ff-find-file"
-  "find other file .C - .hh or include file" t )
-(autoload 'ff-mouse-find-other-file			"ff-find-file"
-  "Visit the file you click on." t )
+;(autoload 'ff-find-other-file				"find-file"
+;  "find other file .C - .hh or include file" t )
+;(autoload 'ff-mouse-find-other-file			"find-file"
+;  "Visit the file you click on." t )
 
 (setq-default cc-search-directories
 	      (append (list "."
@@ -118,7 +117,7 @@
 		      124 128 132 136 140 144 148 152 156 160 ) )
 
 ; show me what time it is
-; (display-time)
+(display-time)
 
 ;;
 ;; Keyboard customizations
@@ -147,7 +146,7 @@
   (local-set-key    '[(control c) (o)]  'ff-find-other-file)
   (local-set-key    '(control button3)	'ff-mouse-find-other-file )
   
-  ;; (local-set-key    '(%)		'goto-matching-paren)
+  (local-set-key    '(%)		'goto-matching-paren)
   )
 
 (add-hook 'c-mode-common-hook 'site-c-mode-common-hook)
@@ -160,13 +159,6 @@
  
 (add-hook 'c++-mode-hook 'site-c++-mode-hook)
 
-; sql
-(defun my-sql-interactive-hook ()
-  (setq truncate-lines t)
-  )
-
-(add-hook 'sql-interactive-mode-hook 'my-sql-interactive-hook)
-
 
 ;;
 ;; CPerl
@@ -178,10 +170,8 @@
   (local-set-key    'f8			'fume-add-menubar-entry )
   (local-set-key    '(shift f8)		'fume-prompt-function-goto )
   
-  ;; (local-set-key    '(%)		'goto-matching-paren)
+  (local-set-key    '(%)		'goto-matching-paren)
   )
-
-(add-hook 'cperl-mode-hook 'my-cperl-hook)
 
 ;;
 ;; Dired
@@ -197,8 +187,8 @@
   (setq truncate-lines t)
   )
 
-; (add-hook 'dired-mode-hook 'site-dired-mode-hook)
-; (setq dired-load-hook 'site-dired-load-hook)
+(add-hook 'dired-mode-hook 'site-dired-mode-hook)
+(setq dired-load-hook 'site-dired-load-hook)
 
 (defun query-really-exit ()
   "ask the user if they really want to exit XEmacs"

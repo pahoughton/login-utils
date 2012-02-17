@@ -22,6 +22,7 @@
 #
 
 alias ls='ls -1F'
+alias ssh_smk='ssh pahoughton@173.201.63.128'
 alias lsg='ls|grep -i'
 alias m4i=mp4info
 alias m3i=mp3info2
