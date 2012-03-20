@@ -127,6 +127,8 @@
 (define-key global-map 'f1		'info)
 (define-key global-map '(meta f5)	'template-insert)
 (define-key global-map 'f12		'find-header)
+(define-key global-map '(meta c)	'kill-ring-save)
+(define-key global-map '(meta v)	'yank)
 (global-unset-key '(control z))
 
 ;;
