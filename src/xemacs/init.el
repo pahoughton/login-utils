@@ -148,7 +148,7 @@
   (local-set-key    '[(control c) (o)]  'ff-find-other-file)
   (local-set-key    '(control button3)	'ff-mouse-find-other-file )
   
-  (local-set-key    '(%)		'goto-matching-paren)
+;;  (local-set-key    '(%)		'goto-matching-paren)
   )
 
 (add-hook 'c-mode-common-hook 'site-c-mode-common-hook)

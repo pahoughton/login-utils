@@ -1,0 +1,33 @@
+#
+# File:		bash_profile_darwin11.3.0
+# Project:	LoginUtils 
+# Desc:
+#
+#   
+#
+# Notes:
+#
+# Author(s):   Paul Houghton <paul4hough@gmail.com>
+# Created:     06/04/2003 19:41
+#
+# Revision Info: (See ChangeLog or cvs log for revision history)
+#
+#	$Author$
+#	$Date$
+#	$Name$
+#	$Revision$
+#	$State$
+#
+# $Id$
+#
+
+
+PATH=/usr/local/mysql/bin:$PATH
+PATH=/opt/local/bin:$PATH
+
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
+
+
+# Local Variables:
+# mode:ksh
+# end:

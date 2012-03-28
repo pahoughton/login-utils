@@ -34,7 +34,8 @@ alias lsh='ls | head'
 alias m3i=mp3info2
 alias m4i=mp4info
 alias mkdir='mkdir -p'
-alias sshw3m='ssh pahoughton@whatwhenwheremedia.com'
+alias sshsmk='ssh pahoughton@securemediakeepers.com'
+alias digdb="psql -h localhost -U pahoughton digitize"
 
 w3mhost="whatwhenwheremedia.com"
 w3mftp="173.201.63.128"
