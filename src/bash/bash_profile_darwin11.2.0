@@ -21,8 +21,7 @@
 # $Id$
 #
 
-
-PATH=/usr/local/mysql/bin:$PATH
+PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
 PATH=/opt/local/bin:$PATH
 
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
