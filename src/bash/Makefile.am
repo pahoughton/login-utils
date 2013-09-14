@@ -25,7 +25,7 @@
 hide 	= @
 
 host 	= @hostname@
-os   	= @build_os@
+os   	= @osname@
 email	= @email@
 cvsroot	= @cvsroot@
 

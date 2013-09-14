@@ -54,17 +54,25 @@ AC_DEFUN([PAH_HOSTNAME],
     AC_MSG_RESULT([$hostname])],
   [ if test x${hostname+set} != xset; then
       AC_CACHE_CHECK([this systems hostname], [pah_cv_hostname],
-      [
-      if test x${HOSTNAME+set} != xset ; then
-	pah_cv_hostname=`uname -n`
-      else
-	pah_cv_hostname="$HOSTNAME"
-      fi
-      ])
+      [pah_cv_hostname=`hostname -s || uname -n`])
       hostname=$pah_cv_hostname
     fi
   ])
   AC_SUBST(hostname)
+])
+
+AC_DEFUN([PAH_OSNAME],
+[ AC_ARG_WITH( osname,
+  AC_HELP_STRING([--with-osname],[this systems os name (Linux,Darwin...]),
+  [ osname="$withval"
+    AC_MSG_RESULT([$osname])],
+  [ if test x${osname+set} != xset; then
+      AC_CACHE_CHECK([this systems osname], [pah_cv_osname],
+      [pah_cv_osname=`uname -s`])
+      osname=$pah_cv_osname
+    fi
+  ])
+  AC_SUBST(osname)
 ])
 
 AC_DEFUN([PAH_CVSROOT],

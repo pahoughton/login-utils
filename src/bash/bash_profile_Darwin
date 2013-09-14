@@ -1,0 +1,27 @@
+#
+# File:		bash_profile_Darwin
+# Project:	LoginUtils 
+# Desc:
+#
+#   
+#
+# Notes:
+#
+# Author(s):   Paul Houghton <paul4hough@gmail.com>
+# Created:     09/13/2013 10:36
+#
+
+
+host_prepend_path="/opt/local/bin /opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin /opt/local/Library/Frameworks/Python.framework/Versions/3.3/bin"
+
+if [ -z "$TOOL_DIR" -a -d /Support ] ; then
+  export TOOL_DIR=/Support
+fi
+
+#PATH=/usr/local/mysql/bin:$PATH
+#export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
+
+
+# Local Variables:
+# mode:ksh
+# end:

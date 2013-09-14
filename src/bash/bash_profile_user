@@ -21,6 +21,9 @@
 # $Id$
 #
 
+# Note, can also be set in bash_profile_HOSTNAME and bash_profile_OSNAME
+host_prepend_path=""
+
 
 export REPLYTO=@email_addr@
 

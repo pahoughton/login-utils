@@ -21,10 +21,8 @@ dnl
 dnl $Id$
 dnl
 
-AC_PREREQ(2.57)
-AC_INIT( LoginUtils,
-	 1.01,
-	 Paul Houghton <paul4hough@gmail.com> )
+AC_PREREQ([2.69])
+AC_INIT([LoginUtils],[1.01],[Paul Houghton <paul4hough@gmail.com> ])
 
 AM_INIT_AUTOMAKE
 
@@ -43,6 +41,7 @@ AC_PROG_AWK
 # Other
 PAH_EMAIL_ADDR
 PAH_HOSTNAME
+PAH_OSNAME
 PAH_CVSROOT
 
 AC_CONFIG_FILES([Makefile

@@ -32,11 +32,23 @@ export OSNAME='@os_name@'
 export OSVER='@os_ver@'
 
 
-[ -f ~/.bash_profile_user ] && . ~/.bash_profile_user
+if [ -f ~/.bash_profile_user ]; then
+  . ~/.bash_profile_user
+else
+  echo "No bash_profile_user."
+fi
 
-[ -f ~/.bash_profile_${HOSTNAME} ] && . ~/.bash_profile_${HOSTNAME}
+if [ -f ~/.bash_profile_${HOSTNAME} ]; then
+  . ~/.bash_profile_${HOSTNAME}
+else
+  echo "No bash_profile_${HOSTNAME}"
+fi
 
-[ -f ~/.bash_profile_${OSNAME} ] && . ~/.bash_profile_${OSNAME}
+if [ -f ~/.bash_profile_${OSNAME} ]; then
+  . ~/.bash_profile_${OSNAME}
+else
+  echo "No bash_profile_${OSNAME}"
+fi
 
 #
 # set TOOL_DIR
