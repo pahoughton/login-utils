@@ -3,22 +3,12 @@
 # Project:	LoginUtils 
 # Desc:
 #
-#   
+#   cscape Host specific values
 #
 # Notes:
 #
 # Author(s):   Paul Houghton paul4hough@gmail.com
 # Created:     07/12/2003 06:06
-#
-# Revision Info: (See ChangeLog or cvs log for revision history)
-#
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
 #
 
 host_util_dir=/Tools
@@ -35,3 +25,6 @@ export ORACLE_BASE="/dbora01/app/oracle"
 export ORACLE_HOME=$ORACLE_BASE/product/8.1.6
 export ORACLE_SID=
 
+# Local Variables:
+# mode:ksh
+# End:

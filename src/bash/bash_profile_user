@@ -3,7 +3,9 @@
 # Project:	LoginUtils 
 # Desc:
 #
-#   
+#   User specific configuration values this file is installed read/write
+#   for local modifications. To regen from source, you need to remove
+#   the installed version.
 #
 # Notes:
 #

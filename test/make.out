@@ -1,0 +1,114 @@
+chmod +x runtests.bash
+echo ./tinstall
+./tinstall
+./runtests.bash .. loginutils 1.02 ./tinstall
+~/Devel/Systems/LoginUtils ~/Devel/Systems/LoginUtils/test
+~/Devel/Systems/LoginUtils/test
+~/Devel/Systems/LoginUtils/test/tinstall ~/Devel/Systems/LoginUtils/test
+~/Devel/Systems/LoginUtils/test
+Test Start loginutils 1.02
+/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02
+~/Devel/Systems/LoginUtils/test/loginutils-1.02 ~/Devel/Systems/LoginUtils/test
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for gawk... (cached) gawk
+checking your email address... paul4hough@gmail.com
+checking this systems hostname... cworld
+checking this systems osname... Linux
+checking value for CVSROOT env var... 
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating src/bash/Makefile
+config.status: creating src/X11/Makefile
+config.status: creating test/Makefile
+make[1]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+Making all in src
+make[2]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+Making all in bash
+make[3]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/bash'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/bash'
+Making all in X11
+make[3]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/X11'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/X11'
+make[3]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+make[3]: Nothing to be done for `all-am'.
+make[3]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+make[2]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+Making all in test
+make[2]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/test'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/test'
+make[2]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+make[1]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+make[1]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+Making install in src
+make[2]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+Making install in bash
+make[3]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/bash'
+make[4]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/bash'
+make[4]: Nothing to be done for `install-exec-am'.
+make  install-data-hook
+make[5]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/bash'
++ Installed /home/paul/Devel/Systems/LoginUtils/test/tinstall/home/paul/.bash_profile
++ Installed /home/paul/Devel/Systems/LoginUtils/test/tinstall/home/paul/.bashrc
++ Installed /home/paul/Devel/Systems/LoginUtils/test/tinstall/home/paul/.bash_setldlibpath
++ Installed /home/paul/Devel/Systems/LoginUtils/test/tinstall/home/paul/.bash_aliases
++ Will NOT overwrite /home/paul/Devel/Systems/LoginUtils/test/tinstall/home/paul/.bash_profile_user
+make[5]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/bash'
+make[4]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/bash'
+make[3]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/bash'
+Making install in X11
+make[3]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/X11'
+make[4]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/X11'
+make[4]: Nothing to be done for `install-exec-am'.
+make  install-data-hook
+make[5]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/X11'
++ Will NOT overwrite /home/paul/Devel/Systems/LoginUtils/test/tinstall/home/paul/.Xdefaults
+make[5]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/X11'
+make[4]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/X11'
+make[3]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src/X11'
+make[3]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+make[4]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+make[4]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+make[3]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+make[2]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/src'
+Making install in test
+make[2]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/test'
+make[3]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/test'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/test'
+make[2]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02/test'
+make[2]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+make[3]: Entering directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+make[2]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+make[1]: Leaving directory `/home/paul/Devel/Systems/LoginUtils/test/loginutils-1.02'
+~/Devel/Systems/LoginUtils/test
+Feature: installes bash config files
+  installed .bash_aliases
+  installed .bash_profile
+  installed .bash_profile_user
+  installed .bashrc
+  installed .bash_setldlibpath
+Feature: installes X11 config files
+  installed .Xdefaults
+Feature: OSNAME set by config.
+
+Test Stop All Tests succeeded!

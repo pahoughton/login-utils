@@ -3,27 +3,15 @@
 # Project:	LoginUtils 
 # Desc:
 #
-#   
+#   Cmac.local Host specific configurations
 #
 # Notes:
 #
 # Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     06/05/2003 05:30
 #
-# Revision Info: (See ChangeLog or cvs log for revision history)
-#
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
-#
 
 export CVS_RSH=/user/bin/ssh
-
-# export REPLYTO=$REPLYTO_mci
 
 export PROJECT=TLU
 

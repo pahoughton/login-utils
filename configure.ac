@@ -1,6 +1,6 @@
 dnl
-dnl File:		configure.ac
-dnl Project:	 
+dnl File:	configure.ac
+dnl Project:	LoginUtils
 dnl Desc:
 dnl
 dnl   Process this file with autoconf to produce a configure script.
@@ -10,25 +10,18 @@ dnl
 dnl Author(s):   Paul Houghton <paul4hough@gmail.com>
 dnl Created:     06/05/2003 19:10
 dnl
-dnl Revision History: (See end of file for Revision Log)
-dnl
-dnl	$Author$
-dnl	$Date$
-dnl	$Name$
-dnl	$Revision$
-dnl	$State$
-dnl
-dnl $Id$
-dnl
 
 AC_PREREQ([2.69])
-AC_INIT([LoginUtils],[1.01],[Paul Houghton <paul4hough@gmail.com> ])
+AC_INIT([LoginUtils],[1.02],[Paul Houghton <paul4hough@gmail.com> ])
+
+AC_PREFIX_DEFAULT([])
 
 AM_INIT_AUTOMAKE
 
 AC_CANONICAL_HOST
 # Checks for programs.
 AC_PROG_AWK
+AC_PROG_MKDIR_P
 
 # Checks for libraries.
 
@@ -47,7 +40,7 @@ PAH_CVSROOT
 AC_CONFIG_FILES([Makefile
 	         src/Makefile
 		 src/bash/Makefile
-		 src/ksh/Makefile
-		 src/X11/Makefile])
+		 src/X11/Makefile
+		 test/Makefile])
 AC_OUTPUT
 

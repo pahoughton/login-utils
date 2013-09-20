@@ -10,15 +10,6 @@
 # Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     06/05/2003 19:23
 #
-# Revision History: (See end of file for Revision Log)
-#
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
 #
 
 AC_DEFUN([PAH_EMAIL_ADDR],

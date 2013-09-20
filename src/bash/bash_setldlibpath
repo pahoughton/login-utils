@@ -3,22 +3,12 @@
 # Project:	Login
 # Desc:
 # 
-#   
+#   Setup LD_LIBRARY_PATHS as needed.
 # 
 # Notes:
 # 
 # Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     05/17/1999 08:31
-#
-# Revision Info: (See ChangeLog or cvs log for revision history)
-#
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
 #
 
 # set -x

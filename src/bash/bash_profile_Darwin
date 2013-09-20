@@ -3,7 +3,8 @@
 # Project:	LoginUtils 
 # Desc:
 #
-#   
+#   Darwin specific values. The path expects python to be installed via
+#   macports (see http://www.macports.org)
 #
 # Notes:
 #
@@ -18,7 +19,6 @@ if [ -z "$TOOL_DIR" -a -d /Support ] ; then
   export TOOL_DIR=/Support
 fi
 
-#PATH=/usr/local/mysql/bin:$PATH
 #export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
 
 

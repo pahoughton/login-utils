@@ -10,15 +10,5 @@
 # Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     06/06/2003 04:25
 #
-# Revision Info: (See ChangeLog or cvs log for revision history)
-#
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
-#
 
-SUBDIRS = bash ksh X11
+SUBDIRS = bash X11

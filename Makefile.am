@@ -10,15 +10,9 @@
 # Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     06/06/2003 04:24
 #
-# Revision Info: (See ChangeLog or cvs log for revision history)
 #
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
-#
+AUTOMAKE_OPTIONS = foreign
+SUBDIRS = src test
 
-SUBDIRS = src
+virttest:
+	make -C test $@

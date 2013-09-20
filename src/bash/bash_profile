@@ -11,16 +11,7 @@
 # Author:	Paul A. Houghton <paul4hough@gmail.com>
 # Created:	01/15/97 08:08
 #
-# Revision History: (See cvs log for revision history)
-#
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
-#
+
 
 #set -x
 
@@ -34,20 +25,14 @@ export OSVER='@os_ver@'
 
 if [ -f ~/.bash_profile_user ]; then
   . ~/.bash_profile_user
-else
-  echo "No bash_profile_user."
 fi
 
 if [ -f ~/.bash_profile_${HOSTNAME} ]; then
   . ~/.bash_profile_${HOSTNAME}
-else
-  echo "No bash_profile_${HOSTNAME}"
 fi
 
 if [ -f ~/.bash_profile_${OSNAME} ]; then
   . ~/.bash_profile_${OSNAME}
-else
-  echo "No bash_profile_${OSNAME}"
 fi
 
 #

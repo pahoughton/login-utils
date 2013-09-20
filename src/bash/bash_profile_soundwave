@@ -3,21 +3,13 @@
 # Project:	Login
 # Desc:
 # 
-#   
+#   soundwave Host specific configurations
 # 
 # Notes:
 # 
 # Author:	Paul Houghton 719-527-7834 - (paul.houghton@wcom.com)
 # Created:	06/14/00 11:44
 #
-# Revision History: (See end of file for Revision Log)
-#
-#   Last Mod By:    $Author$
-#   Last Mod:	    $Date$
-#   Version:	    $Revision$
-#
-#   $Id$
-# 
 
 host_util_dir=/Tools
 host_prepend_path="/usr/local/bin /opt/j2sdk_nb/netbeans3.5/bin"
