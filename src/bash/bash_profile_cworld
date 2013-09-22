@@ -1,0 +1,18 @@
+#
+# File:		bash_profile_cworld
+# Project:	LoginUtils 
+# Desc:
+#
+#   cscape Host specific values
+#
+# Notes:
+#
+# Author(s):   Paul Houghton paul4hough@gmail.com
+# Created:     09/20/2013 10:35
+#
+
+export LIBVIRT_DEFAULT_URI=qemu:///system
+
+# Local Variables:
+# mode:ksh
+# End:

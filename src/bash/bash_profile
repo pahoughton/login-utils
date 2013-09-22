@@ -244,6 +244,9 @@ unset info_base_dirs
 unset dir
 export INFOPATH=`echo $INFOPATH | sed -e 's/^://' -e 's/:$//'`
 
+# less output left on screen on exit :)
+export LESS=-X
+
 case $- in
   
   *i*)          # interactive
