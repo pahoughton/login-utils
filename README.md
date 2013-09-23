@@ -33,7 +33,7 @@ $(HOME)/.bash_profile). Significant options are:
 #
 #   Project Information
 #
-# Notes:
+# Notes: more testing post-receive
 #
 # Author(s):   Paul Houghton paul4hough@gmail.com
 # Created:     06/08/2003 17:26
