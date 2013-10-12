@@ -11,7 +11,7 @@
 # Created:     06/06/2003 04:25
 #
 
-INSTALL_DIR = "${prefix}${HOME}"
+INSTALL_DIR = ${prefix}${HOME}
 
 hide 	= @
 
