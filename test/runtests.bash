@@ -64,7 +64,7 @@ fi
 unset OSNAME
 unset have_bashrc
 unset have_bash_profile
-. .bash_profile > $srcdir/bash_profile.out 2>&1 <<EOF
+. .bash_profile > "$srcdir/bash_profile.out" 2>&1 <<EOF
 
 EOF
 
