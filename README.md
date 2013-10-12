@@ -1,6 +1,6 @@
 ## LoginUtils
 
-[![Test Build Status](https://travis-ci.org/pahoughton/LoginUtils.png)](https://travis-ci.org/pahoughton/LoginUtils)
+[![Test Build Status](https://travis-ci.org/pahoughton/login-utils.png)](https://travis-ci.org/pahoughton/login-utils)
 
  
 LoginUtils provides Unix multi host os login initialization
@@ -9,15 +9,15 @@ files for bash and X11.
 ## Features
 
 * Feature: installes bash config files
-*  provides .bash_aliases
-*  provides .bash_profile
-*  provides .bash_profile_user
-*  provides .bashrc
-*  provides .bash_setldlibpath
+*  - provides .bash_aliases
+*  - provides .bash_profile
+*  - provides .bash_profile_user
+*  - provides .bashrc
+*  - provides .bash_setldlibpath
 * Feature: installes X11 config files
-*  provides .Xdefaults
+*  - provides .Xdefaults
 * Feature: OSNAME set by config.
-*  provides OSNAME set to Linux
+*  - provides OSNAME set to Linux
 
 ## Install
 
