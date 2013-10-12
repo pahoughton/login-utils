@@ -8,10 +8,8 @@ notifications:
     - paul4hough@gmail.com
 
 before_script:
-  - echo -e "Host heroku.com
-	StrictHostKeyChecking no\n" >> ~/.ssh/config
-  - echo -e "Host github.com
-	StrictHostKeyChecking no\n" >> ~/.ssh/config
+  - echo -e "Host heroku.com StrictHostKeyChecking no\n" >> ~/.ssh/config
+  - echo -e "Host github.com StrictHostKeyChecking no\n" >> ~/.ssh/config
   - uname -a
   - autoconf --version
   - env
