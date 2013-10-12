@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#set -x
+set -x
 
 top_srcdir=$1
 package=$2
@@ -24,7 +24,7 @@ pushd "$srcdir" > /dev/null
 [ -f configure ] || echo no configure fix dist target
 
 ./configure --prefix="$test_inst_dir" || exit 2
-make && make install
+make && make install hide=
 
 popd
 
