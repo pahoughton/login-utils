@@ -17,6 +17,6 @@ before_script:
 script:
   - autoreconf
   - ./configure
-  - make test-system
+  - make check
   - make install
   
