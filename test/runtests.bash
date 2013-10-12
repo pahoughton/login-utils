@@ -23,7 +23,7 @@ echo $srcdir
 pushd "$srcdir" > /dev/null
 [ -f configure ] || echo no configure fix dist target
 
-configure --prefix="$test_inst_dir" || exit 2
+./configure --prefix="$test_inst_dir" || exit 2
 make && make install
 
 popd
@@ -36,9 +36,9 @@ function tfexists {
     exit 3
   fi
   if [ -f "$1" ] ; then
-    echo "  installed $1"
+    echo "  provides $1"
   else
-    echo "  ERROR: missing '$1'"
+    echo "  FAILED to provide '$1'"
     let tfexists_notfound++ 
   fi
 
@@ -78,6 +78,7 @@ if [ -z "$OSNAME" ] ; then
   exit 2
 else
   echo "Feature: OSNAME set by config."
+  echo "  provides OSNAME set to ${OSNAME}"
 fi
 
 echo

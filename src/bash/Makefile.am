@@ -40,8 +40,10 @@ EXTRA_DIST	=				\
 	$(target_dotfiles)			\
 	$(user_dotfiles)
 
+$(INSTALL_DIR):
+	$(hide)$(mkdir_p) $@
 
-install-data-hook:
+install-data-hook: $(INSTALL_DIR)
 	$(hide) for fn in $(dotfiles)			  \
 			  bash_profile_$(host)		  \
 			  bash_profile_$(os) ;		  \
