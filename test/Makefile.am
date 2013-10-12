@@ -19,7 +19,7 @@ test: $(PACKAGE)-$(VERSION)/configure $(TEST_INSTALL_BASE)/$(HOME)
 	test -d "$(TEST_INSTALL_BASE)/$(HOME)" || 	\
 	  $(mkdir_p) "$(TEST_INSTALL_BASE)/$(HOME)"
 	echo $(TEST_INSTALL_BASE)
-	bash runtests.bash "$(top_srcdir)" \
+	bash runtests.bash  		\
 	  "$(PACKAGE)" "$(VERSION)" "$(TEST_INSTALL_BASE)"
 
 check: test

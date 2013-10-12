@@ -1,30 +1,25 @@
 #!/bin/bash
 #
-set -x
+#set -x
 
-top_srcdir=$1
-package=$2
-version=$3
-test_inst_dir=$4
+package=$1
+version=$2
+test_inst_dir=$3
 
 # use full paths
 mydir=`pwd`
-pushd "${top_srcdir}"
-top_srcdir=`pwd`
-popd
-pushd "$test_inst_dir"
+pushd "$test_inst_dir" > /dev/null
 test_inst_dir=`pwd`
-popd
+popd > /dev/null
 
 srcdir=`pwd`/"$package-$version"
-
 echo $srcdir
 
 pushd "$srcdir" > /dev/null
 [ -f configure ] || echo no configure fix dist target
 
 ./configure --prefix="$test_inst_dir" || exit 2
-make && make install hide=
+make && make install
 
 popd
 
