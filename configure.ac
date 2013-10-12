@@ -11,7 +11,7 @@ dnl Author(s):   Paul Houghton <paul4hough@gmail.com>
 dnl Created:     06/05/2003 19:10
 dnl
 
-AC_PREREQ([2.69])
+AC_PREREQ([2.57])
 AC_INIT([LoginUtils],[1.02],[Paul Houghton <paul4hough@gmail.com> ])
 
 AC_PREFIX_DEFAULT([])
