@@ -14,5 +14,3 @@
 AUTOMAKE_OPTIONS = foreign
 SUBDIRS = src test
 
-virttest:
-	make -C test $@
