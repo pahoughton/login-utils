@@ -30,14 +30,14 @@ all:
 install-data-hook:
 	$(hide) for fn in $(dotfiles) ; do			 \
 	  if test -f $$fn ; then				 \
-	    if test -f $(INSTALL_DIR)/.$$fn ; then		 \
+	    if test -f "$(INSTALL_DIR)/.$$fn" ; then		 \
 	      echo "+ Will NOT overwrite $(INSTALL_DIR)/.$$fn" ; \
 	    else						 \
 	      sed -e 's/@host_name@/$(host)/'			 \
 	    	  -e 's/@os_name@/$(os)/'			 \
 	          -e 's/@email_addr@/$(email)/'			 \
 	          -e 's|@cvs_root@|$(cvsroot)|'			 \
-	          < $$fn > $(INSTALL_DIR)/.$$fn || exit 1 ;	 \
+	          < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ;	 \
 	      echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1; \
 	    fi ;						 \
 	  fi ;							 \

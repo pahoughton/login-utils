@@ -1,8 +1,8 @@
 TEST_INSTALL_BASE="${top_srcdir}/_test_temp"
 
 $(PACKAGE)-$(VERSION)/configure:
-	cd $(top_srcdir); automake && ./configure
-	make -C $(top_srcdir) dist
+	cd "$(top_srcdir)"; automake && ./configure
+	make -C "$(top_srcdir)" dist
 	tar xf $(top_srcdir)/$(PACKAGE)-$(VERSION).tar.gz
 	test -d "$(TEST_INSTALL_BASE)/$(HOME)" || 	\
 	  $(mkdir_p) "$(TEST_INSTALL_BASE)/$(HOME)"

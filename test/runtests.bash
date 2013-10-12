@@ -9,14 +9,14 @@ test_inst_dir=$4
 
 # use full paths
 mydir=`pwd`
-pushd $top_srcdir
+pushd "${top_srcdir}"
 top_srcdir=`pwd`
 popd
-pushd $test_inst_dir
+pushd "$test_inst_dir"
 test_inst_dir=`pwd`
 popd
 
-srcdir=`pwd`/$package-$version
+srcdir=`pwd`/"$package-$version"
 
 echo $srcdir
 

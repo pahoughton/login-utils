@@ -11,7 +11,7 @@
 # Created:     06/06/2003 04:25
 #
 
-INSTALL_DIR=${prefix}${HOME}
+INSTALL_DIR="${prefix}${HOME}"
 
 hide 	= @
 
@@ -41,7 +41,7 @@ EXTRA_DIST	=				\
 	$(user_dotfiles)
 
 $(INSTALL_DIR):
-	$(hide)$(mkdir_p) $@
+	$(hide)$(mkdir_p) "$@"
 
 install-data-hook: $(INSTALL_DIR)
 	$(hide) for fn in $(dotfiles)			  \
@@ -49,26 +49,26 @@ install-data-hook: $(INSTALL_DIR)
 			  bash_profile_$(os) ;		  \
 	do						  \
 	  if test -f $$fn ; then			  \
-	    rm -f $(INSTALL_DIR)/.$$fn ;		  \
+	    rm -f "$(INSTALL_DIR)/.$$fn" ;		  \
 	    sed -e 's/@host_name@/$(host)/'		  \
 	    	-e 's/@os_name@/$(os)/'			  \
 	        -e 's/@email_addr@/$(email)/'		  \
 	        -e 's|@cvs_root@|$(cvsroot)|'		  \
 	        < $$fn > $(INSTALL_DIR)/.$$fn || exit 1 ; \
-	    chmod -w $(INSTALL_DIR)/.$$fn || exit 1 ;	  \
+	    chmod -w "$(INSTALL_DIR)/.$$fn" || exit 1 ;	  \
 	    echo "+ Installed $(INSTALL_DIR)/.$$fn" ;	  \
 	  fi ;						  \
 	done
 	$(hide) for fn in bash_profile_user bash_profile_user_$(host) ; do \
 	  if test -f $$fn ; then					   \
-	    if test -f $(INSTALL_DIR)/.$$fn ; then			   \
+	    if test -f "$(INSTALL_DIR)/.$$fn" ; then			   \
 	      echo "+ Will NOT overwrite $(INSTALL_DIR)/.$$fn" ;	   \
 	    else							   \
 	      sed -e 's/@host_name@/$(host)/'				   \
 	    	  -e 's/@os_name@/$(os)/'				   \
 	          -e 's/@email_addr@/$(email)/'				   \
 	          -e 's|@cvs_root@|$(cvsroot)|'				   \
-	          < $$fn > $(INSTALL_DIR)/.$$fn || exit 1 ;		   \
+	          < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ;		   \
 	      echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1;	   \
 	    fi ;							   \
 	  fi ;								   \
