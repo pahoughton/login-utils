@@ -49,13 +49,13 @@ install-data-hook: $(INSTALL_DIR)
 			  bash_profile_$(os) ;		  \
 	do						  \
 	  if test -f "$$fn" ; then			  \
-	    rm -f \"$(INSTALL_DIR)/.$$fn\" ;		  \
+	    rm -f '$(INSTALL_DIR)/.$$fn\' ;		  \
 	    sed -e 's/@host_name@/$(host)/'		  \
 	    	-e 's/@os_name@/$(os)/'			  \
 	        -e 's/@email_addr@/$(email)/'		  \
 	        -e 's|@cvs_root@|$(cvsroot)|'		  \
 	        < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ; \
-	    chmod -w \"$(INSTALL_DIR)/.$$fn\" || exit 1 ;	  \
+	    chmod -w \'$(INSTALL_DIR)/.$$fn\' || exit 1 ;	  \
 	    echo "+ Installed $(INSTALL_DIR)/.$$fn" ;	  \
 	  fi ;						  \
 	done
@@ -68,7 +68,7 @@ install-data-hook: $(INSTALL_DIR)
 	    	  -e 's/@os_name@/$(os)/'				   \
 	          -e 's/@email_addr@/$(email)/'				   \
 	          -e 's|@cvs_root@|$(cvsroot)|'				   \
-	          < $$fn > \"$(INSTALL_DIR)/.$$fn\" || exit 1 ;		   \
+	          < $$fn > '$(INSTALL_DIR)/.$$fn' || exit 1 ;		   \
 	      echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1;	   \
 	    fi ;							   \
 	  fi ;								   \
