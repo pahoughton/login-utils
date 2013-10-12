@@ -15,11 +15,13 @@ $(TEST_INSTALL_BASE)/$(HOME):
 
 test: $(PACKAGE)-$(VERSION)/configure $(TEST_INSTALL_BASE)/$(HOME)
 	$(hide)make -C "$(top_srcdir)" dist
-	tar xf $(top_srcdir)/$(PACKAGE)-$(VERSION).tar.gz
-	test -d "$(TEST_INSTALL_BASE)/$(HOME)" || 	\
+	$(hide)rm -rf "$(PACKAGE)-$(VERSION)"
+	$(hide)tar xf $(top_srcdir)/$(PACKAGE)-$(VERSION).tar.gz
+	$(hide)touch "$(PACKAGE)-$(VERSION)/.sloccount.skup"
+	$(hide)test -d "$(TEST_INSTALL_BASE)/$(HOME)" || 	\
 	  $(mkdir_p) "$(TEST_INSTALL_BASE)/$(HOME)"
-	echo $(TEST_INSTALL_BASE)
-	bash runtests.bash  		\
+	$(hide)echo $(TEST_INSTALL_BASE)
+	$(hide)bash runtests.bash  		\
 	  "$(PACKAGE)" "$(VERSION)" "$(TEST_INSTALL_BASE)"
 
 check: test
