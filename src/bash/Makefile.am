@@ -41,7 +41,7 @@ EXTRA_DIST	=				\
 	$(user_dotfiles)
 
 $(INSTALL_DIR):
-	$(hide)$(mkdir_p) "$@"
+	$(hide)$(mkdir_p) $@
 
 install-data-hook: $(INSTALL_DIR)
 	$(hide) for fn in $(dotfiles)			  \
