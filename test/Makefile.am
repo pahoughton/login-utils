@@ -17,7 +17,7 @@ test: $(PACKAGE)-$(VERSION)/configure $(TEST_INSTALL_BASE)/$(HOME)
 	$(hide)make -C "$(top_srcdir)" dist
 	$(hide)rm -rf "$(PACKAGE)-$(VERSION)"
 	$(hide)tar xf $(top_srcdir)/$(PACKAGE)-$(VERSION).tar.gz
-	$(hide)touch "$(PACKAGE)-$(VERSION)/.sloccount.skup"
+	$(hide)touch "$(PACKAGE)-$(VERSION)/.sloccount.skip"
 	$(hide)test -d "$(TEST_INSTALL_BASE)/$(HOME)" || 	\
 	  $(mkdir_p) "$(TEST_INSTALL_BASE)/$(HOME)"
 	$(hide)echo $(TEST_INSTALL_BASE)
