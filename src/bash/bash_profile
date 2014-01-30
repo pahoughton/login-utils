@@ -125,9 +125,6 @@ if [ -n "$MOZILLA_HOME" ] ; then
   unset pdir
 fi
   
-# less
-export LESS=-X
-
 for cpp in /lib/cpp /bin/cpp /usr/bin/cpp ; do
   if [ -x $cpp ] ; then
     export IMAKECPP=$cpp
@@ -136,14 +133,6 @@ for cpp in /lib/cpp /bin/cpp /usr/bin/cpp ; do
 done
 unset cpp
 
-# Dimensions
-if [ -n "$PCMS_ROOT" -a -n "$PROJECT" ] ; then
-  eval export PCMSDB=\${${PROJECT}_PCMSDB}_$USER  
-  export PCMS_EDT=gnuclient
-  export PCMS_CHD_EDT=gnuclient
-  export PCMS_BROWSE="gnuclient -v"
-  export PCMS_CHD_BROWSE="gnuclient -v"
-fi
 #
 # LD_LIBRARY_PATH
 #
@@ -250,22 +239,25 @@ export LESS=-X
 case $- in
   
   *i*)          # interactive
-    if [ -z "$DISPLAY" ] ; then
+    if [ -z "$DISPLAY" ] || "$DISPLAY" = ':0.0' ] ; then
 
       fromhost=`who -m | sed -e 's/.*:[0-9][0-9][ 	]*(*\([^):]*\).*/\1/'`
       thishost=`hostname`
  
       if [ -n "$fromhost" ] && [ "$fromhost" != "$thishost" ] ; then
     
-	read -p "Set DISPLAY to [hostname|none] (${fromhost}:0.0)? " disp
+	export DISPLAY=$fromhost:0.0
+
+	# - remove prompting
+	# read -p "Set DISPLAY to [hostname|none] (${fromhost}:0.0)? " disp
  
-	if [ -z "$disp" ] ; then
-	  export DISPLAY=$fromhost:0.0
-	else
-	  if [ $disp != "none" ] ; then
-	    export DISPLAY=$disp:0.0
-	  fi
-	fi
+	# if [ -z "$disp" ] ; then
+	#   export DISPLAY=$fromhost:0.0
+	# else
+	#   if [ $disp != "none" ] ; then
+	#     export DISPLAY=$disp:0.0
+	#   fi
+	# fi
       fi
     else
       if [ "$OSNAME" = "CYGWIN_NT-5.1" ] && [ $DISPLAY = ":0" ] ; then
