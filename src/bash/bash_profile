@@ -273,8 +273,8 @@ case $- in
     if [ -z "$PAGER" ] && type less > /dev/null 2>&1 ; then
       export PAGER=less;
     fi
-    
-    [ -n "$have_bashrc" ] || . $HOME/.bashrc    
+    # $USER not empty and bashrc loaded was for that user
+    [ -n "${USER}" -a "${have_bashrc}" == "${USER}" ] || . $HOME/.bashrc    
         
     ;;
   *)
