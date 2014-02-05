@@ -13,7 +13,19 @@
 # Created:     01/15/1997 08:08
 #
 
-export have_bashrc=true
+if [ -z "${USER}" ] ; then
+  if [ -n "${LOGNAME}" ] ; then
+    export USER="${LOGNAME}"
+  elif type whoami > /dev/null 2>&1 ; then
+    export USER=`whoami`
+  elif type id > /dev/null 2>&1 && [ `id -u` == 0 ] ; then
+    export USER="root"
+  else
+    export USER=UNK
+  fi
+fi
+
+export have_bashrc="${USER}"
 
 # if we have NOT loaded the profile.
 if [ -z "$have_bash_profile" ] ; then
@@ -24,6 +36,9 @@ fi
 
 umask 002
 
+#
+# Set PS1 (primary prompt)
+#
 case $- in
   
   *i*)          # interactive
@@ -31,27 +46,25 @@ case $- in
     # Set TERM variable
     #
     # stty erase 
-    
-    real_iam=${USER:-${LOGNAME}}
-    if type whoami > /dev/null 2>&1 ; then
-      cur_iam=`whoami`
-    else
-      if [ -x /usr/ucb/whoami ] ; then
-	cur_iam=`/usr/ucb/whoami`
-      fi
+
+    my_logname=unk
+    if type logname > /dev/null 2>&1 ; then
+      my_logname=`logname`
     fi
     
-    if [ "$cur_iam" != "$real_iam" ] ; then
-      if [ -n "$BASH" ] ; then
-	PS1='\[\e]0;\h:\w\007\e[35m\]\w\n\[\e[34m\]\h:\u$ \[\e[0m\]'
-      else
-	PS1="$HOSTNAME:$cur_iam\$ "
-      fi
-    else
+    if [ "${USER}" == "${my_logname}" -a "${USER}" != "root" ] ; then
+      emacs_ps1='\w\n\h$ '
       if [ -n "$BASH" ] ; then
 	PS1='\[\e]0;\h:\w\007\e[35m\]\w\n\[\e[34m\]\h$ \[\e[0m\]'
       else
-	PS1="$HOSTNAME\$ "
+	PS1="${HOSTNAME}\$ "
+      fi
+    else
+      emacs_ps1='\w\n\h:\u$ ' 
+      if [ -n "$BASH" ] ; then
+	PS1='\[\e]0;\h:\u:\w\007\e[35m\]\w\n\[\e[34m\]\h:\u$ \[\e[0m\]'
+      else
+	PS1="$HOSTNAME:$USER\$ "
       fi
     fi
     
@@ -63,11 +76,7 @@ case $- in
       *dtterm*)
 	;;
       *emacs*)
-	if [ "$cur_iam" != "$real_iam" ] ; then
-	  PS1='\w\n\h:\u$ '
-	else
-	  PS1='\w\n\h$ '
-	fi
+	PS1="${emacs_ps1}"
 	;;
       *)
 	if [ -z "$TERM" ] ; then
@@ -84,15 +93,9 @@ case $- in
 	    fi
 	  fi
 	fi
-	;;
+      ;;
     esac
 
-    unset real_iam
-    unset cur_iam
-    
-    #
-    # Set PS1 (primary prompt)
-    #
     if [ "$EDITOR" = "vi" ] ; then
       set -o emacs
     fi
@@ -101,15 +104,17 @@ case $- in
     notify=
     no_exit_on_failed_exec=
     
-    HISTSIZE=256
+    HISTSIZE=512
 
     # load aliases
     [ -f $HOME/.bash_aliases ] && . $HOME/.bash_aliases
 
     echo HOSTNAME=$HOSTNAME OSNAME=$OSNAME OSVER=$OSVER
     echo DISPLAY=$DISPLAY TERM=$TERM
-    echo "LD_LIBRARY_PATH:"
-    show_path $LD_LIBRARY_PATH
+    #echo "LD_LIBRARY_PATH:"
+    #show_path $LD_LIBRARY_PATH
+    #echo "PATH"
+    #show_path
     
     ;;
   
