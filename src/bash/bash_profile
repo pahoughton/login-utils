@@ -198,30 +198,33 @@ PATH=.:$PATH
 # Gnu INFOPATH
 #
 info_base_dirs="
-$TOOL_DIR
-$UTIL_DIR
+$HOME/.emacs.d/info
+$TOOL_DIR/share
+$UTIL_DIR/share
+/opt/local/share
+/usr/local/share
 /usr/local
 /usr/share
 /usr
 "
 
-# for dir in $info_base_dirs ; do
-#   if [ -d $dir/share/xemacs ] ; then
-#     INFOPATH=`ls -d $dir/share/xemacs-* | sort -r | head -1`
-#     if [ -d $INFOPATH ] ; then
-#       INFOPATH=$INFOPATH:$dir/share/xemacs/xemacs-packages
-#       break
-#     fi
-#   fi
+for dir in $info_base_dirs ; do
+  if [ -d $dir/share/xemacs ] ; then
+    INFOPATH=`ls -d $dir/share/xemacs-* | sort -r | head -1`
+    if [ -d $INFOPATH ] ; then
+      INFOPATH=$INFOPATH:$dir/share/xemacs/xemacs-packages
+      break
+    fi
+  fi
 
-#   if [ -d $dir/lib/xemacs ] ; then
-#     INFOPATH=`ls -d $dir/lib/xemacs-* | sort -r | head -1`
-#     if [ -d $INFOPATH ] ; then
-#       INFOPATH=$INFOPATH:$dir/lib/xemacs/xemacs-packages
-#       break
-#     fi
-#   fi
-# done
+  if [ -d $dir/lib/xemacs ] ; then
+    INFOPATH=`ls -d $dir/lib/xemacs-* | sort -r | head -1`
+    if [ -d $INFOPATH ] ; then
+      INFOPATH=$INFOPATH:$dir/lib/xemacs/xemacs-packages
+      break
+    fi
+  fi
+done
 
 for dir in $info_base_dirs ; do
   [ -d $dir/info ] &&
