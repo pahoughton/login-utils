@@ -1,0 +1,5 @@
+AddToMenu MenuFvwmLogins
++ &cworld  FuncFvwmRloginXterm cworld
++ &gandalf FuncFvwmRloginXterm gandalf
++ &cport FuncFvwmRloginXterm cport
++ s&ignal Exec rxterm signal

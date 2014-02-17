@@ -21,13 +21,17 @@ email	= @email@
 cvsroot	= @cvsroot@
 
 dotfiles	=				\
-	Xdefaults
+	Xdefaults				\
+	xinitrc
 
 EXTRA_DIST	= $(dotfiles)
 
 all:
 
-install-data-hook:
+${HOME}/.fvwm:
+	$(hide) ${mkdir_p} "$@"
+
+install-data-hook: ${HOME}/.fvwm
 	$(hide) for fn in $(dotfiles) ; do			 \
 	  if test -f $$fn ; then				 \
 	    if test -f "$(INSTALL_DIR)/.$$fn" ; then		 \
@@ -42,3 +46,9 @@ install-data-hook:
 	    fi ;						 \
 	  fi ;							 \
 	done
+	sed -e 's/@host_name@/$(host)/'			 \
+	  -e 's/@os_name@/$(os)/'			 \
+	  -e 's/@email_addr@/$(email)/'			 \
+	  -e 's|@cvs_root@|$(cvsroot)|'			 \
+	  < fvwm.config > "$(INSTALL_DIR)/.fvwm/config" || exit 1
+	${INSTALL} -T fvwm.host.${host} $(INSTALL_DIR)/.fvwm/${host}.cfg
