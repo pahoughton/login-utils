@@ -55,14 +55,16 @@ case $- in
     if [ "${USER}" == "${my_logname}" -a "${USER}" != "root" ] ; then
       emacs_ps1='\w\n\h$ '
       if [ -n "$BASH" ] ; then
-	PS1='\[\e]0;\h:\w\007\e[35m\]\w\n\[\e[34m\]\h$ \[\e[0m\]'
+	ps1_title='\[\e]0;\h:\w\007\e[35m\]'
+	PS1='\w\n\[\e[34m\]\h$ \[\e[0m\]'
       else
 	PS1="${HOSTNAME}\$ "
       fi
     else
       emacs_ps1='\w\n\h:\u$ ' 
       if [ -n "$BASH" ] ; then
-	PS1='\[\e]0;\h:\u:\w\007\e[35m\]\w\n\[\e[34m\]\h:\u$ \[\e[0m\]'
+	ps1_title='\[\e]0;\h:\u:\w\007\e[35m\]'
+	PS1='\w\n\[\e[34m\]\h:\u$ \[\e[0m\]'
       else
 	PS1="$HOSTNAME:$USER\$ "
       fi
@@ -72,6 +74,7 @@ case $- in
       *rxvt*)
 	;;
       *xterm*)
+	PS1=${ps1_title}${PS1}
 	;;
       *dtterm*)
 	;;
