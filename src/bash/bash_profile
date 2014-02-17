@@ -224,7 +224,7 @@ export LESS=-X
 case $- in
   
   *i*)          # interactive
-    if [ -z "$DISPLAY" ] || "$DISPLAY" = ':0.0' ] ; then
+    if [ -z "$DISPLAY" -o "$DISPLAY" = ':0.0' ] ; then
 
       fromhost=`who -m | sed -e 's/.*:[0-9][0-9][ 	]*(*\([^):]*\).*/\1/'`
       thishost=`hostname`
