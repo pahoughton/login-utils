@@ -1,0 +1,7 @@
+# fvwm.host.bugsy - 2014-02-17 18:17
+#
+# Copyright (c) 2014 Paul Houghton <paul4hough@gmail.com>
+#
+AddToMenu MenuFvwmLogins
++ &fdevel  FuncFvwmSshXterm fdevel
++ &fbacula FuncFvwmSshXterm fbacula
