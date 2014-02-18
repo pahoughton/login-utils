@@ -46,9 +46,14 @@ install-data-hook: ${HOME}/.fvwm
 	    fi ;						 \
 	  fi ;							 \
 	done
-	sed -e 's/@host_name@/$(host)/'			 \
+	$(hide) sed -e 's/@host_name@/$(host)/'		 \
 	  -e 's/@os_name@/$(os)/'			 \
 	  -e 's/@email_addr@/$(email)/'			 \
 	  -e 's|@cvs_root@|$(cvsroot)|'			 \
 	  < fvwm.config > "$(INSTALL_DIR)/.fvwm/config" || exit 1
-	${INSTALL} -T fvwm.host.${host} $(INSTALL_DIR)/.fvwm/${host}.cfg
+	$(hide) ${INSTALL_DATA} -T fvwm.host.${host}  	 \
+	  $(INSTALL_DIR)/.fvwm/${host}.cfg
+	$(hide)for fn in ConfigFvwm*[a-z] ; do		\
+	  $(INSTALL_DATA) $$fn $(INSTALL_DIR)/.fvwm;	\
+	  echo Installed $$INSTALL_DIR/.fvwm/$$fn;	\
+	done
