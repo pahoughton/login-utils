@@ -1,5 +1,8 @@
+# fvwm.host.cmac - 2014-02-17 18:18
+#
+# Copyright (c) 2014 Paul Houghton <paul4hough@gmail.com>
+#
 AddToMenu MenuFvwmLogins
-+ &cworld  FuncFvwmRloginXterm cworld
-+ &gandalf FuncFvwmRloginXterm gandalf
-+ &cport FuncFvwmRloginXterm cport
-+ s&ignal Exec rxterm signal
++ &cworld  FuncFvwmSshXterm cworld
++ &gandalf FuncFvwmSshXterm gandalf
++ &cport FuncFvwmSshXterm cport
