@@ -1,1 +1,3 @@
-exec fvwm2
+xmodmap -e 'keycode 64 = Super_L'
+xmodmap -e 'keycode 133 = Alt_L'
+fvwm2

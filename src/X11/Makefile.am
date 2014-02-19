@@ -34,16 +34,12 @@ ${HOME}/.fvwm:
 install-data-hook: ${HOME}/.fvwm
 	$(hide) for fn in $(dotfiles) ; do			 \
 	  if test -f $$fn ; then				 \
-	    if test -f "$(INSTALL_DIR)/.$$fn" ; then		 \
-	      echo "+ Will NOT overwrite $(INSTALL_DIR)/.$$fn" ; \
-	    else						 \
-	      sed -e 's/@host_name@/$(host)/'			 \
-	    	  -e 's/@os_name@/$(os)/'			 \
-	          -e 's/@email_addr@/$(email)/'			 \
-	          -e 's|@cvs_root@|$(cvsroot)|'			 \
-	          < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ;	 \
-	      echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1; \
-	    fi ;						 \
+	    sed -e 's/@host_name@/$(host)/'			 \
+	  	-e 's/@os_name@/$(os)/'			 	 \
+	        -e 's/@email_addr@/$(email)/'			 \
+	        -e 's|@cvs_root@|$(cvsroot)|'			 \
+	        < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ;	 \
+	     echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1;  \
 	  fi ;							 \
 	done
 	$(hide) sed -e 's/@host_name@/$(host)/'		 \
@@ -55,5 +51,5 @@ install-data-hook: ${HOME}/.fvwm
 	  $(INSTALL_DIR)/.fvwm/${host}.cfg
 	$(hide)for fn in ConfigFvwm*[a-z] ; do		\
 	  $(INSTALL_DATA) $$fn $(INSTALL_DIR)/.fvwm;	\
-	  echo Installed $$INSTALL_DIR/.fvwm/$$fn;	\
+	  echo + Installed $$INSTALL_DIR/.fvwm/$$fn;	\
 	done
