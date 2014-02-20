@@ -47,7 +47,9 @@ install-data-hook: ${HOME}/.fvwm
 	  -e 's/@email_addr@/$(email)/'			 \
 	  -e 's|@cvs_root@|$(cvsroot)|'			 \
 	  < fvwm.config > "$(INSTALL_DIR)/.fvwm/config" || exit 1
-	$(hide) ${INSTALL_DATA} -T fvwm.host.${host}  	 \
+	$(hide) echo Installed $(INSTALL_DIR)/.fvwm/config
+	$(hide) [ ! -f fvwm.host.${host} ] || 		 \
+	  ${INSTALL_DATA} -T fvwm.host.${host}  	 \
 	  $(INSTALL_DIR)/.fvwm/${host}.cfg
 	$(hide)for fn in ConfigFvwm*[a-z] ; do		\
 	  $(INSTALL_DATA) $$fn $(INSTALL_DIR)/.fvwm;	\
