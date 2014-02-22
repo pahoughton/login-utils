@@ -259,7 +259,7 @@ case $- in
       export PAGER=less;
     fi
     # $USER not empty and bashrc loaded was for that user
-    [ -n "${USER}" -a "${have_bashrc}" == "${USER}" ] || . $HOME/.bashrc    
+    [ -n "${USER}" -a "${have_bashrc}" == "${USER}-${TERM}" ] || . $HOME/.bashrc    
         
     ;;
   *)
