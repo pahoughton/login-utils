@@ -17,6 +17,8 @@ alias lsg='ls|grep -i'
 alias m4i=mp4info
 alias m3i=mp3info2
 alias xterm='xterm -n `hostname` &'
+alias date="date '+%F %H:%M:%S.%N'"
+alias xinit='xinit > ~/puppet.out 2>&1'
 alias df='df -h'
 alias mpvid='mplayer -vf pp=hb/vb/dr/al/fd -fs'
 alias mv='mv -i'
