@@ -6,20 +6,21 @@
 *----------------*----*----*---*-----------*
 KillModule FvwmButtons
 DestroyModuleConfig FvwmButtons: *
-*FvwmButtons: Geometry 520x100-1-1
-*FvwmButtons: Back bisque3
-*FvwmButtons: (Frame 2, Padding 2 2, Container(Rows 2 Columns 9 Frame 1 Padding 10 0))
+*FvwmButtons: Geometry 420x100-1-1
+*FvwmButtons: Back DarkSlateBlue
+*FvwmButtons: (Frame 2, Padding 2 2, Container(Rows 2 Columns 10 Frame 1 Padding 10 0))
 # Show 5 more desks in a popup panel:
 # Unfortunately, a popup shows the desks 1 to 5, then 0
-*FvwmButtons: (4x2, Frame 2, Swallow "FvwmIconMan" "Module FvwmIconMan")
-*FvwmButtons: (2x2, Frame 0, Container(Rows 2 Columns 2 Frame 0))
-*FvwmButtons: (Frame 2, Swallow(UseOld,NoHints,Respawn) "xbiff" `Exec exec xbiff -bg bisque3`)
-*FvwmButtons: (Frame 3, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg bisque3 -fg black -hd black -hl black -padding 0 -update 1 -digital -strftime %H:%M`)
-*FvwmButtons: (2x1, Frame 2, Swallow(UseOld,NoHints,Respawn) "xload" `Exec exec xload -bg bisque3 -fg black -update 5 -nolabel`)
+*FvwmButtons: (5x2, Frame 2, Swallow "FvwmIconMan" "Module FvwmIconMan")
+*FvwmButtons: (2x2, Frame 0, Container(Rows 4 Columns 1 Frame 0))
+# *FvwmButtons: (Frame 2, Swallow(UseOld,NoHints,Respawn) "xbiff" `Exec exec xbiff -bg bisque3`)
+*FvwmButtons: (1x1 Frame 3, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg DarkSlateBlue -fg Azure -hd Azure -hl Azure -padding 0 -update 30 -digital -face courier -strftime ' %H:%M'`)
+*FvwmButtons: (1x1 Frame 3, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg DarkSlateBlue -fg Azure -hd Azure -hl Azure -padding 0 -update 30 -digital -face courier -strftime '  %d'`)
+*FvwmButtons: (1x2 Frame 2, Swallow(UseOld,NoHints,Respawn) "xload" `Exec exec xload -bg DarkSlateBlue -fg cyan -update 10 -nolabel`)
 *FvwmButtons: (End)
 # The 8 pixels in -108 are to account for the frames:
-*FvwmButtons: (1x2, Panel(up, indicator, position Root 46 -108p) FvwmPagerSubPanel "Module FvwmPager FvwmPagerSubPanel 1 5")
-*FvwmButtons: (2x2, Frame 2, Swallow(UseOld) "Inline" "Module FvwmPager Inline 0 0")
+#*FvwmButtons: (1x2, Panel(up, indicator, position Root 46 -108p) FvwmPagerSubPanel "Module FvwmPager FvwmPagerSubPanel 1 5")
+*FvwmButtons: (3x2, Frame 2, Swallow(UseOld) "InlinePager" "Module FvwmPager InlinePager 0 3")
 *FvwmButtons: (End)
 
 DestroyModuleConfig Inline: *
@@ -37,3 +38,7 @@ DestroyModuleConfig FvwmPagerSubPanel: *
 
 # Use this command to start it:
 #Module FvwmButtons
+
+# Local Variables:
+# mode:conf
+# End:

@@ -1,0 +1,30 @@
+# ConfigFvwmPager - 2014-02-27 08:38
+#
+# Copyright (c) 2014 Paul Houghton <paul4hough@gmail.com>
+#
+########################### Pager #########################################
+DestroyModuleConfig FvwmPager: *
+*FvwmPager: Back #908090
+*FvwmPager: Fore #484048
+#*FvwmPager: Font -adobe-helvetica-bold-r-*-*-10-*-*-*-*-*-*-*
+# turn off desktop names for swallowing in above button bar example:
+*FvwmPager: Font none
+*FvwmPager: Hilight #cab3ca
+*FvwmPager: Geometry -1-1
+# *FvwmPager: Label 0 Main 1
+# *FvwmPager: Label 1 Desk 2
+# *FvwmPager: Label 2 Desk 3
+# *FvwmPager: Label 3 Desk 4
+*FvwmPager: Rows 2
+*FvwmPager: SmallFont 5x8
+*FvwmPager: Balloons            All
+*FvwmPager: BalloonBack         Yellow
+*FvwmPager: BalloonFore         Black
+*FvwmPager: BalloonFont         lucidasanstypewriter-12
+*FvwmPager: BalloonYOffset      +2
+*FvwmPager: BalloonBorderWidth  1
+*FvwmPager: BalloonBorderColor  Black
+*InlinePager: Font none
+*InlinePager: Rows 2
+*InlinePager: Back #908090
+*InlinePager: Fore #484048
