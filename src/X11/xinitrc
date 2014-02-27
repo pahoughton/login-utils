@@ -1,3 +1,29 @@
+# xinitrc - 2014-02-16 19:15
+#
+# Copyright (c) 2014 Paul Houghton <paul4hough@gmail.com>
+#
+echo XINITRC ***
 xmodmap -e 'keycode 64 = Super_L'
 xmodmap -e 'keycode 133 = Alt_L'
+# Random background images.
+freq=600 # 10 min
+( while true; do
+    backgrounds=`find ~/.desktop_pictures -type f | sort -R`
+    for pic in $backgrounds; do
+      date
+      echo showing $pic
+      display  -backdrop -background '#3f3f3f' -flatten  \
+	-resize 2560x1440^ -window root  -gravity Center \
+	$pic
+      echo sleeping $freq
+      sleep $freq || exit 1
+    done
+  done
+) &
+bgpid=$!
+echo BG Desk $bgpid
 fvwm2
+kill $bgpid
+# Local Variables:
+# mode:sh
+# End:
