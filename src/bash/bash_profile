@@ -35,7 +35,7 @@ if [ -f ~/.bash_profile_${OSNAME} ]; then
   . ~/.bash_profile_${OSNAME}
 fi
 
-[ -d ~/Dropbox ] && dropbox running || dropbox start 
+#[ -d ~/Dropbox ] && dropbox running || dropbox start 
 #
 # set TOOL_DIR
 #
