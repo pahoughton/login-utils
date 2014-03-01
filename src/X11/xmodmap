@@ -1,3 +1,8 @@
-keycode 179 = XF86AudioPlay
-keycode 152 = XF86AudioRewind
-keycode 180 = osfLeft
+! xmodmap - 1998-05-02 05:58
+!
+! Copyright (c) 2014 Paul Houghton <paul4hough@gmail.com>
+!
+!
+! keycode 179 = XF86AudioPlay
+! keycode 152 = XF86AudioRewind
+! keycode 180 = osfLeft

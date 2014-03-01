@@ -22,7 +22,8 @@ cvsroot	= @cvsroot@
 
 dotfiles	=				\
 	Xdefaults				\
-	xinitrc
+	xinitrc					\
+	xmodmap
 
 EXTRA_DIST	= $(dotfiles)
 
@@ -32,16 +33,26 @@ ${HOME}/.fvwm:
 	$(hide) ${mkdir_p} "$@"
 
 install-data-hook: ${HOME}/.fvwm
-	$(hide) for fn in $(dotfiles) ; do			 \
-	  if test -f $$fn ; then				 \
-	    sed -e 's/@host_name@/$(host)/'			 \
-	  	-e 's/@os_name@/$(os)/'			 	 \
-	        -e 's/@email_addr@/$(email)/'			 \
-	        -e 's|@cvs_root@|$(cvsroot)|'			 \
-	        < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ;	 \
-	     echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1;  \
-	  fi ;							 \
+	$(hide) for fn in $(dotfiles) ; do				\
+	  if test -f $$fn.$$HOSTNAME ; then				\
+	    sed -e 's/@host_name@/$(host)/'				\
+	  	-e 's/@os_name@/$(os)/'					\
+	        -e 's/@email_addr@/$(email)/'				\
+	        -e 's|@cvs_root@|$(cvsroot)|'				\
+	        < $$fn.$$HOSTNAME > "$(INSTALL_DIR)/.$$fn" || exit 1 ;	\
+	     echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1;		\
+	  elif test -f $$fn ; then					\
+	    sed -e 's/@host_name@/$(host)/'				\
+	  	-e 's/@os_name@/$(os)/'					\
+	        -e 's/@email_addr@/$(email)/'				\
+	        -e 's|@cvs_root@|$(cvsroot)|'				\
+	        < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ;		\
+	     echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1;		\
+	  fi ;								\
 	done
+	$(hide) if [ -e /sys/module/hid_apple/parameters ] ; then	\
+	  cat xmodmap.apple >> $(INSTALL_DIR)/.xmodmap || exit 1;	\
+	fi
 	$(hide) sed -e 's/@host_name@/$(host)/'		 \
 	  -e 's/@os_name@/$(os)/'			 \
 	  -e 's/@email_addr@/$(email)/'			 \

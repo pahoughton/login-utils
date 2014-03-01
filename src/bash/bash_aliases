@@ -16,16 +16,15 @@ alias ls='ls -1F'
 alias lsg='ls|grep -i'
 alias m4i=mp4info
 alias m3i=mp3info2
-alias xterm='xterm -n `hostname` &'
 alias date="date '+%F %H:%M:%S.%N'"
 alias xinit='xinit > ~/puppet.out 2>&1'
+alias sterm='xterm -geometry 80x10'
 alias df='df -h'
 alias mpvid='mplayer -vf pp=hb/vb/dr/al/fd -fs'
 alias mv='mv -i'
 alias lsh='ls | head'
 alias mkdir='mkdir -p'
 alias grep-find='find . -type f -print0 | xargs -0 grep -n'
-alias bugsy='ssh 10.0.1.49'
 
 [ -x /usr/sbin/ping ] && alias ping=/usr/sbin/ping
 [ -x /usr/sbin/fuser ] && alias fuser=/usr/sbin/fuser
@@ -47,6 +46,12 @@ for dir in $tclmandirs ; do
   fi
 done
 unset tclmandirs
+
+function xterm {
+  real=`which xterm`
+  echo $real $*
+  $real $* &
+}
 
 function show_path {
   if [ -n "$1" ] ; then

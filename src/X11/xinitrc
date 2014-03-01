@@ -3,8 +3,8 @@
 # Copyright (c) 2014 Paul Houghton <paul4hough@gmail.com>
 #
 echo XINITRC ***
-xmodmap -e 'keycode 64 = Super_L'
-xmodmap -e 'keycode 133 = Alt_L'
+[ -f ~/.xmodmap ] && xmodmap ~/.xmodmap
+[ -f ~/.Xdefaults ] && xrdb ~/.Xdefaults
 # Random background images.
 freq=600 # 10 min
 ( while true; do
