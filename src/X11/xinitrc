@@ -5,21 +5,8 @@
 echo XINITRC ***
 [ -f ~/.xmodmap ] && xmodmap ~/.xmodmap
 [ -f ~/.Xdefaults ] && xrdb ~/.Xdefaults
-# Random background images.
 freq=600 # 10 min
-( while true; do
-    backgrounds=`find ~/.desktop_pictures -type f | sort -R`
-    for pic in $backgrounds; do
-      date
-      echo showing $pic
-      display  -backdrop -background '#3f3f3f' -flatten  \
-	-resize 2560x1440^ -window root  -gravity Center \
-	$pic
-      echo sleeping $freq
-      sleep $freq || exit 1
-    done
-  done
-) &
+~/scripts/rand_wallpaper $freq &
 bgpid=$!
 echo BG Desk $bgpid
 fvwm2

@@ -29,10 +29,14 @@ EXTRA_DIST	= $(dotfiles)
 
 all:
 
-${HOME}/.fvwm:
+${HOME}/.fvwm $(HOME)/scripts:
 	$(hide) ${mkdir_p} "$@"
 
-install-data-hook: ${HOME}/.fvwm
+install-data-hook: ${HOME}/.fvwm  $(HOME)/scripts
+	$(hide) $(INSTALL) -T next_wallpaper.bash 	\
+	  $(HOME)/scripts/next_wallpaper
+	$(hide) $(INSTALL) -T rand_wallpaper.bash 	\
+	  $(HOME)/scripts/rand_wallpaper
 	$(hide) for fn in $(dotfiles) ; do				\
 	  if test -f $$fn.$$HOSTNAME ; then				\
 	    sed -e 's/@host_name@/$(host)/'				\

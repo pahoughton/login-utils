@@ -14,9 +14,9 @@ DestroyModuleConfig FvwmButtons: *
 *FvwmButtons: (5x2, Frame 2, Swallow "FvwmIconMan" "Module FvwmIconMan")
 *FvwmButtons: (2x2, Frame 0, Container(Rows 4 Columns 1 Frame 0))
 # *FvwmButtons: (Frame 2, Swallow(UseOld,NoHints,Respawn) "xbiff" `Exec exec xbiff -bg bisque3`)
-*FvwmButtons: (1x1 Frame 3, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg DarkSlateBlue -fg Azure -hd Azure -hl Azure -padding 0 -update 30 -digital -face courier -strftime ' %H:%M'`)
+*FvwmButtons: (1x1 Frame 3, Action (Mouse1) `Exec exec next_wallpaper`, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg DarkSlateBlue -fg Azure -hd Azure -hl Azure -padding 0 -update 30 -digital -face courier -strftime ' %H:%M'`)
 *FvwmButtons: (1x1 Frame 3, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg DarkSlateBlue -fg Azure -hd Azure -hl Azure -padding 0 -update 30 -digital -face courier -strftime '  %d'`)
-*FvwmButtons: (1x2 Frame 2, Swallow(UseOld,NoHints,Respawn) "xload" `Exec exec xload -bg DarkSlateBlue -fg cyan -update 10 -nolabel`)
+*FvwmButtons: (1x2 Frame 2, Action (Mouse1) `Exec exec swapspace`, Swallow(UseOld,NoHints,Respawn) "xload" `Exec exec xload -bg DarkSlateBlue -fg cyan -update 10 -nolabel`)
 *FvwmButtons: (End)
 # The 8 pixels in -108 are to account for the frames:
 #*FvwmButtons: (1x2, Panel(up, indicator, position Root 46 -108p) FvwmPagerSubPanel "Module FvwmPager FvwmPagerSubPanel 1 5")
