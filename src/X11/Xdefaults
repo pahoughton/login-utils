@@ -14,7 +14,7 @@
 
 
 XTerm*scrollBar:	true
-XTerm*saveLines:	500
+XTerm*saveLines:	1000
 XTerm*termName:		xterm
 XTerm*autowrap:		true
 XTerm*font: 	-misc-fixed-medium-r-*-*-13-*-*-*-*-*-*-*
@@ -40,6 +40,10 @@ Lock @Num_Lock Ctrl <Btn5Down>:scroll-forw(1,halfpage,m) \n\
      @Num_Lock Ctrl <Btn5Down>:scroll-forw(1,halfpage,m) \n\
                     <Btn5Down>:scroll-forw(5,line,m)     \n
 
+Xload.foreground: yellow
+Xload*background: DarkBlue
+  Xload*geometry: 200x80-1-110
+  
 ! Sun Workshop 6.2 xemacs path
 ESERVE*defaultXEmacsPath:       /Tools/bin/xemacs
 
