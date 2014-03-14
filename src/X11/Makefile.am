@@ -32,11 +32,16 @@ all:
 ${HOME}/.fvwm $(HOME)/scripts:
 	$(hide) ${mkdir_p} "$@"
 
+
+$(HOME)/scripts/rand_wallpaper: rand_wallpaper.bash
+
 install-data-hook: ${HOME}/.fvwm  $(HOME)/scripts
-	$(hide) $(INSTALL) -T next_wallpaper.bash 	\
-	  $(HOME)/scripts/next_wallpaper
-	$(hide) $(INSTALL) -T rand_wallpaper.bash 	\
+	$(hide) $(INSTALL) -T rand_wallpaper.bash \
 	  $(HOME)/scripts/rand_wallpaper
+	$(hide) echo + Installed $(HOME)/scripts/next_wallpaper
+	$(hide) $(INSTALL) -T next_wallpaper.bash \
+	  $(HOME)/scripts/next_wallpaper
+	$(hide) echo + Installed $(HOME)/scripts/rand_wallpaper
 	$(hide) for fn in $(dotfiles) ; do				\
 	  if test -f $$fn.$$HOSTNAME ; then				\
 	    sed -e 's/@host_name@/$(host)/'				\
@@ -62,7 +67,7 @@ install-data-hook: ${HOME}/.fvwm  $(HOME)/scripts
 	  -e 's/@email_addr@/$(email)/'			 \
 	  -e 's|@cvs_root@|$(cvsroot)|'			 \
 	  < fvwm.config > "$(INSTALL_DIR)/.fvwm/config" || exit 1
-	$(hide) echo Installed $(INSTALL_DIR)/.fvwm/config
+	$(hide) echo + Installed $(INSTALL_DIR)/.fvwm/config
 	$(hide) [ ! -f fvwm.host.${host} ] || 		 \
 	  ${INSTALL_DATA} -T fvwm.host.${host}  	 \
 	  $(INSTALL_DIR)/.fvwm/${host}.cfg
