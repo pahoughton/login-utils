@@ -1,6 +1,6 @@
 #
 # File:		Makefile.am
-# Project:	LoginUtils 
+# Project:	LoginUtils
 # Desc:
 #
 #   automake source for Makefile.in
@@ -25,15 +25,21 @@ dotfiles	=				\
 	xinitrc					\
 	xmodmap
 
-EXTRA_DIST	= $(dotfiles)
+EXTRA_DIST	= 		\
+	$(dotfiles) 		\
+	rand_wallpaper.bash	\
+	next_wallpaper.bash	\
+	fvwm.config		\
+	fvwm.host.bugsy		\
+	fvwm.host.cmac		\
+	fvwm.host.cworld	\
+	Xdefaults.cmac		\
+	xmodmap.apple
 
 all:
 
 ${HOME}/.fvwm $(HOME)/scripts:
 	$(hide) ${mkdir_p} "$@"
-
-
-$(HOME)/scripts/rand_wallpaper: rand_wallpaper.bash
 
 install-data-hook: ${HOME}/.fvwm  $(HOME)/scripts
 	$(hide) $(INSTALL) -T rand_wallpaper.bash \

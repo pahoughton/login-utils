@@ -18,7 +18,7 @@ echo $srcdir
 pushd "$srcdir" > /dev/null
 [ -f configure ] || echo no configure fix dist target
 
-./configure --prefix="$test_inst_dir" || exit 2
+./configure --prefix="$test_inst_dir" --with-email=paul@cworld || exit 2
 make && make install
 
 popd
@@ -34,7 +34,7 @@ function tfexists {
     echo "  provides $1"
   else
     echo "  FAILED to provide '$1'"
-    let tfexists_notfound++ 
+    let tfexists_notfound++
   fi
 
 }
