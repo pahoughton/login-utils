@@ -38,10 +38,10 @@ EXTRA_DIST	= 		\
 
 all:
 
-${HOME}/.fvwm $(HOME)/scripts:
+$(INSTALL_DIR)/.fvwm $(INSTALL_DIR)/scripts:
 	$(hide) ${mkdir_p} "$@"
 
-install-data-hook: ${HOME}/.fvwm  $(HOME)/scripts
+install-data-hook: $(INSTALL_DIR)/.fvwm  $(INSTALL_DIR)/scripts
 	$(hide) $(INSTALL) -T rand_wallpaper.bash \
 	  $(HOME)/scripts/rand_wallpaper
 	$(hide) echo + Installed $(HOME)/scripts/next_wallpaper
