@@ -12,9 +12,16 @@ while true; do
   echo pics `echo $backgrounds | wc -w`
   for pic in $backgrounds; do
     echo $pic > ~/.wallpaper.pic
-    display  -backdrop -background '#3f3f3f' -flatten  \
-      -resize 2560x1440^ -window root  -gravity Center \
-      $pic
+    if grep '/background/' ~/.wallpaper.pic > /dev/null ; then
+      display  -backdrop -background '#3f3f3f' -flatten -window root   \
+	-gravity Center -resize 2560x1440^ -crop 2560x1440+0+0 +repage \
+	-resize 2560x1440^                                             \
+	"${pic}"
+    else
+      display  -backdrop -background '#3f3f3f' -flatten  \
+	-resize 2560x1440^ -window root  -gravity Center \
+	"${pic}"
+    fi
     sleep $freq &
     echo $! > ~/.wallpaper-sleep.pid
     fg %1 > /dev/null

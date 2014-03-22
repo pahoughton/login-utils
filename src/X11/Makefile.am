@@ -1,6 +1,6 @@
 #
 # File:		Makefile.am
-# Project:	LoginUtils 
+# Project:	LoginUtils
 # Desc:
 #
 #   automake source for Makefile.in
@@ -25,18 +25,29 @@ dotfiles	=				\
 	xinitrc					\
 	xmodmap
 
-EXTRA_DIST	= $(dotfiles)
+EXTRA_DIST	= 		\
+	$(dotfiles) 		\
+	rand_wallpaper.bash	\
+	next_wallpaper.bash	\
+	fvwm.config		\
+	fvwm.host.bugsy		\
+	fvwm.host.cmac		\
+	fvwm.host.cworld	\
+	Xdefaults.cmac		\
+	xmodmap.apple
 
 all:
 
-${HOME}/.fvwm $(HOME)/scripts:
+$(INSTALL_DIR)/.fvwm $(INSTALL_DIR)/scripts:
 	$(hide) ${mkdir_p} "$@"
 
-install-data-hook: ${HOME}/.fvwm  $(HOME)/scripts
-	$(hide) $(INSTALL) -T next_wallpaper.bash 	\
-	  $(HOME)/scripts/next_wallpaper
-	$(hide) $(INSTALL) -T rand_wallpaper.bash 	\
+install-data-hook: $(INSTALL_DIR)/.fvwm  $(INSTALL_DIR)/scripts
+	$(hide) $(INSTALL) -T rand_wallpaper.bash \
 	  $(HOME)/scripts/rand_wallpaper
+	$(hide) echo + Installed $(HOME)/scripts/next_wallpaper
+	$(hide) $(INSTALL) -T next_wallpaper.bash \
+	  $(HOME)/scripts/next_wallpaper
+	$(hide) echo + Installed $(HOME)/scripts/rand_wallpaper
 	$(hide) for fn in $(dotfiles) ; do				\
 	  if test -f $$fn.$$HOSTNAME ; then				\
 	    sed -e 's/@host_name@/$(host)/'				\
@@ -62,7 +73,7 @@ install-data-hook: ${HOME}/.fvwm  $(HOME)/scripts
 	  -e 's/@email_addr@/$(email)/'			 \
 	  -e 's|@cvs_root@|$(cvsroot)|'			 \
 	  < fvwm.config > "$(INSTALL_DIR)/.fvwm/config" || exit 1
-	$(hide) echo Installed $(INSTALL_DIR)/.fvwm/config
+	$(hide) echo + Installed $(INSTALL_DIR)/.fvwm/config
 	$(hide) [ ! -f fvwm.host.${host} ] || 		 \
 	  ${INSTALL_DATA} -T fvwm.host.${host}  	 \
 	  $(INSTALL_DIR)/.fvwm/${host}.cfg

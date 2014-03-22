@@ -258,9 +258,6 @@ case $- in
       export SYBPASS
     fi
     
-    if [ -z "$PAGER" ] && type less > /dev/null 2>&1 ; then
-      export PAGER=less;
-    fi
     # $USER not empty and bashrc loaded was for that user
     [ -n "${USER}" -a "${have_bashrc}" == "${USER}-${TERM}" ] || . $HOME/.bashrc    
         
