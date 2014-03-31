@@ -21,7 +21,6 @@ test: $(PACKAGE)-$(VERSION)/configure $(TEST_INSTALL_BASE)/$(HOME)
 	$(hide)test -d "$(TEST_INSTALL_BASE)/$(HOME)" || 	\
 	  $(mkdir_p) "$(TEST_INSTALL_BASE)/$(HOME)"
 	$(hide)echo $(TEST_INSTALL_BASE)
-	$(hide)bash runtests.bash  		\
-	  "$(PACKAGE)" "$(VERSION)" "$(TEST_INSTALL_BASE)"
-
+	$(hide)bash runtests.bash "$(PACKAGE)" "$(VERSION)" "$(TEST_INSTALL_BASE)"
+	$(hide)rm -rf $(TEST_INSTALL_BASE)
 check: test
