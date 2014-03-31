@@ -43,11 +43,11 @@ $(INSTALL_DIR)/.fvwm $(INSTALL_DIR)/scripts:
 
 install-data-hook: $(INSTALL_DIR)/.fvwm  $(INSTALL_DIR)/scripts
 	$(hide) $(INSTALL) -T rand_wallpaper.bash \
-	  $(HOME)/scripts/rand_wallpaper
-	$(hide) echo + Installed $(HOME)/scripts/next_wallpaper
+	  $(INSTALL_DIR)/scripts/rand_wallpaper
+	$(hide) echo + Installed $(INSTALL_DIR)/scripts/next_wallpaper
 	$(hide) $(INSTALL) -T next_wallpaper.bash \
-	  $(HOME)/scripts/next_wallpaper
-	$(hide) echo + Installed $(HOME)/scripts/rand_wallpaper
+	  $(INSTALL_DIR)/scripts/next_wallpaper
+	$(hide) echo + Installed $(INSTALL_DIR)/scripts/rand_wallpaper
 	$(hide) for fn in $(dotfiles) ; do				\
 	  if test -f $$fn.$$HOSTNAME ; then				\
 	    sed -e 's/@host_name@/$(host)/'				\
