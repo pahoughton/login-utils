@@ -50,10 +50,18 @@ unset tclmandirs
 
 function xterm {
   real=`which xterm`
-  echo $real $*
+  #echo $real $*
   $real $* &
 }
 
+# ssh to virtual guest name w/ optional user
+# vgsh vg01
+# vgsh vg02 root
+
+function vgsh {
+  u=${2:-$USER}
+  ssh $u@`awk -e "/$1/ { print \\$3 }" /var/lib/libvirt/dnsmasq/default.leases`;
+}
 function show_path {
   if [ -n "$1" ] ; then
     val=$1;
