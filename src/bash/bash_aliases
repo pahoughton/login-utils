@@ -2,11 +2,11 @@
 # Title:        bash_aliases
 # Project:	Login
 # Desc:
-# 
+#
 #   functions and aliases
-# 
+#
 # Notes:
-# 
+#
 # Author:	Paul A. Houghton <paul4hough@gmail.com>
 # Created:	01/15/97 08:07
 #
@@ -25,6 +25,7 @@ alias mv='mv -i'
 alias lsh='ls | head'
 alias mkdir='mkdir -p'
 alias grep-find='find . -type f -print0 | xargs -0 grep -n'
+alias vguest="awk -e '{ print \$3 \" \" \$4 }' /var/lib/libvirt/dnsmasq/default.leases"
 
 [ -x /usr/sbin/ping ] && alias ping=/usr/sbin/ping
 [ -x /usr/sbin/fuser ] && alias fuser=/usr/sbin/fuser
@@ -36,7 +37,7 @@ alias grep-find='find . -type f -print0 | xargs -0 grep -n'
 
 [ -d $MOZILLA_HOME ] &&
   alias netscape=$MOZILLA_HOME/netscape
-  
+
 tclmandirs="$TOOL_DIR/tcl/man /usr/local/tcl/man /Tools/tcl/man"
 
 for dir in $tclmandirs ; do
@@ -62,7 +63,7 @@ function show_path {
   echo The path is:
   for dir in `echo $val | sed "s/ /_/g" | tr : " "`; do
     echo "    " $dir;
-  done 
+  done
   unset val
 }
 
@@ -97,7 +98,7 @@ function change_tooldir {
     INFOPATH=`echo $INFOPATH | sed "s@$t_from@$t_to@"`
 #    MANPATH=`echo $MANPATH | sed "s@$t_from@$t_to@"`
     LD_LIBRARY_PATH=`echo $LD_LIBRARY_PATH | sed "s@$t_from@$t_to@"`
-    echo 
+    echo
     echo "TOOL_DIR changed from $t_from to $t_to"
   else
     echo "usage: change_tooldir to_dir"
@@ -114,7 +115,7 @@ function setprj {
   eval TOOL_DIR=\${${prj}_TOOL_DIR}
 
   # echo "New TOOL_DIR: $TOOL_DIR"
-  
+
   if [ -n "$oldprj" ] ; then
 
     eval old_dir=\${${oldprj}_TOOL_DIR}
@@ -122,28 +123,28 @@ function setprj {
 
     # echo "Old: $old_dir"
     # echo "New: $new_dir"
-    
+
     # echo "PATHold:"
     # show_path PATH
     tmp=`echo $PATH | sed "s@$old_dir@$new_dir@"`
     # echo "PATHnew:"
     # show_path tmp
     PATH=$tmp
-    
+
     # echo "INFOPATHold:"
     # show_path INFOPATH
     tmp=`echo $INFOPATH | sed "s@$old_dir@$new_dir@"`
     # echo "INFOPATHnew:"
     # show_path tmp
     INFOPATH=$tmp
-    
+
     # echo "LD_LIBRARY_PATHold:"
     # show_path LD_LIBRARY_PATH
     tmp=`echo $LD_LIBRARY_PATH | sed "s@$old_dir@$new_dir@"`
     # echo "LD_LIBRARY_PATHnew:"
     # show_path tmp
     LD_LIBRARY_PATH=$tmp
-    
+
     unset tmp
     unset old_dir
     unset new_dir
@@ -157,7 +158,7 @@ function setprj {
 
 function set_title {
   case $TERM in
-    dtterm) 
+    dtterm)
       echo Setting window title to \'$*\' ]0\;$*
       ;;
   esac
