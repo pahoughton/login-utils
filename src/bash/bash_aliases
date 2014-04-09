@@ -57,7 +57,6 @@ function xterm {
 # ssh to virtual guest name w/ optional user
 # vgsh vg01
 # vgsh vg02 root
-
 function vgsh {
   u=${2:-$USER}
   ssh $u@`awk -e "/$1/ { print \\$3 }" /var/lib/libvirt/dnsmasq/default.leases`;
