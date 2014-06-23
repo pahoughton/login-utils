@@ -23,7 +23,8 @@ cvsroot	= @cvsroot@
 dotfiles	=				\
 	Xdefaults				\
 	xinitrc					\
-	xmodmap
+	xmodmap					\
+	gtkrc-2.0
 
 EXTRA_DIST	= 		\
 	$(dotfiles) 		\
