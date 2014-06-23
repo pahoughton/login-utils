@@ -2,13 +2,13 @@
 # Title:        bashrc
 # Project:	LoginUtils
 # Desc:
-# 
+#
 #   Bourne Again SHell init file. See man bash(1) bashrc for detailed
 #   explination. Basically this is run on every bash execution and
 #   sets up the interactive environment.
-# 
+#
 # Notes:
-# 
+#
 # Author(s):   Paul Houghton <paul4hough@gmail.com>
 # Created:     01/15/1997 08:08
 #
@@ -40,7 +40,7 @@ umask 002
 # Set PS1 (primary prompt)
 #
 case $- in
-  
+
   *i*)          # interactive
     #
     # Set TERM variable
@@ -51,25 +51,25 @@ case $- in
     if type logname > /dev/null 2>&1 ; then
       my_logname=`logname`
     fi
-    
+
     if [ "${USER}" == "${my_logname}" -a "${USER}" != "root" ] ; then
       emacs_ps1='\w\n\h$ '
       if [ -n "$BASH" ] ; then
 	ps1_title='\[\e]0;\h:\w\007\e[35m\]'
-	PS1='\w\n\[\e[34m\]\h$ \[\e[0m\]'
+	PS1='\w\n\[\e[31m\]\h$ \[\e[0m\]'
       else
 	PS1="${HOSTNAME}\$ "
       fi
     else
-      emacs_ps1='\w\n\h:\u$ ' 
+      emacs_ps1='\w\n\h:\u$ '
       if [ -n "$BASH" ] ; then
 	ps1_title='\[\e]0;\h:\u:\w\007\e[35m\]'
-	PS1='\w\n\[\e[34m\]\h:\u$ \[\e[0m\]'
+	PS1='\w\n\[\e[31m\]\h:\u$ \[\e[0m\]'
       else
 	PS1="$HOSTNAME:$USER\$ "
       fi
     fi
-    
+
     if type less > /dev/null 2>&1 ; then
       export PAGER=less;
     else
@@ -100,7 +100,7 @@ case $- in
 		    -m rxvt:rxvt
 		    -m linux-c:linux-c
 		    -m :?vt100`
-	  else 
+	  else
 	    read -p "Set TERM to (vt100)? " myterm
 	    if [ -z "$myterm" ] ; then
 	      TERM=vt100
@@ -117,7 +117,7 @@ case $- in
     ignoreeof=
     notify=
     no_exit_on_failed_exec=
-    
+
     HISTSIZE=512
 
     # load aliases
@@ -129,9 +129,9 @@ case $- in
     #show_path $LD_LIBRARY_PATH
     #echo "PATH"
     #show_path
-    
+
     ;;
-  
+
   *) # NOT interactive
     ;;
 esac
