@@ -1,0 +1,5 @@
+# gtkrc-2.0 - 2014-04-12 09:35 -*- conf -*-
+#
+# Copyright (cc) 2014 Paul Houghton <paul4hough@gmail.com>
+#
+gtk-key-theme-name = "Emacs"
