@@ -23,11 +23,12 @@ cvsroot	= @cvsroot@
 dotfiles	=				\
 	Xdefaults				\
 	xinitrc					\
-	xmodmap
+	xmodmap					\
+	gtkrc-2.0
 
 EXTRA_DIST	= 		\
 	$(dotfiles) 		\
-	rand_wallpaper.bash	\
+	wallpaper.pl		\
 	next_wallpaper.bash	\
 	fvwm.config		\
 	fvwm.host.bugsy		\
@@ -42,8 +43,8 @@ $(INSTALL_DIR)/.fvwm $(INSTALL_DIR)/scripts:
 	$(hide) ${mkdir_p} "$@"
 
 install-data-hook: $(INSTALL_DIR)/.fvwm  $(INSTALL_DIR)/scripts
-	$(hide) $(INSTALL) -T rand_wallpaper.bash \
-	  $(INSTALL_DIR)/scripts/rand_wallpaper
+	$(hide) $(INSTALL) -T wallpaper.pl \
+	  $(INSTALL_DIR)/scripts/wallpaper
 	$(hide) echo + Installed $(INSTALL_DIR)/scripts/next_wallpaper
 	$(hide) $(INSTALL) -T next_wallpaper.bash \
 	  $(INSTALL_DIR)/scripts/next_wallpaper

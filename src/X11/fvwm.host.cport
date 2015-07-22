@@ -7,6 +7,6 @@
 + &sleepy  FuncFvwmSshXterm sleepy
 + &cworld  FuncFvwmSshXterm cworld
 + &gandalf FuncFvwmSshXterm gandalf
-+ &cport   FuncFvwmSshXterm cport
++ &cmac    FuncFvwmSshXterm cmac
 + &albert  FuncFvwmSshXterm albert
 + &frank   FuncFvwmSshXterm frank

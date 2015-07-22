@@ -3,9 +3,9 @@
 # Copyright (c) 2014 Paul Houghton <paul4hough@gmail.com>
 #
 #AddToMenu MenuFvwmLogins
-+ &rand    FuncFvwmSshXterm rand
-+ &sleepy  FuncFvwmSshXterm sleepy
 + &cworld  FuncFvwmSshXterm cworld
++ &cmac    FuncFvwmSshXterm cmac
++ &sleepy  FuncFvwmSshXterm sleepy
 + &gandalf FuncFvwmSshXterm gandalf
 + &cport   FuncFvwmSshXterm cport
 + &albert  FuncFvwmSshXterm albert
