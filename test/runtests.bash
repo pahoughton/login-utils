@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#set -x
+[ -n "$DEBUG" ] && set -x
 
 package=$1
 version=$2
@@ -18,7 +18,8 @@ echo $srcdir
 pushd "$srcdir" > /dev/null
 [ -f configure ] || echo no configure fix dist target
 
-./configure --prefix="$test_inst_dir" --with-email=paul@cworld || exit 2
+#./configure --prefix="$test_inst_dir" --with-email=paul@cworld || exit 2
+./configure --prefix="$test_inst_dir" --with-email=paul@cworld --with-username='paul houghton' || exit 2
 make && make install
 
 popd
@@ -55,6 +56,20 @@ echo "Feature: installes X11 config files"
 for fn in .Xdefaults ; do
     tfexists "$fn"
 done
+
+echo "Feature: installes gitconfig file"
+for fn in .gitconfig ; do
+    tfexists "$fn"
+done
+
+if ! grep 'paul@cworld' .gitconfig ; then
+  echo 'FAIL! .gitconfig bad email'
+  exit 1
+fi
+if ! grep 'paul houghton' .gitconfig ; then
+  echo 'FAIL! .gitconfig bad user name'
+  exit 1
+fi
 
 if [ $tfexists_notfound -gt 0 ] ; then
   echo "FAIL! missing files"

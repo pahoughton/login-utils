@@ -1,6 +1,6 @@
 #
 # File:		acinclude.m4
-# Project:	LoginUtils 
+# Project:	LoginUtils
 # Desc:
 #
 #   Project specific m4 macros
@@ -36,6 +36,22 @@ AC_DEFUN([PAH_EMAIL_ADDR],
     fi
   ])
   AC_SUBST(email)
+])
+
+AC_DEFUN([PAH_USERNAME],
+[ AC_ARG_WITH( username,
+  AC_HELP_STRING([--with-username],[your full name]),
+  [ username="$withval"
+    AC_MSG_RESULT([$username])],
+  [ if test x${username+set} != xset; then
+      AC_CACHE_CHECK([your full name], [pah_cv_username],
+      [
+      pah_cv_username=`grep "^$USER" /etc/passwd | cut -d : -f 5`
+      ])
+      username="$pah_cv_username"
+    fi
+  ])
+  AC_SUBST(username)
 ])
 
 AC_DEFUN([PAH_HOSTNAME],
