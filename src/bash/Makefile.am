@@ -1,6 +1,6 @@
 #
 # File:		Makefile.am
-# Project:	LoginUtils 
+# Project:	LoginUtils
 # Desc:
 #
 #   automake source for Makefile.in
@@ -13,18 +13,20 @@
 
 INSTALL_DIR = ${prefix}${HOME}
 
-hide 	= @
+hide 	 = @
 
-host 	= @hostname@
-os   	= @osname@
-email	= @email@
-cvsroot	= @cvsroot@
+#host 	 = @hostname@
+os   	 = @osname@
+#email	 = @email@
+username = @username@
+cvsroot	 = @cvsroot@
 
 dotfiles	=				\
 	bash_profile				\
 	bashrc					\
 	bash_setldlibpath			\
-	bash_aliases
+	bash_aliases				\
+	gitconfig
 
 target_dotfiles	=				\
 	bash_profile_solaris2.9			\
@@ -40,6 +42,8 @@ EXTRA_DIST	=				\
 	$(target_dotfiles)			\
 	$(user_dotfiles)
 
+wacko:
+
 $(INSTALL_DIR):
 	$(hide)$(mkdir_p) $@
 
@@ -53,6 +57,7 @@ install-data-hook: $(INSTALL_DIR)
 	    sed -e 's/@host_name@/$(host)/'		  \
 	    	-e 's/@os_name@/$(os)/'			  \
 	        -e 's/@email_addr@/$(email)/'		  \
+	        -e 's/@user_name@/$(username)/'		  \
 	        -e 's|@cvs_root@|$(cvsroot)|'		  \
 	        < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ; \
 	    chmod -w "$(INSTALL_DIR)/.$$fn" || exit 1 ;	  \

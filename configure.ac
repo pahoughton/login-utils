@@ -32,6 +32,7 @@ AC_PROG_MKDIR_P
 # Checks for library functions.
 
 # Other
+PAH_USERNAME
 PAH_EMAIL_ADDR
 PAH_HOSTNAME
 PAH_OSNAME
@@ -43,4 +44,3 @@ AC_CONFIG_FILES([Makefile
 		 src/X11/Makefile
 		 test/Makefile])
 AC_OUTPUT
-
