@@ -35,10 +35,6 @@ if [ -f ~/.bash_profile_${OSNAME} ]; then
   . ~/.bash_profile_${OSNAME}
 fi
 
-if [ -d ~/.dropbox ] ; then
-  dropbox running || dropbox start 
-fi
-
 # set TOOL_DIR
 #
 if [ -n `eval echo \\${${PROJECT}_TOOL_DIR}` ] ; then
