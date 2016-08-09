@@ -171,6 +171,14 @@ function set_title {
   esac
 }
 
+ function proxon {
+   export http_proxy="$_user_http_proxy"
+   export https_proxy="$_user_https_proxy"
+ }
+ function proxoff {
+   unset http_proxy
+   unset https_proxy
+ }
 # Local Variables:
 # mode:ksh
 # End:
