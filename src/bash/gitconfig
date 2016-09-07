@@ -3,3 +3,5 @@
 [user]
 	email = @email_addr@
 	name = @user_name@
+[color]
+        ui = false

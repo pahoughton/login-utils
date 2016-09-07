@@ -54,11 +54,11 @@ install-data-hook: $(INSTALL_DIR)
 	do						  \
 	  if test -f "$$fn" ; then			  \
 	    rm -f "$(INSTALL_DIR)/.$$fn" ;		  \
-	    sed -e 's/@host_name@/$(host)/'		  \
-	    	-e 's/@os_name@/$(os)/'			  \
-	        -e 's/@email_addr@/$(email)/'		  \
-	        -e 's/@user_name@/$(username)/'		  \
-	        -e 's|@cvs_root@|$(cvsroot)|'		  \
+	    sed -e 's/@host_name@/$(host)/g'		  \
+	    	-e 's/@os_name@/$(os)/g'			  \
+	        -e 's/@email_addr@/$(email)/g'		  \
+	        -e 's/@user_name@/$(username)/g'		  \
+	        -e 's|@cvs_root@|$(cvsroot)|g'		  \
 	        < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ; \
 	    chmod -w "$(INSTALL_DIR)/.$$fn" || exit 1 ;	  \
 	    echo "+ Installed $(INSTALL_DIR)/.$$fn" ;	  \
@@ -69,10 +69,12 @@ install-data-hook: $(INSTALL_DIR)
 	    if test -f "$(INSTALL_DIR)/.$$fn" ; then			   \
 	      echo "+ Will NOT overwrite $(INSTALL_DIR)/.$$fn" ;	   \
 	    else							   \
-	      sed -e 's/@host_name@/$(host)/'				   \
-	    	  -e 's/@os_name@/$(os)/'				   \
-	          -e 's/@email_addr@/$(email)/'				   \
-	          -e 's|@cvs_root@|$(cvsroot)|'				   \
+	      sed -e 's/@host_name@/$(host)/g'				   \
+	    	  -e 's/@os_name@/$(os)/g'				   \
+	          -e 's/@email_addr@/$(email)/g'				   \
+	          -e 's|@cfg_http_proxy@|$(http_proxy)|g'			   \
+	          -e 's|@cfg_https_proxy@|$(https_proxy)|g'			   \
+	          -e 's|@cvs_root@|$(cvsroot)|g'				   \
 	          < $$fn > "$(INSTALL_DIR)/.$$fn" || exit 1 ;		   \
 	      echo "+ Installed $(INSTALL_DIR)/.$$fn" || exit 1;	   \
 	    fi ;							   \

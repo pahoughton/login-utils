@@ -25,7 +25,11 @@ alias mv='mv -i'
 alias lsh='ls | head'
 alias mkdir='mkdir -p'
 alias grep-find='find . -type f -print0 | xargs -0 grep -n'
-alias vguest="awk -e '{ print \$3 \" \" \$4 }' /var/lib/libvirt/dnsmasq/default.leases"
+alias vbox=VBoxManage
+alias vbox-running='VBoxManage list runningvms'
+alias open-ports='lsof -P -i TCP | grep LISTEN'
+#libvirt old
+#alias vguest="awk -e '{ print \$3 \" \" \$4 }' /var/lib/libvirt/dnsmasq/default.leases"
 
 [ -x /usr/sbin/ping ] && alias ping=/usr/sbin/ping
 [ -x /usr/sbin/fuser ] && alias fuser=/usr/sbin/fuser
@@ -171,6 +175,14 @@ function set_title {
   esac
 }
 
+ function proxon {
+   export http_proxy="$_user_http_proxy"
+   export https_proxy="$_user_https_proxy"
+ }
+ function proxoff {
+   unset http_proxy
+   unset https_proxy
+ }
 # Local Variables:
 # mode:ksh
 # End:
