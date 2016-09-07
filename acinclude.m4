@@ -92,25 +92,46 @@ AC_DEFUN([PAH_CVSROOT],
       [
       if test x${CVSROOT+set} == xset ; then
 	pah_cv_cvsroot=$CVSROOT
-      else
-	try_cvspass=`$AWK '/sideswipe/ {print $1}' ~/.cvspass | head -1`
-	if test x${try_cvspass+set} == xset ; then
-          pah_cv_cvsroot="$try_cvspass"
-        else
-          if test x${LOGNAME+set} == xset ; then
-            pah_cv_cvsroot=:pserver:${LOGNAME}@sideswipe.wcom.com:/Tools/src/CvsRepository
-	  else
-	    if test x${USER+set} == xset ; then
-	      pah_cv_cvsroot=:pserver:${USER}@sideswipe.wcom.com:/Tools/src/CvsRepository
-	    else
-	      pah_cv_cvsroot=:pserver:anonymous@sideswipe.wcom.com:/Tools/src/CvsRepository
-	    fi
-	  fi
-        fi
       fi
       ])
       cvsroot="$pah_cv_cvsroot"
     fi
   ])
   AC_SUBST(cvsroot)
+])
+
+AC_DEFUN([PAH_HTTP_PROXY],
+[ AC_ARG_WITH( http_proxy,
+  AC_HELP_STRING([--with-http-proxy],[value for http_proxy env var]),
+  [ http_proxy="$withval"
+    AC_MSG_RESULT([$http_proxy])],
+  [ if test x${http_proxy+xset} != xset; then
+      AC_CACHE_CHECK([value for http_proxy env var], [pah_cv_http_proxy],
+      [
+      if test x${http_proxy+set} == xset ; then
+	pah_cv_http_proxy=$http_proxy
+      fi
+      ])
+      http_proxy="$pah_cv_http_proxy"
+    fi
+  ])
+  AC_SUBST(http_proxy)
+])
+
+AC_DEFUN([PAH_HTTPS_PROXY],
+[ AC_ARG_WITH( https_proxy,
+  AC_HELP_STRING([--with-https-proxy],[value for https_proxy env var]),
+  [ https_proxy="$withval"
+    AC_MSG_RESULT([$https_proxy])],
+  [ if test x${https_proxy+xset} != xset; then
+      AC_CACHE_CHECK([value for https_proxy env var], [pah_cv_https_proxy],
+      [
+      if test x${https_proxy+set} == xset ; then
+	pah_cv_https_proxy=$https_proxy
+      fi
+      ])
+      https_proxy="$pah_cv_https_proxy"
+    fi
+  ])
+  AC_SUBST(https_proxy)
 ])

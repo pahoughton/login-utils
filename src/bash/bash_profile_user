@@ -1,6 +1,6 @@
 #
 # File:		bash_profile_user
-# Project:	LoginUtils 
+# Project:	LoginUtils
 # Desc:
 #
 #   User specific configuration values this file is installed read/write
@@ -26,6 +26,9 @@
 # Note, can also be set in bash_profile_HOSTNAME and bash_profile_OSNAME
 host_prepend_path=""
 
+# support for proxon and proxoff aliases.
+export _user_http_proxy=@cfg_http_proxy@
+export _user_https_proxy=@cfg_https_proxy@
 
 export REPLYTO=@email_addr@
 
