@@ -37,7 +37,7 @@ export REPLYTO=@email_addr@
 
 export CVS_RSH=ssh
 export CVSROOT=@cvs_root@
-
+export VAGRANT_NO_COLOR=1
 
 # Local Variables:
 # mode:ksh
