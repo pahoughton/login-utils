@@ -1,7 +1,6 @@
 # 2015-11-03 (cc) <paul4hough@gmail.com>
 #
 #AddToMenu MenuFvwmLogins
-+ &rand    FuncFvwmSshXterm 10.0.1.4
-+ &cworld  FuncFvwmSshXterm 10.0.1.15
-+ &cmac FuncFvwmSshXterm 10.0.1.14
-+ &cport   FuncFvwmSshXterm 10.0.1.5
++ &rand    FuncFvwmSshXterm rand
++ &womac FuncFvwmSshXterm womac
++ &cport   FuncFvwmSshXterm cport
