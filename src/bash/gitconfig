@@ -5,3 +5,5 @@
 	name = @user_name@
 [color]
         ui = false
+[push]
+        default = simple
