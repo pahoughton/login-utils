@@ -28,6 +28,7 @@ alias grep-find='find . -type f -print0 | xargs -0 grep -n'
 alias vbox=VBoxManage
 alias vbox-running='VBoxManage list runningvms'
 alias open-ports='lsof -P -i TCP | grep LISTEN'
+alias nautilus='nautilus --no-desktop'
 #libvirt old
 #alias vguest="awk -e '{ print \$3 \" \" \$4 }' /var/lib/libvirt/dnsmasq/default.leases"
 

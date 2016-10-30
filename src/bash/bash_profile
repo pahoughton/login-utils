@@ -167,6 +167,12 @@ fi
 [ -n "$ORACLE_HOME" ] && prepend_dirs="$prepend_dirs $ORACLE_HOME/bin"
 [ -n "$UTIL_DIR" ]    && prepend_dirs="$prepend_dirs $UTIL_DIR/bin"
 [ -n "$TOOL_DIR" ]    && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
+
+if [ -x $HOME/.rbenv/bin/rbenv ] ; then
+   prepend_dirs="$prepend_dirs $HOME/.rbenv/bin"
+   eval "$($HOME/.rbenv/bin/rbenv init -)"
+fi
+
 prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
 
 for pd in $prepend_dirs ; do
