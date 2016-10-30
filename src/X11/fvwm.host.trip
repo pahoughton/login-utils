@@ -1,0 +1,7 @@
+# 2015-11-03 (cc) <paul4hough@gmail.com>
+#
+#AddToMenu MenuFvwmLogins
++ &cport   FuncFvwmSshXterm cport
++ &womac   FuncFvwmSshXterm womac
++ &rand    FuncFvwmSshXterm rand
++ &snow    FuncFvwmSshXterm snow
