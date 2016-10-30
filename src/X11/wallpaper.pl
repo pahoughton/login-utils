@@ -54,7 +54,7 @@ sub found {
 }
 
 
-find( \&found, $picBaseDir );
+find( {wanted => \&found, follow => 1 }, $picBaseDir );
 
 my $tcnt = 0;
 foreach my $img (shuffle(@pics)) {
