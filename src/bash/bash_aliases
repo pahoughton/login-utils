@@ -1,16 +1,4 @@
-#
-# Title:        bash_aliases
-# Project:	Login
-# Desc:
-#
-#   functions and aliases
-#
-# Notes:
-#
-# Author:	Paul A. Houghton <paul4hough@gmail.com>
-# Created:	01/15/97 08:07
-#
-#
+# 1997-01-15 08:07 (cc) paul4hough@gmail.com
 
 alias ls='ls -1F'
 alias lsg='ls|grep -i'
@@ -26,6 +14,10 @@ alias lsh='ls | head'
 alias mkdir='mkdir -p'
 alias grep-find='find . -type f -print0 | xargs -0 grep -n'
 alias vbox=VBoxManage
+alias vboxl='VBoxManage list'
+alias vboxc='VBoxManage controlvm'
+alias vboxm='VBoxManage modifyvm'
+alias vboxs='VBoxManage startvm'
 alias vbox-running='VBoxManage list runningvms'
 alias open-ports='lsof -P -i TCP | grep LISTEN'
 alias nautilus='nautilus --no-desktop'
