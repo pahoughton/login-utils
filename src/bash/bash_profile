@@ -17,18 +17,19 @@
 
 export have_bash_profile=true
 
-[ -z "$HOSTNAME" ] && export HOSTNAME='@host_name@'
-
 export OSNAME='@os_name@'
 export OSVER='@os_ver@'
+export host=@host_name@
+
+[ -z "$HOSTNAME" ] && export HOSTNAME=$host
 
 
 if [ -f ~/.bash_profile_user ]; then
   . ~/.bash_profile_user
 fi
 
-if [ -f ~/.bash_profile_${HOSTNAME} ]; then
-  . ~/.bash_profile_${HOSTNAME}
+if [ -f ~/.bash_profile_${host} ]; then
+  . ~/.bash_profile_${host}
 fi
 
 if [ -f ~/.bash_profile_${OSNAME} ]; then

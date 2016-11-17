@@ -1,0 +1,19 @@
+# 2016-11-02 (cc) <paul.houghton@wellsfargo.com> -*- bash -*-
+#
+
+# support for proxon and proxoff aliases.
+export _user_http_proxy=http://proxy.wellsfargo.com:8080
+export _user_https_proxy=http://proxy.wellsfargo.com:8080
+
+export VAGRANT_SERVER_URL="http://softwarelibrary-sit.wellsfargo.com:12080/mrc-packages"
+export VAGRANT_NO_COLOR=1
+
+export wflib_gem=http://wmg-svn.wellsfargo.com/rubygems/
+export local_gem=http://localhost:8000/rubygems/
+
+export GEM_SOURCE=$local_gem
+
+
+# Local Variables:
+# mode:ksh
+# end:

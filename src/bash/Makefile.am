@@ -15,7 +15,7 @@ INSTALL_DIR = ${prefix}${HOME}
 
 hide 	 = @
 
-#host 	 = @hostname@
+host 	 = @hostname@
 os   	 = @osname@
 #email	 = @email@
 username = @username@
