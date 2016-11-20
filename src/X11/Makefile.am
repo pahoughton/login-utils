@@ -28,8 +28,8 @@ dotfiles	=				\
 
 EXTRA_DIST	= 		\
 	$(dotfiles) 		\
-	wallpaper.pl		\
-	next_wallpaper.bash	\
+	wallpaper.bash		\
+	wallpaper-next.bash	\
 	fvwm.config		\
 	fvwm.host.bugsy		\
 	fvwm.host.cmac		\
@@ -42,13 +42,13 @@ all:
 $(INSTALL_DIR)/.fvwm $(INSTALL_DIR)/scripts:
 	$(hide) ${mkdir_p} "$@"
 
+# fixme - lazy bugger fix the scrits dependancies
+
 install-data-hook: $(INSTALL_DIR)/.fvwm  $(INSTALL_DIR)/scripts
-	$(hide) $(INSTALL) -T wallpaper.pl \
+	$(hide) $(INSTALL) -T wallpaper.bash \
 	  $(INSTALL_DIR)/scripts/wallpaper
-	$(hide) echo + Installed $(INSTALL_DIR)/scripts/next_wallpaper
-	$(hide) $(INSTALL) -T next_wallpaper.bash \
-	  $(INSTALL_DIR)/scripts/next_wallpaper
-	$(hide) echo + Installed $(INSTALL_DIR)/scripts/rand_wallpaper
+	$(hide) $(INSTALL) -T wallpaper-next.bash \
+	  $(INSTALL_DIR)/scripts/wallpaper-next
 	$(hide) for fn in $(dotfiles) ; do				\
 	  if test -f $$fn.$$HOSTNAME ; then				\
 	    sed -e 's/@host_name@/$(host)/'				\
