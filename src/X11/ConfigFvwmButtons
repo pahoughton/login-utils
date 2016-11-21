@@ -6,7 +6,7 @@
 *----------------*----*----*---*-----------*
 KillModule FvwmButtons
 DestroyModuleConfig FvwmButtons: *
-*FvwmButtons: Geometry 420x100-1-1
+*FvwmButtons: Geometry 420x100-1+0
 *FvwmButtons: Back DarkSlateBlue
 *FvwmButtons: (Frame 2, Padding 2 2, Container(Rows 2 Columns 10 Frame 1 Padding 10 0))
 # Show 5 more desks in a popup panel:
@@ -14,7 +14,7 @@ DestroyModuleConfig FvwmButtons: *
 *FvwmButtons: (5x2, Frame 2, Swallow "FvwmIconMan" "Module FvwmIconMan")
 *FvwmButtons: (2x2, Frame 0, Container(Rows 4 Columns 1 Frame 0))
 # *FvwmButtons: (Frame 2, Swallow(UseOld,NoHints,Respawn) "xbiff" `Exec exec xbiff -bg bisque3`)
-*FvwmButtons: (1x1 Frame 3, Action (Mouse1) `Exec exec next_wallpaper`, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg DarkSlateBlue -fg Azure -hd Azure -hl Azure -padding 0 -update 30 -digital -face courier -strftime ' %H:%M'`)
+*FvwmButtons: (1x1 Frame 3, Action (Mouse1) `Exec exec wallpaper-next`, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg DarkSlateBlue -fg Azure -hd Azure -hl Azure -padding 0 -update 30 -digital -face courier -strftime ' %H:%M'`)
 *FvwmButtons: (1x1 Frame 3, Swallow(UseOld,NoHints,Respawn) "xclock" `Exec exec xclock -bg DarkSlateBlue -fg Azure -hd Azure -hl Azure -padding 0 -update 30 -digital -face courier -strftime '  %d'`)
 *FvwmButtons: (1x2 Frame 2, Action (Mouse1) `Exec exec swapspace`, Swallow(UseOld,NoHints,Respawn) "xload" `Exec exec xload -bg DarkSlateBlue -fg cyan -update 10 -nolabel`)
 *FvwmButtons: (End)
@@ -31,7 +31,7 @@ DestroyModuleConfig FvwmPagerSubPanel: *
 *FvwmPagerSubPanel: Columns 1
 
 # To include the panel in a button
-#DestroyModuleConfig SubPanel 
+#DestroyModuleConfig SubPanel
 #*SubPanel: (1x2, Frame 0, Swallow(UseOld) "FvwmPager" "Module FvwmPager 5 1")
 #*SubPanel: (Icon my_lock.xpm, Action Exec xlock)
 #*SubPanel: (Icon my_move.xpm, Action Move)
