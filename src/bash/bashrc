@@ -1,16 +1,4 @@
-#
-# Title:        bashrc
-# Project:	LoginUtils
-# Desc:
-#
-#   Bourne Again SHell init file. See man bash(1) bashrc for detailed
-#   explination. Basically this is run on every bash execution and
-#   sets up the interactive environment.
-#
-# Notes:
-#
-# Author(s):   Paul Houghton <paul4hough@gmail.com>
-# Created:     01/15/1997 08:08
+# 1997-01-15 (cc) <paul@pahoughton.net>
 #
 
 if [ -z "${USER}" ] ; then
