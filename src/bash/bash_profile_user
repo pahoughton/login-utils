@@ -38,6 +38,7 @@ export REPLYTO=@email_addr@
 export CVS_RSH=ssh
 export CVSROOT=@cvs_root@
 export VAGRANT_NO_COLOR=1
+export VAGRANT_SERVER_URL=http://mirrors/vagrant
 
 # Local Variables:
 # mode:ksh
