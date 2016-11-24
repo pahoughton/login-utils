@@ -175,7 +175,9 @@ if [ -d "$HOME/.rbenv" ] ; then
   else
     rbenvexec=`which rbenv`
   fi
-  eval "$($rbenvexec init -)"
+  if [ -n "$rbenvexec" ] ; then
+    eval "$($rbenvexec init -)"
+  fi
 fi
 
 prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
