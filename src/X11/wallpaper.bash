@@ -4,6 +4,13 @@
 
 walldir=$HOME/Pictures/wallpapers
 picfn=.wall-pic-list
+if [ "$1" == 'reset' ] ; then
+  rm $picfn
+  shift
+fi
+
+delay=${1:-900}
+
 if [ ! -f $picfn ] ; then
   find $walldir -follow -type f | sort -R > $picfn
 fi
@@ -12,14 +19,13 @@ piclist=(`cat $picfn`)
 piccnt=${#piclist[@]}
 
 if [ $piccnt == 0 ] ; then
-   echo no pictures found in $walldir
+   echo $piccnt pictures found in $walldir
    exit 1
 fi
 
 screens=`xrandr -q | grep ' connected ' | wc -l | cut -d ' ' -f 1`
-echo screens $screens
+echo wallpaper starting with $piccnt pics $screens screens $delay sec delay
 updatebg() {
-  delay=$1
   while true ; do
     wallpics=()
     for ((s = 0 ; s < $screens; s++)) ; do
