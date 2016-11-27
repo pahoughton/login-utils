@@ -2,13 +2,20 @@
 # 2016-11-19 (cc) <paul@pahoughton.net>
 #
 
+walldir=$HOME/Pictures/wallpapers
 picfn=.wall-pic-list
 if [ ! -f $picfn ] ; then
-  find $HOME/Pictures/wallpapers -follow -type f | sort -R > $picfn
+  find $walldir -follow -type f | sort -R > $picfn
 fi
 # set -x
 piclist=(`cat $picfn`)
 piccnt=${#piclist[@]}
+
+if [ $piccnt == 0 ] ; then
+   echo no pictures found in $walldir
+   exit 1
+fi
+
 screens=`xrandr -q | grep ' connected ' | wc -l | cut -d ' ' -f 1`
 echo screens $screens
 updatebg() {
