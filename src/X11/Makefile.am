@@ -39,16 +39,16 @@ EXTRA_DIST	= 		\
 
 all:
 
-$(INSTALL_DIR)/.fvwm $(INSTALL_DIR)/scripts:
+$(INSTALL_DIR)/.fvwm $(INSTALL_DIR)/bin:
 	$(hide) ${mkdir_p} "$@"
 
 # fixme - lazy bugger fix the scrits dependancies
 
-install-data-hook: $(INSTALL_DIR)/.fvwm  $(INSTALL_DIR)/scripts
+install-data-hook: $(INSTALL_DIR)/.fvwm  $(INSTALL_DIR)/bin
 	$(hide) $(INSTALL) -T wallpaper.bash \
-	  $(INSTALL_DIR)/scripts/wallpaper
+	  $(INSTALL_DIR)/bin/wallpaper
 	$(hide) $(INSTALL) -T wallpaper-next.bash \
-	  $(INSTALL_DIR)/scripts/wallpaper-next
+	  $(INSTALL_DIR)/bin/wallpaper-next
 	$(hide) for fn in $(dotfiles) ; do				\
 	  if test -f $$fn.$$HOSTNAME ; then				\
 	    sed -e 's/@host_name@/$(host)/'				\
