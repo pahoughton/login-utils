@@ -98,10 +98,6 @@ if [ -d $HOME/scripts/perllib ] ; then
   fi
 fi
 
-# Netscape
-[ -d /usr/local/Netscape ] && MOZILLA_HOME=/usr/local/Netscape
-[ -d /opt/netscape ]       && MOZILLA_HOME=/opt/netscape
-
 if [ -n "$MOZILLA_HOME" ] ; then
   export MOZILLA_HOME
   export NPX_PLUGIN_PATH=$MOZILLA_HOME/plugins
@@ -162,6 +158,8 @@ if [ -d "$HOME/.rbenv" ] ; then
   if [ -x $HOME/.rbenv/bin/rbenv ] ; then
     prepend_dirs="$prepend_dirs $HOME/.rbenv/bin"
     rbenvexec="$HOME/.rbenv/bin/rbenv"
+  elif [ -x /usr/local/bin/rbenv ] ; then
+    rbenvexec="/usr/local/bin/rbenv"
   else
     rbenvexec=`which rbenv`
   fi
@@ -250,11 +248,6 @@ case $- in
       if [ "$OSNAME" = "CYGWIN_NT-5.1" ] && [ $DISPLAY = ":0" ] ; then
 	DISPLAY=localhost:0.0
       fi
-    fi
-
-    if [ -n "$SYBSERV" ] ; then
-      read -p "Enter your password for $SYBSERV:$SYBUSER: " SYBPASS
-      export SYBPASS
     fi
 
     # $USER not empty and bashrc loaded was for that user

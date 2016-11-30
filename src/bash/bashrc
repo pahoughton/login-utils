@@ -37,23 +37,22 @@ case $- in
 
     my_logname=unk
     if type logname > /dev/null 2>&1 ; then
-      my_logname=`who am i | cut -f 1 -d' '`
+      my_logname=`logname`
     fi
 
     if [ "${USER}" == "${my_logname}" -a "${USER}" != "root" ] ; then
+      emacs_ps1='\w\n\h$ '
       if [ -n "$BASH" ] ; then
-	ps1_title='\[\e]0;womac:\w\007\e[35m\]'
-	PS1='\w\n\[\e[31m\]womac$ \[\e[0m\]'
-	emacs_ps1='\w\nwomac$ '
+	ps1_title='\[\e]0;\h:\w\007\e[35m\]'
+	PS1='\w\n\[\e[31m\]\h$ \[\e[0m\]'
       else
 	PS1="${HOSTNAME}\$ "
-	emacs_ps1='\w\n\h$ '
       fi
     else
       emacs_ps1='\w\n\h:\u$ '
       if [ -n "$BASH" ] ; then
-	ps1_title='\[\e]0;womac:\u:\w\007\e[35m\]'
-	PS1='\w\n\[\e[31m\]womac:\u$ \[\e[0m\]'
+	ps1_title='\[\e]0;\h:\u:\w\007\e[35m\]'
+	PS1='\w\n\[\e[31m\]\h:\u$ \[\e[0m\]'
       else
 	PS1="$HOSTNAME:$USER\$ "
       fi
@@ -109,14 +108,11 @@ case $- in
 
     HISTSIZE=512
 
-    eval "$(rbenv init -)"
     # load aliases
     [ -f $HOME/.bash_aliases ] && . $HOME/.bash_aliases
 
     echo HOSTNAME=$HOSTNAME OSNAME=$OSNAME OSVER=$OSVER
     echo DISPLAY=$DISPLAY TERM=$TERM
-    echo http_proxy=$http_proxy
-    ruby -v
     #echo "LD_LIBRARY_PATH:"
     #show_path $LD_LIBRARY_PATH
     #echo "PATH"
