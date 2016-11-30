@@ -2,6 +2,6 @@
 #
 #AddToMenu MenuFvwmLogins
 + &cport   FuncFvwmSshXterm cport
-+ &womac   FuncFvwmSshXterm womac
++ &womac   FuncFvwmSshX11Xterm womac
 + &rand    FuncFvwmSshXterm rand
 + &snow    FuncFvwmSshXterm snow

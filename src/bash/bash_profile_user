@@ -1,26 +1,4 @@
-#
-# File:		bash_profile_user
-# Project:	LoginUtils
-# Desc:
-#
-#   User specific configuration values this file is installed read/write
-#   for local modifications. To regen from source, you need to remove
-#   the installed version.
-#
-# Notes:
-#
-# Author(s):   Paul Houghton <paul4hough@gmail.com>
-# Created:     06/04/2003 19:44
-#
-# Revision Info: (See ChangeLog or cvs log for revision history)
-#
-#	$Author$
-#	$Date$
-#	$Name$
-#	$Revision$
-#	$State$
-#
-# $Id$
+# 2003-06-04 (cc) <paul@pahoughton.net>
 #
 
 # Note, can also be set in bash_profile_HOSTNAME and bash_profile_OSNAME
@@ -39,6 +17,7 @@ export CVS_RSH=ssh
 export CVSROOT=@cvs_root@
 
 export VAGRANT_NO_COLOR=1
+export VAGRANT_SERVER_URL=http://mirrors/vagrant
 
 # Local Variables:
 # mode:ksh
