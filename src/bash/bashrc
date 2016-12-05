@@ -39,20 +39,20 @@ case $- in
     if type logname > /dev/null 2>&1 ; then
       my_logname=`logname`
     fi
-
+    ps_host=${host:-'\h'}
     if [ "${USER}" == "${my_logname}" -a "${USER}" != "root" ] ; then
-      emacs_ps1='\w\n\h$ '
+      emacs_ps1="\w\n${ps_host}"'$ '
       if [ -n "$BASH" ] ; then
-	ps1_title='\[\e]0;\h:\w\007\e[35m\]'
-	PS1='\w\n\[\e[31m\]\h$ \[\e[0m\]'
+	ps1_title='\[\e]0;'"${ps_host}"'\h:\w\007\e[35m\]'
+	PS1='\w\n\[\e[31m\]'"${ps_host}"'$ \[\e[0m\]'
       else
 	PS1="${HOSTNAME}\$ "
       fi
     else
-      emacs_ps1='\w\n\h:\u$ '
+      emacs_ps1="\w\n${ps_host}"':\u$ '
       if [ -n "$BASH" ] ; then
-	ps1_title='\[\e]0;\h:\u:\w\007\e[35m\]'
-	PS1='\w\n\[\e[31m\]\h:\u$ \[\e[0m\]'
+	ps1_title='\[\e]0;'"${ps_host}"'\h:\u:\w\007\e[35m\]'
+	PS1='\w\n\[\e[31m\]'"${ps_host}"':\u$ \[\e[0m\]'
       else
 	PS1="$HOSTNAME:$USER\$ "
       fi
