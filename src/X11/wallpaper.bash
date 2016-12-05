@@ -3,7 +3,7 @@
 #
 
 walldir=$HOME/Pictures/wallpapers
-picfn=.wall-pic-list
+picfn=$HOME/.wallpaper-pic-list
 if [ "$1" == 'reset' ] ; then
   rm $picfn
   shift
@@ -12,7 +12,7 @@ fi
 delay=${1:-900}
 
 if [ ! -f $picfn ] ; then
-  find $walldir -follow -type f | sort -R > $picfn
+  find $walldir -follow -type f | grep -v '.mov$' | sort -R > $picfn
 fi
 # set -x
 piclist=(`cat $picfn`)
@@ -33,7 +33,13 @@ updatebg() {
       wallpics+=("${piclist[$picnum]}")
       echo $picnum ${piclist[$picnum]} >> ~/.wallpaper-history
     done
-    feh --bg-fill ${wallpics[@]}
+    pics="${wallpics[@]}"
+    hasphoto=`echo $pics | sed 's~photos~~i'`
+    feh_args='--bg-fill'
+    if [ "$hasphoto" != "$pics" ] ; then
+      feh_args='--bg-max'
+    fi
+    feh $feh_args ${wallpics[@]}
     if [ -n "$delay" ] ; then
       sleep $delay &
       echo $! > ~/.wallpaper-sleep.pid
