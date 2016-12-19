@@ -24,8 +24,8 @@ updatebg() {
     wallpics=()
     for ((s = 0 ; s < $screens; s++)) ; do
       imgfn="`shuf -n 1 $picfn`"
-      wallpics+=($imgfn)
-      echo $picfn >> ~/.wallpaper-history
+      wallpics+=("$imgfn")
+      echo $imgfn >> ~/.wallpaper-history
     done
     pics="${wallpics[@]}"
     hasphoto=`echo $pics | sed 's~photos~~i'`
@@ -34,7 +34,8 @@ updatebg() {
       feh_args='--bg-max'
     fi
     # echo feh $feh_args ${wallpics[@]}
-    feh $feh_args ${wallpics[@]}
+    # echo cnt:${#wallpics[@]}:"${wallpics[@]}"
+    feh $feh_args "${wallpics[@]}"
     if [ -n "$delay" ] ; then
       sleep $delay &
       echo $! > ~/.wallpaper-sleep.pid
