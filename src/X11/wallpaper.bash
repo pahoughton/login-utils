@@ -15,13 +15,7 @@ if [ ! -f $picfn ] ; then
   find $walldir -follow -type f | grep -v '.mov$' | sort -R > $picfn
 fi
 # set -x
-piclist=(`cat $picfn`)
-piccnt=${#piclist[@]}
-
-if [ $piccnt == 0 ] ; then
-   echo $piccnt pictures found in $walldir
-   exit 1
-fi
+piccnt=`wc -l $picfn | cut -d' ' -f 1`
 
 screens=`xrandr -q | grep ' connected ' | wc -l | cut -d ' ' -f 1`
 echo wallpaper starting with $piccnt pics $screens screens $delay sec delay
@@ -29,9 +23,9 @@ updatebg() {
   while true ; do
     wallpics=()
     for ((s = 0 ; s < $screens; s++)) ; do
-      let "picnum = $RANDOM % $piccnt"
-      wallpics+=("${piclist[$picnum]}")
-      echo $picnum ${piclist[$picnum]} >> ~/.wallpaper-history
+      imgfn="`shuf -n 1 $picfn`"
+      wallpics+=($imgfn)
+      echo $picfn >> ~/.wallpaper-history
     done
     pics="${wallpics[@]}"
     hasphoto=`echo $pics | sed 's~photos~~i'`
@@ -39,6 +33,7 @@ updatebg() {
     if [ "$hasphoto" != "$pics" ] ; then
       feh_args='--bg-max'
     fi
+    # echo feh $feh_args ${wallpics[@]}
     feh $feh_args ${wallpics[@]}
     if [ -n "$delay" ] ; then
       sleep $delay &
