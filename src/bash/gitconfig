@@ -7,3 +7,5 @@
         ui = false
 [push]
         default = simple
+[core]
+        pager = cat
