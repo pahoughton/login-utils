@@ -43,7 +43,7 @@ case $- in
     if [ "${USER}" == "${my_logname}" -a "${USER}" != "root" ] ; then
       emacs_ps1="\w\n${ps_host}"'$ '
       if [ -n "$BASH" ] ; then
-	ps1_title='\[\e]0;'"${ps_host}"'\h:\w\007\e[35m\]'
+	ps1_title='\[\e]0;'"${ps_host}"':\w\007\e[35m\]'
 	PS1='\w\n\[\e[31m\]'"${ps_host}"'$ \[\e[0m\]'
       else
 	PS1="${HOSTNAME}\$ "
