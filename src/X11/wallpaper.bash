@@ -12,7 +12,9 @@ fi
 delay=${1:-900}
 
 if [ ! -f $picfn ] ; then
-  find $walldir -follow -type f | grep -v '.mov$' | sort -R > $picfn
+  find $walldir -follow -type f |
+    egrep -v '(bash|xml|avi|mpg|mp4|m4v|mov)$' |
+    sort -R > $picfn
 fi
 # set -x
 piccnt=`wc -l $picfn | cut -d' ' -f 1`
