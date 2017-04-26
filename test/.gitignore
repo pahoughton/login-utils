@@ -1,4 +1,4 @@
 virttest.out
 makefile.out
 tinstall
-loginutils-1.02
+login-utils-*

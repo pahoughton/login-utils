@@ -1,6 +1,4 @@
-# .travis.yml - 2013-10-12 07:56
-#
-# paul4hough@gmail.com
+# 2013-10-12 07:56 (cc) <paul4hough@gmail.com>
 
 language: c
 notifications:
@@ -19,4 +17,3 @@ script:
   - ./configure
   - make check
   - make install
-  

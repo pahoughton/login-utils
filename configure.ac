@@ -1,18 +1,7 @@
-dnl
-dnl File:	configure.ac
-dnl Project:	LoginUtils
-dnl Desc:
-dnl
-dnl   Process this file with autoconf to produce a configure script.
-dnl
-dnl Notes:
-dnl
-dnl Author(s):   Paul Houghton <paul4hough@gmail.com>
-dnl Created:     06/05/2003 19:10
-dnl
+dnl 2003-06-05 (cc) Paul Houghton <paul4hough@gmail.com>
 
 AC_PREREQ([2.57])
-AC_INIT([LoginUtils],[1.02],[Paul Houghton <paul4hough@gmail.com> ])
+AC_INIT([login-utils],[1.03],[Paul Houghton <paul4hough@gmail.com> ])
 
 AC_PREFIX_DEFAULT([])
 

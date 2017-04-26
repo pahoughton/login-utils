@@ -9,5 +9,5 @@ config.log
 config.status
 configure
 configure.scan
-loginutils-1.02.tar.gz
-/_test_temp
+login-utils*.tar.gz
+.vagrant
