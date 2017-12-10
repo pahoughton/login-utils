@@ -33,7 +33,7 @@ if [ -n `eval echo \\${${PROJECT}_TOOL_DIR}` ] ; then
 
 else
 
-  tooldirs="$host_tool_dir /Tools /ci/tools /usr/local $HOME/tools"
+  tooldirs="$host_tool_dir /opt/tools /ci/tools /usr/local $HOME/tools"
 
   for dir in $tooldirs ; do
     if [ -d $dir ] ; then
