@@ -168,7 +168,11 @@ if [ -d "$HOME/.rbenv" ] ; then
   fi
 fi
 
-prepend_dirs="$prepend_dirs $HOME/bin $HOME/scripts"
+prepend_dirs="$prepend_dirs
+    $HOME/.local/bin
+    $HOME/local/bin
+    $HOME/bin
+    $HOME/scripts"
 
 for pd in $prepend_dirs ; do
   [ -d $pd ] && ! echo $PATH | fgrep $pd >/dev/null 2>&1 && PATH=$pd:$PATH
