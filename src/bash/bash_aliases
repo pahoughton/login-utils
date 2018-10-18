@@ -1,6 +1,7 @@
 # 1997-01-15 08:07 (cc) paul4hough@gmail.com
 
 alias ls='ls -1F'
+alias emacs='LC_ALL=C emacs'
 alias lsg='ls|grep -i'
 alias m4i=mp4info
 alias m3i=mp3info2
