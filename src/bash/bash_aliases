@@ -8,7 +8,7 @@ alias m3i=mp3info2
 alias date="date '+%F %H:%M:%S.%N'"
 alias xinit='xinit > ~/xinit.out 2>&1'
 alias sterm='xterm -geometry 80x10'
-alias df='df -h'
+alias df='df -x tmpfs -h'
 alias mpvid='mplayer -vf pp=hb/vb/dr/al/fd -fs'
 alias mv='mv -i'
 alias lsh='ls | head'
