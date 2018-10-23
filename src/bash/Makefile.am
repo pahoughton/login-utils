@@ -27,7 +27,8 @@ dotfiles	=				\
 	bash_setldlibpath			\
 	bash_aliases				\
 	gitconfig				\
-	gdbinit
+	gdbinit					\
+	vimrc
 
 target_dotfiles	=				\
 	bash_profile_solaris2.9			\

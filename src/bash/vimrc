@@ -1,0 +1,7 @@
+" 2018-10-22 (cc) <paul4hough@gmail.com>
+"
+set compatible
+set t_Co=0
+
+"syntax off
+"set nohlsearch
