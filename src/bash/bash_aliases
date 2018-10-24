@@ -1,6 +1,6 @@
 # 1997-01-15 08:07 (cc) paul4hough@gmail.com
 
-alias ls='ls -1F'
+alias ls='LC_ALL=C ls -1FN'
 alias emacs='LC_ALL=C emacs'
 alias lsg='ls|grep -i'
 alias m4i=mp4info
@@ -15,11 +15,11 @@ alias lsh='ls | head'
 alias mkdir='mkdir -p'
 alias grep-find='find . -type f -print0 | xargs -0 grep -n'
 alias vbox=VBoxManage
+alias vbox-running='VBoxManage list runningvms'
 alias vboxl='VBoxManage list'
 alias vboxc='VBoxManage controlvm'
 alias vboxm='VBoxManage modifyvm'
 alias vboxs='VBoxManage startvm'
-alias vbox-running='VBoxManage list runningvms'
 alias open-ports='lsof -P -i TCP | grep LISTEN'
 alias nautilus='nautilus --no-desktop'
 #libvirt old
@@ -32,9 +32,6 @@ alias nautilus='nautilus --no-desktop'
 
 [ -x $ACROREAD_BASE_DIR/bin/acroread ] &&
   alias acroread=$ACROREAD_BASE_DIR/bin/acroread
-
-[ -d $MOZILLA_HOME ] &&
-  alias netscape=$MOZILLA_HOME/netscape
 
 tclmandirs="$TOOL_DIR/tcl/man /usr/local/tcl/man /Tools/tcl/man"
 
@@ -170,8 +167,8 @@ function set_title {
 }
 
  function proxon {
-   export http_proxy="$_user_http_proxy"
-   export https_proxy="$_user_https_proxy"
+   export http_proxy="$user_http_proxy"
+   export https_proxy="$user_https_proxy"
  }
  function proxoff {
    unset http_proxy
