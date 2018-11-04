@@ -1,5 +1,7 @@
 # 1997-01-15 08:07 (cc) paul4hough@gmail.com
 
+unalias `alias  | grep color | sed 's~alias \([^=]*\)=.*~\1~'`
+
 alias ls='LC_ALL=C ls -1FN'
 alias emacs='LC_ALL=C emacs'
 alias lsg='ls|grep -i'
