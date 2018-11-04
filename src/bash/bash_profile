@@ -225,6 +225,9 @@ export INFOPATH=`echo $INFOPATH | sed -e 's/^://' -e 's/:$//'`
 # less output left on screen on exit :)
 export LESS=-X
 
+# no anisble color
+export ANSIBLE_NOCOLOR=1
+
 case $- in
 
   *i*)          # interactive
