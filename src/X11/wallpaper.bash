@@ -15,7 +15,12 @@ delay=${1:-900}
 screens=`xrandr -q | grep ' connected ' | wc -l | cut -d ' ' -f 1`
 
 if [ -f $picfn ] ; then
-  piccnt=`wc -l $picfn | cut -d' ' -f 1`
+  onepic=`head -1 $picfn`
+  if [ -f $onepic ] ; then
+    piccnt=`wc -l $picfn | cut -d' ' -f 1`
+  else
+    piccnt=0
+  fi
 else
   piccnt=0
 fi
