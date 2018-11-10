@@ -1,12 +1,14 @@
 # 1997-01-15 08:07 (cc) paul4hough@gmail.com
 
+unalias `alias  | grep color | sed 's~alias \([^=]*\)=.*~\1~'`
+
 alias ls='LC_ALL=C ls -1FN'
 alias emacs='LC_ALL=C emacs'
 alias lsg='ls|grep -i'
 alias date="date '+%F %H:%M:%S.%N'"
 alias xinit='xinit > ~/xinit.out 2>&1'
 alias sterm='xterm -geometry 80x10'
-alias df='df -x tmpfs -h'
+alias df='df -x tmpfs -x squashfs -h'
 alias mv='mv -i'
 alias lsh='ls | head'
 alias mkdir='mkdir -p'

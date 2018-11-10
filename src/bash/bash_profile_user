@@ -17,7 +17,7 @@ export CVS_RSH=ssh
 export CVSROOT=@cvs_root@
 
 export VAGRANT_NO_COLOR=1
-export VAGRANT_SERVER_URL=http://mirrors/vagrant
+# export VAGRANT_SERVER_URL=http://mirrors/vagrant
 
 export PATH="/home/paul/perl5/bin${PATH:+:${PATH}}"
 export PERL5LIB="/home/paul/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"
