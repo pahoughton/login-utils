@@ -5,8 +5,8 @@
 host_prepend_path=""
 
 # support for proxon and proxoff aliases.
-export _user_http_proxy=@cfg_http_proxy@
-export _user_https_proxy=@cfg_https_proxy@
+export user_http_proxy=@cfg_http_proxy@
+export user_https_proxy=@cfg_https_proxy@
 
 export REPLYTO=@email_addr@
 
