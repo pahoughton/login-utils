@@ -86,18 +86,19 @@ if [ -z "$SYBASE" ] ; then
   unset dir
 fi
 
-#
-# Perl
-#
 
-if [ -d $HOME/scripts/perllib ] ; then
+# Perl5Lib
+lclp5lib=$HOME/perl5/lib/perl5
+if [ -d $lclp5lib ] ; then
   if [ -n "$PERL5LIB" ] ; then
-    export PERL5LIB=$HOME/scripts/perllib:$PERL5LIB
+    export PERL5LIB=$lclp5lib:$PERL5LIB
   else
-    export PERL5LIB=$HOME/scripts/perllib
+    export PERL5LIB=$lclp5lib
   fi
 fi
+unset lclp5lib
 
+# mozilla plugins
 if [ -n "$MOZILLA_HOME" ] ; then
   export MOZILLA_HOME
   export NPX_PLUGIN_PATH=$MOZILLA_HOME/plugins
