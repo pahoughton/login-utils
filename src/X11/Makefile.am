@@ -47,8 +47,10 @@ $(INSTALL_DIR)/.fvwm $(INSTALL_DIR)/bin:
 install-data-hook: $(INSTALL_DIR)/.fvwm  $(INSTALL_DIR)/bin
 	$(hide) $(INSTALL) -T wallpaper.bash \
 	  $(INSTALL_DIR)/bin/wallpaper
+	$(hide) echo "+ Installed $(INSTALL_DIR)/bin/wallpaper"
 	$(hide) $(INSTALL) -T wallpaper-next.bash \
 	  $(INSTALL_DIR)/bin/wallpaper-next
+	$(hide) echo "+ Installed $(INSTALL_DIR)/bin/wallpaper-next"
 	$(hide) for fn in $(dotfiles) ; do				\
 	  if test -f $$fn.$$HOSTNAME ; then				\
 	    sed -e 's/@host_name@/$(host)/'				\

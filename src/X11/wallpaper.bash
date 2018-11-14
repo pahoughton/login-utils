@@ -41,21 +41,26 @@ fi
 echo wallpaper starting with $piccnt pics $screens screens $delay sec delay
 updatebg() {
   while true ; do
-    wallpics=()
-    for ((s = 0 ; s < $screens; s++)) ; do
-      imgfn="`shuf -n 1 $picfn`"
-      wallpics+=("$imgfn")
-      echo $imgfn >> ~/.wallpaper-history
-    done
-    pics="${wallpics[@]}"
-    hasphoto=`echo $pics | sed -E 's~photos|women~~i'`
-    feh_args='--bg-fill'
-    if [ "$hasphoto" != "$pics" ] ; then
-      feh_args='--bg-max'
+    mstate=`xset -q | grep Monitor | sed 's~^ *~~'`
+    if [ "$mstate" = "Monitor is On" ] ; then
+      wallpics=()
+      for ((s = 0 ; s < $screens; s++)) ; do
+	imgfn="`shuf -n 1 $picfn`"
+	wallpics+=("$imgfn")
+	echo `/bin/date +%F.%H:%M:%S` $imgfn >> ~/.wallpaper-history
+      done
+      pics="${wallpics[@]}"
+      hasphoto=`echo $pics | sed -E 's~photos|women~~i'`
+      feh_args='--bg-fill'
+      if [ "$hasphoto" != "$pics" ] ; then
+	feh_args='--bg-max'
+      fi
+      # echo feh $feh_args ${wallpics[@]}
+      # echo cnt:${#wallpics[@]}:"${wallpics[@]}"
+      feh $feh_args "${wallpics[@]}"
+    else
+      echo "`/bin/date +%F.%H:%M:%S` Monitor off" >> ~/.wallpaper-history
     fi
-    # echo feh $feh_args ${wallpics[@]}
-    # echo cnt:${#wallpics[@]}:"${wallpics[@]}"
-    feh $feh_args "${wallpics[@]}"
     if [ -n "$delay" ] ; then
       sleep $delay &
       echo $! > ~/.wallpaper-sleep.pid
