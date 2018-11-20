@@ -3,23 +3,25 @@
 unalias `alias  | grep color | sed 's~alias \([^=]*\)=.*~\1~'`
 
 alias ls='LC_ALL=C ls -1FN'
-alias emacs='LC_ALL=C emacs'
-alias lsg='ls|grep -i'
-alias date="date '+%F %H:%M:%S.%N'"
-alias xinit='xinit > ~/xinit.out 2>&1'
-alias sterm='xterm -geometry 80x10'
+alias lsh='ls | head'
 alias df='df -x tmpfs -x squashfs -h'
 alias mv='mv -i'
-alias lsh='ls | head'
+alias cp='cp -p'
 alias mkdir='mkdir -p'
+
+alias emacs='LC_ALL=C emacs'
+alias date="date '+%F %H:%M:%S.%N'"
+
+alias sterm='xterm -geometry 80x10'
 alias grep-find='find . -type f -print0 | xargs -0 grep -n'
+
 alias vbox=VBoxManage
 alias vbox-running='VBoxManage list runningvms'
 alias vboxl='VBoxManage list'
 alias vboxc='VBoxManage controlvm'
 alias vboxm='VBoxManage modifyvm'
 alias vboxs='VBoxManage startvm'
-alias open-ports='lsof -P -i TCP | grep LISTEN'
+
 alias nautilus='nautilus --no-desktop'
 alias m4i=mp4info
 alias m3i=mp3info2
