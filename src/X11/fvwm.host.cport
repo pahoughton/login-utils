@@ -3,12 +3,6 @@
 # Copyright (c) 2014 Paul Houghton <paul4hough@gmail.com>
 #
 #AddToMenu MenuFvwmLogins
-+ &womac  FuncFvwmSshXterm womac
-+ &trip   FuncFvwmSshXterm trip
-+ &snow   FuncFvwmSshXterm snow
-+ &rand   FuncFvwmSshXterm rand
-+ &cworld FuncFvwmSshXterm cworld
-# + &gandalf FuncFvwmSshXterm gandalf
-# + &sleepy  FuncFvwmSshXterm sleepy
-# + &albert  FuncFvwmSshXterm albert
-# + &frank   FuncFvwmSshXterm frank
++ &cbed  FuncFvwmSshXterm cbed
++ &zuul   FuncFvwmSshXterm zuul
++ &snarf FuncFvwmSshXterm snarf
