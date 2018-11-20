@@ -6,7 +6,7 @@
 *----------------*----*----*---*-----------*
 KillModule FvwmButtons
 DestroyModuleConfig FvwmButtons: *
-*FvwmButtons: Geometry 420x100-1+0
+*FvwmButtons: Geometry 420x100-1-1@1
 *FvwmButtons: Back DarkSlateBlue
 *FvwmButtons: (Frame 2, Padding 2 2, Container(Rows 2 Columns 10 Frame 1 Padding 10 0))
 # Show 5 more desks in a popup panel:
