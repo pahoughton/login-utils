@@ -1,3 +1,4 @@
+# -*- conf -*-
 ########################## Icon Manager ####################################
 # this FvwmIconMan setup is for swallowing in button bar example
 DestroyModuleConfig FvwmIconMan: *
