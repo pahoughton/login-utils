@@ -155,20 +155,6 @@ fi
 [ -n "$UTIL_DIR" ]    && prepend_dirs="$prepend_dirs $UTIL_DIR/bin"
 [ -n "$TOOL_DIR" ]    && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
 
-if [ -d "$HOME/.rbenv" ] ; then
-  if [ -x $HOME/.rbenv/bin/rbenv ] ; then
-    prepend_dirs="$prepend_dirs $HOME/.rbenv/bin"
-    rbenvexec="$HOME/.rbenv/bin/rbenv"
-  elif [ -x /usr/local/bin/rbenv ] ; then
-    rbenvexec="/usr/local/bin/rbenv"
-  else
-    rbenvexec=`which rbenv`
-  fi
-  if [ -n "$rbenvexec" ] ; then
-    eval "$($rbenvexec init -)"
-  fi
-fi
-
 prepend_dirs="$prepend_dirs
     $HOME/.local/bin
     $HOME/local/bin

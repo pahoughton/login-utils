@@ -22,6 +22,20 @@ else
   . $HOME/.bash_setldlibpath
 fi
 
+if [ -d "$HOME/.rbenv" ] ; then
+  if [ -x $HOME/.rbenv/bin/rbenv ] ; then
+    prepend_dirs="$prepend_dirs $HOME/.rbenv/bin"
+    rbenvexec="$HOME/.rbenv/bin/rbenv"
+  elif [ -x /usr/local/bin/rbenv ] ; then
+    rbenvexec="/usr/local/bin/rbenv"
+  else
+    rbenvexec=`which rbenv`
+  fi
+  if [ -n "$rbenvexec" ] ; then
+    eval "$($rbenvexec init -)"
+  fi
+fi
+
 umask 002
 
 #
