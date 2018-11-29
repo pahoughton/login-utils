@@ -125,7 +125,7 @@ case $- in
     # load aliases
     [ -f $HOME/.bash_aliases ] && . $HOME/.bash_aliases
 
-    echo HOSTNAME=$HOSTNAME OSNAME=$OSNAME OSVER=$OSVER
+    echo HOSTNAME=$HOSTNAME OSNAME=$OSNAME
     echo DISPLAY=$DISPLAY TERM=$TERM
     #echo "LD_LIBRARY_PATH:"
     #show_path $LD_LIBRARY_PATH
