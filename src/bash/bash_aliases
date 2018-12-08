@@ -1,6 +1,6 @@
 # 1997-01-15 08:07 (cc) paul4hough@gmail.com
 
-color_aliases= `alias  | grep color | sed 's~alias \([^=]*\)=.*~\1~'`
+color_aliases=`alias  | grep color | sed 's~alias \([^=]*\)=.*~\1~'`
 if [ -n "$color_aliases" ] ; then
   unalias $color_aliases
 fi
