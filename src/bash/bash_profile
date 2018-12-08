@@ -45,14 +45,6 @@ else
   unset dir
 fi
 
-# set GOPATH
-for dir in "$HOME/wip/go" "$HOME/go" ; do
-  if [ -d "$dir" ] ; then
-    export GOPATH="$dir"
-    break
-  fi
-done
-
 # set UTIL_DIR
 if [ -n "$host_util_dir" ] ; then
   export UTIL_DIR=$host_util_dir;
@@ -69,6 +61,14 @@ else
   unset utildirs
   unset dir
 fi
+
+# set GOPATH
+for dir in "$HOME/wip/go" "$HOME/go" ; do
+  if [ -d "$dir" ] ; then
+    export GOPATH="$dir"
+    break
+  fi
+done
 
 
 if [ -z "$SYBASE" ] ; then
@@ -160,6 +160,7 @@ fi
 [ -n "$ORACLE_HOME" ] && prepend_dirs="$prepend_dirs $ORACLE_HOME/bin"
 [ -n "$UTIL_DIR" ]    && prepend_dirs="$prepend_dirs $UTIL_DIR/bin"
 [ -n "$TOOL_DIR" ]    && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
+[ -n "$GOPATH" ]      && prepend_dirs="$prepend_dirs $GOPATH/bin"
 
 prepend_dirs="$prepend_dirs
     $HOME/.local/bin
