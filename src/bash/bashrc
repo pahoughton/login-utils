@@ -1,6 +1,8 @@
 # 1997-01-15 (cc) <paul@pahoughton.net>
 #
 
+set -o emacs
+
 if [ -z "${USER}" ] ; then
   if [ -n "${LOGNAME}" ] ; then
     export USER="${LOGNAME}"
@@ -24,7 +26,7 @@ fi
 
 if [ -d "$HOME/.rbenv" ] ; then
   if [ -x $HOME/.rbenv/bin/rbenv ] ; then
-    prepend_dirs="$prepend_dirs $HOME/.rbenv/bin"
+    PATH=$HOME/.rbenv/bin:$PATH
     rbenvexec="$HOME/.rbenv/bin/rbenv"
   elif [ -x /usr/local/bin/rbenv ] ; then
     rbenvexec="/usr/local/bin/rbenv"
