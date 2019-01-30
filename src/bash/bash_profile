@@ -62,6 +62,18 @@ else
   unset dir
 fi
 
+# minikube
+[ -z "$MINIKUBE_WANTUPDATENOTIFICATION" ] && \
+  export MINIKUBE_WANTUPDATENOTIFICATION=false
+[ -z "$MINIKUBE_WANTREPORTERRORPROMPT" ] && \
+  export MINIKUBE_WANTREPORTERRORPROMPT=false
+[ -z "$MINIKUBE_HOME" ] && \
+  export MINIKUBE_HOME=$HOME
+[ -z "$CHANGE_MINIKUBE_NONE_USER" ] && \
+  export CHANGE_MINIKUBE_NONE_USER=true
+[ -z "$KUBECONFIG" ] && \
+  export KUBECONFIG=$HOME/.kube/config
+
 # set GOPATH
 for dir in "$HOME/wip/go" "$HOME/go" ; do
   if [ -d "$dir" ] ; then
