@@ -26,6 +26,7 @@ dotfiles	=				\
 	bashrc					\
 	bash_setldlibpath			\
 	bash_aliases				\
+	bash_completion				\
 	gitconfig				\
 	gdbinit					\
 	vimrc

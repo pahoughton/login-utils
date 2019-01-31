@@ -1,0 +1,7 @@
+# 2019-01-30 (cc) <paul4hough@gmail.com> -*- Shell-script -*-
+#
+if compgen -G ~/".bash_completion-*" > /dev/null; then
+  for fn in ~/.bash_completion-*; do
+    . $fn
+  done
+fi
