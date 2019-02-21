@@ -1,11 +1,14 @@
 # 2015-07-22 (cc) <paul4hough@gmail.com>
 #
 [user]
-	email = @email_addr@
-	name = @user_name@
+  email = @email_addr@
+  name = @user_name@
 [color]
-        ui = false
+  ui = false
 [push]
-        default = simple
+  default = simple
 [core]
-        pager = cat
+  pager = cat
+[alias]
+  logr = log --reverse
+  ci   = commit -v
