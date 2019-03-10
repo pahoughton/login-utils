@@ -169,10 +169,13 @@ if [ -n "$SYBASE" ] ; then
   fi
 fi
 
+[ -d "/usr/local/go/bin" ] && prepend_dirs="$prepend_dirs /usr/local/go/bin"
+
 [ -n "$ORACLE_HOME" ] && prepend_dirs="$prepend_dirs $ORACLE_HOME/bin"
 [ -n "$UTIL_DIR" ]    && prepend_dirs="$prepend_dirs $UTIL_DIR/bin"
 [ -n "$TOOL_DIR" ]    && prepend_dirs="$prepend_dirs $TOOL_DIR/bin"
 [ -n "$GOPATH" ]      && prepend_dirs="$prepend_dirs $GOPATH/bin"
+
 
 prepend_dirs="$prepend_dirs
     $HOME/.local/bin
